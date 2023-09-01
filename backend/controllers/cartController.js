@@ -1,4 +1,4 @@
-const Cart = require("../models/cart"); 
+const Cart = require("../models/cart");
 const asyncHandler = require("express-async-handler");
 
 // Add an item to the cart

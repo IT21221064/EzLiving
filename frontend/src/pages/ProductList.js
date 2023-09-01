@@ -18,11 +18,13 @@ function ProductList() {
     fetchProducts();
   }, []);
 
-  const addToCart = async (productId, productName, productImage, productPrice) => {
+  const addToCart = async ( productName, productImage, productPrice) => {
     try {
       // Send a POST request to add the product to the cart
       const response = await axios.post('http://localhost:5000/api/cart', {
-       
+        name: productName,
+        image: productImage,
+        price: productPrice,
       });
   
       console.log('Product added to cart:', response.data);
