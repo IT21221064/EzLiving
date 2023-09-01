@@ -18,21 +18,21 @@ function ProductList() {
     fetchProducts();
   }, []);
 
-  const addToCart = async ( productName, productImage, productPrice) => {
+  const addToCart = async (productName, productImage, productPrice) => {
     try {
       // Send a POST request to add the product to the cart
-      const response = await axios.post('http://localhost:5000/api/cart', {
+      await axios.post('http://localhost:5000/api/cart', {
         name: productName,
         image: productImage,
         price: productPrice,
+        quantity: 1, // Set a default quantity (you can adjust this as needed)
       });
-  
-      console.log('Product added to cart:', response.data);
+
+      console.log('Product added to cart.');
     } catch (error) {
       console.error('Error adding product to cart:', error);
     }
   };
-  
 
   return (
     <div>
@@ -41,7 +41,7 @@ function ProductList() {
         {products.map((product) => (
           <li key={product._id} className="product-item">
             <img
-              src={product.imageUrl} // Replace with your image URL path
+              src={product.imageUrl}
               alt={product.name}
               className="product-image"
             />
@@ -50,7 +50,9 @@ function ProductList() {
             <p className="product-price">Price: ${product.price}</p>
             <button
               className="add-to-cart-button"
-              onClick={() => addToCart(product._id)}
+              onClick={() =>
+                addToCart(product.name, product.imageUrl, product.price)
+              }
             >
               Add to Cart
             </button>
