@@ -2,10 +2,11 @@
   "name": "ezliving",
   "version": "1.0.0",
   "description": "online shopping web application for visually challenged people",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "server": "nodemon backend/server.js"
+    "server": "nodemon backend/server.js",
+    "data:import": "node backend/seederScript"
   },
   "repository": {
     "type": "git",
