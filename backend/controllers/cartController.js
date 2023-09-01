@@ -1,27 +1,33 @@
 const Cart = require("../models/cart");
+const asyncHandler = require("express-async-handler");
 
 // Add an item to the cart
-const addToCart = async (req, res) => {
+const addToCart = asyncHandler(async (req, res) => {
+  const { name, image, price, quantity } = req.body;
   try {
-    const { name, image, price, quantity } = req.body;
-
     // Create a new cart item
-    const cartItem = new Cart({
+    const cartItem = await Cart.create({
       name,
       image,
       price,
       quantity,
     });
-
-    // Save the cart item to the database
-    const savedCartItem = await cartItem.save();
-
-    res.status(201).json(savedCartItem);
+    if (cartItem) {
+      res.status(201).json({
+        name: cartItem.name,
+        image: cartItem.image,
+        price: cartItem.price,
+        quantity: cartItem.quantity,
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid input");
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error - Unable to add to cart" });
   }
-};
+});
 
 // Get all cart items
 const getCartItems = async (req, res) => {
@@ -30,7 +36,9 @@ const getCartItems = async (req, res) => {
     res.json(cartItems);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error - Unable to get cart items" });
+    res
+      .status(500)
+      .json({ message: "Server Error - Unable to get cart items" });
   }
 };
 
@@ -51,7 +59,9 @@ const updateCartItemQuantity = async (req, res) => {
     res.json(cartItem);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error - Unable to update cart item" });
+    res
+      .status(500)
+      .json({ message: "Server Error - Unable to update cart item" });
   }
 };
 
@@ -67,7 +77,9 @@ const deleteCartItem = async (req, res) => {
     res.json({ message: "Cart item removed" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error - Unable to delete cart item" });
+    res
+      .status(500)
+      .json({ message: "Server Error - Unable to delete cart item" });
   }
 };
 
