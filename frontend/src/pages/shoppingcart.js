@@ -87,6 +87,13 @@ function Shoppingcart() {
   return (
     <div className="shopping-cart">
       <h1 className="cart-title">Shopping Cart</h1>
+      <button
+        onClick={speakText}
+        className="speak-total-button"
+        disabled={!speechSynthesisSupported}
+      >
+        Speak
+      </button>
       <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
       <ul className="cart-list">
         {cartItems.map((item) => (
@@ -119,13 +126,7 @@ function Shoppingcart() {
         ))}
       </ul>
       
-      <button
-        onClick={speakText}
-        className="speak-total-button"
-        disabled={!speechSynthesisSupported}
-      >
-        Speak
-      </button>
+  
     </div>
   );
 }
