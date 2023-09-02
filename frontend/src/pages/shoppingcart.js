@@ -4,30 +4,42 @@ import './cart.css';
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
+  const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     async function fetchCartItems() {
       try {
-        const response = await axios.get('http://localhost:5000/api/cart'); // Replace with your API endpoint
+        const response = await axios.get('http://localhost:5000/api/cart');
         setCartItems(response.data);
+        calculateTotalPrice(response.data); // Calculate and set the total price
       } catch (error) {
         console.error(error);
       }
     }
 
     fetchCartItems();
+
+    if ('speechSynthesis' in window) {
+      setSpeechSynthesisSupported(true);
+    }
   }, []);
+
+  const calculateTotalPrice = (items) => {
+    const totalPrice = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalPrice(totalPrice);
+  };
 
   const removeFromCart = async (itemId) => {
     try {
-      // Send a DELETE request to remove the item from the cart
       await axios.delete(`http://localhost:5000/api/cart/${itemId}`);
-
-      // Remove the item from the cartItems state
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item._id !== itemId)
-      );
-
+      const updatedCartItems = cartItems.filter((item) => item._id !== itemId);
+      setCartItems(updatedCartItems);
+      // Recalculate total price using the updated cartItems
+      calculateTotalPrice(updatedCartItems);
       console.log('Item removed from cart.');
     } catch (error) {
       console.error('Error removing item from cart:', error);
@@ -36,41 +48,50 @@ function Shoppingcart() {
 
   const updateQuantity = async (itemId, newQuantity) => {
     try {
-      // Send a PUT request to update the item's quantity in the cart
       await axios.put(`http://localhost:5000/api/cart/${itemId}`, {
         quantity: newQuantity,
       });
-
-      // Update the quantity in the cartItems state
-      setCartItems((prevItems) =>
-        prevItems.map((item) =>
-          item._id === itemId ? { ...item, quantity: newQuantity } : item
-        )
+      const updatedCartItems = cartItems.map((item) =>
+        item._id === itemId ? { ...item, quantity: newQuantity } : item
       );
-
+      setCartItems(updatedCartItems);
+      // Recalculate total price using the updated cartItems
+      calculateTotalPrice(updatedCartItems);
       console.log('Quantity updated.');
     } catch (error) {
       console.error('Error updating quantity:', error);
     }
   };
 
-  // Calculate total price
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const speakText = () => {
+    if (speechSynthesisSupported) {
+      const speechSynthesis = window.speechSynthesis;
+
+      const speechItems = cartItems.map((item) => {
+        const itemText = `Product: ${item.name}, Quantity: ${item.quantity}, Unit Price: $${item.price.toFixed(2)}`;
+        return itemText;
+      });
+
+      const totalText = `Total Price: $${totalPrice.toFixed(2)}`;
+      speechItems.push(totalText);
+
+      for (const itemText of speechItems) {
+        const speechUtterance = new SpeechSynthesisUtterance(itemText);
+        speechSynthesis.speak(speechUtterance);
+      }
+    } else {
+      console.log('Speech synthesis is not supported in this browser.');
+    }
+  };
 
   return (
     <div className="shopping-cart">
       <h1 className="cart-title">Shopping Cart</h1>
+      <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
       <ul className="cart-list">
         {cartItems.map((item) => (
           <li key={item._id} className="cart-item">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="cart-image"
-            />
+            <img src={item.image} alt={item.name} className="cart-image" />
             <div className="cart-details">
               <h3 className="cart-name">{item.name}</h3>
               <p className="cart-description">{item.description}</p>
@@ -80,6 +101,7 @@ function Shoppingcart() {
                 <input
                   type="number"
                   value={item.quantity}
+                  min={1}
                   onChange={(e) =>
                     updateQuantity(item._id, parseInt(e.target.value))
                   }
@@ -96,7 +118,14 @@ function Shoppingcart() {
           </li>
         ))}
       </ul>
-      <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
+      
+      <button
+        onClick={speakText}
+        className="speak-total-button"
+        disabled={!speechSynthesisSupported}
+      >
+        Speak
+      </button>
     </div>
   );
 }
