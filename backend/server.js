@@ -8,6 +8,10 @@ const port = process.env.PORT || 5000;
 const itemRoutes = require("./routes/itemRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const userRoutes = require("./routes/userRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
+
 
 connectDB();
 const app = express();
@@ -19,6 +23,9 @@ app.use(cors());
 app.use("/api/items", itemRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes); // Use cart routes with the "/api/cart" base path
+app.use("/api/users", userRoutes);
+app.use("/api/review",reviewRoutes);
+app.use("/api/feedback",feedbackRoutes);
 
 app.use(errorHandler);
 
