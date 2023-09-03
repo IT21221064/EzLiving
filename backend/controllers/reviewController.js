@@ -14,16 +14,11 @@ const addReview = asyncHandler(async (req, res) => {
         reviewtext,
         reviewimage,
     });
-    if (review) {
       res.status(201).json({
         reviewtitle: review.reviewtitle,
         reviewtext: review.reviewtext,
         reviewimage: review.reviewimage,
       });
-    } else {
-      res.status(400);
-      throw new Error("Invalid input");
-    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error-Unable to add review" });
@@ -31,23 +26,23 @@ const addReview = asyncHandler(async (req, res) => {
 });
 
 // Get all reviews
-const getReviews = async (req, res) => {
+const getReviews = asyncHandler(async(req, res) => {
   try {
-    const review = await Review.find();
-    res.json(review);
+    const reviews = await Review.find();
+    res.json(reviews);
   } catch (error) {
     console.error(error);
     res
       .status(500)
       .json({ message: "Unable to view reviews" });
   }
-};
+});
 
 //get one review
 const getReviewById = asyncHandler(async(req,res)=>{
     const review = await Review.findById(req.params.id);
     if(!review){
-        res.status(401);
+        res.status(404);
         throw new error("review not found");
     }
     return res.status(200).json(review);
@@ -66,18 +61,6 @@ const updateReview = asyncHandler( async (req, res) => {
     if(reviewtitle) review.reviewtitle = reviewtitle;
     if(reviewtext) review.reviewtext = reviewtext;
 
-    upload.single("reviewimage")(req, res, async(err)=>{
-        if(err){
-            console.error("image upload error:",err);
-            res.status(400).json({message:"error uploading image"});
-            return;
-        }
-
-        //if path available in req.file.path
-        if(req.file){
-            review.reviewimage = req.file.path;
-        }
-
         //save the updated review
         const updateReview = await Review.findByIdAndUpdate(req.params.id, req.body,{
             new:true,
@@ -91,8 +74,7 @@ const updateReview = asyncHandler( async (req, res) => {
             }else{
                 res.status(400).json({message: "input is invalid"});
             }
-        });
-    });
+});
 
 // Delete review
 const deleteReview = asyncHandler(async (req, res) => {
