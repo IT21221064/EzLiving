@@ -46,7 +46,7 @@ const getReviews = async (req, res) => {
 //get one review
 const getReviewById = asyncHandler(async(req,res)=>{
     const review = await Review.findById(req.params.id);
-    if(!item){
+    if(!review){
         res.status(401);
         throw new error("review not found");
     }
