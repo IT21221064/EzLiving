@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); // Set the destination folder for temporary file storage
+const upload = multer({ dest: "uploads/" }); //destination folder for temporary file storage
 const router = express.Router();
 const {
     getReviews,

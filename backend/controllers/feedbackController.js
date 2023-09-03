@@ -47,10 +47,8 @@ const updateFeedback = asyncHandler(async (req, res) => {
     throw new Error("feedback not found");
   }
 
-  // Extract properties to update from req.body
   const { feedbacktitle, feedbacktext } = req.body;
 
-  // Update the item properties
   if (feedbacktitle) feedback.feedbacktitle = feedbacktitle;
   if (feedbacktext) feedback.feedbacktext = feedbacktext;
 
@@ -71,7 +69,6 @@ const updateFeedback = asyncHandler(async (req, res) => {
 });
 
 //delete items
-
 const deleteFeedback = asyncHandler(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
 

@@ -1,6 +1,6 @@
 const Review = require("../models/reviewModel");
 const asyncHandler = require("express-async-handler");
-const upload = require("../middleware/multer"); // Import the multer middleware
+const upload = require("../middleware/multer"); 
 const path = require("path");
 
 // Add a review to an item
