@@ -2,7 +2,7 @@ const Feedback = require("../models/feedbackModel");
 const asyncHandler = require("express-async-handler");
 
 const getFeedback = asyncHandler(async (req, res) => {
-  const feedback = await Item.find({ Feedback });
+  const feedback = await Feedback.find({ Feedback });
 
   return res.status(200).json(feedback);
 });
@@ -19,8 +19,8 @@ const addFeedback = asyncHandler(async (req, res) => {
 
   try {
     const feedback = await Feedback.create({
-        feedbacktext,
         feedbacktitle,
+        feedbacktext,
     });
 
     if (feedback) {
@@ -85,14 +85,14 @@ const deleteFeedback = asyncHandler(async (req, res) => {
   });
 });
 
-//get one item
+//get one feedback
 const getFeedbackById = asyncHandler(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
   if (!feedback) {
     res.status(401);
     throw new Error("Feedback not found");
   }
-  return res.status(200).json(item);
+  return res.status(200).json(feedback);
 });
 
 module.exports = {
