@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductList.css"; // Import your CSS file
 
-function ProductList() {
-  const [products, setProducts] = useState([]);
+function itemlist() {
+  const [items, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get("http://localhost:5000/api/products"); // Replace with your API endpoint
+        const response = await axios.get("http://localhost:5000/api/items"); // Replace with your API endpoint
         setProducts(response.data);
       } catch (error) {
         console.error(error);
@@ -38,16 +38,16 @@ function ProductList() {
     <div>
       <h1>Product List</h1>
       <ul className="product-list">
-        {products.map((product) => (
+        {items.map((product) => (
           <li key={product._id} className="product-item">
             <img
-              src={product.imageUrl}
+              src={product.itemimage}
               alt={product.name}
               className="product-image"
             />
-            <h2 className="product-name">{product.name}</h2>
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">Price: ${product.price}</p>
+            <h2 className="product-name">{product.itemname}</h2>
+            <p className="product-description">{product.itemdescript}</p>
+            <p className="product-price">Price: ${product.unitprice}</p>
             <button
               className="add-to-cart-button"
               onClick={() =>
@@ -63,4 +63,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default itemlist;
