@@ -26,7 +26,7 @@ const FeedbackPage = () => {
 
     try {
       // Make a POST request to your backend API to add the review
-      const response = await axios.post("/api/addFeedback", formData, {
+      const response = await axios.post("/addFeedback", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Required for file upload
         },
@@ -48,7 +48,7 @@ const FeedbackPage = () => {
 
   return (
     <div>
-      <h1>Feedback Page</h1>
+      <h1>Add Feedback</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="feedbacktitle">Feedback Title:</label>
