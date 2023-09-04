@@ -8,6 +8,7 @@ import ItemPage from "./pages/ItemPage";
 import AdminItemList from "./pages/AdminItemlist";
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
+import FeedbackPage from './pages/Feedback';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/adminItemlist" element={<AdminItemList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path='/feedback' element={<FeedbackPage/>} />
       </Routes>
     </Router>
   );
