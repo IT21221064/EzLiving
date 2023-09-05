@@ -34,8 +34,15 @@ function AdminItemlist() {
   return (
     <div>
       <AdminNavbar />
-      <h1>Product List</h1>
-      <Link to={`/AddItem`}>Add Item</Link>
+      <br />
+
+      <Link to={`/AddItem`} className="button-link-add">
+        Add Item
+      </Link>
+      <br />
+      <br />
+      <br />
+      <br />
       <ul className="product-list">
         {items.map((product) => (
           <li key={product._id} className="product-item">
@@ -46,13 +53,17 @@ function AdminItemlist() {
             />
             <h2 className="cart-name">{product.itemname}</h2>
             <p className="cart-price">Price: ${product.unitprice}</p>
-            <Link to={`/updateItem/${product._id}`}>Update</Link>
-            <button
-              className="add-to-cart-button"
-              onClick={() => handleDelete(product._id)}
-            >
-              Delete
-            </button>
+            <div className="button-container">
+              <Link to={`/updateItem/${product._id}`} className="button-link-update">
+                Update
+              </Link>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(product._id)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>

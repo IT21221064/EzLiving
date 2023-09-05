@@ -1,8 +1,13 @@
 /* cart.css */
 body {
-  background: radial-gradient(circle at center, black 10%, white 10%);
-  background-size: 50px 50px; 
+  background-image: url("/public/images/bc1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Adjust the size as needed */
 }
+
 .shopping-cart {
   width: 80%;
   margin: 0 auto;
@@ -93,12 +98,10 @@ body {
 
 .cart-remove-button:hover {
   background-color: #c82333;
-
-  
 }
 .product-image:hover {
   transform: scale(1.2); /* You can adjust the scale factor as needed */
-  transition: transform 0.3s ;
+  transition: transform 0.3s;
 }
 
 .cart-name:hover,
@@ -109,8 +112,7 @@ body {
   font-size: 20px; /* You can adjust the font size as needed */
   transition: font-size 0.3s ease-in-out;
 }
-.cart-checkout-button
-{
+.cart-checkout-button {
   background-color: #34a11ea8;
   color: #fff;
   border: none;
@@ -123,7 +125,6 @@ body {
   height: 60px;
   border-radius: 5px;
 }
-.cart-checkout-button:hover
-{
+.cart-checkout-button:hover {
   background-color: #91d750;
 }

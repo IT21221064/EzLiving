@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./cart.css";
+import "./ProductList.css";
 import {
   BrowserRouter as Router,
   Route,
@@ -57,7 +57,7 @@ function itemlist() {
     <div>
       <Navbar isListening={isListening} startListening={startListening} />
       <Searchbar isListening={isListening} startListening={startListening} />
-      <h1>Product List</h1>
+
       <ul className="product-list">
         {items.map((product) => (
           <li key={product._id} className="product-item">
@@ -71,21 +71,29 @@ function itemlist() {
             {console.log(`http://localhost:5000/${product?.itemimage}`)}
             <h2 className="cart-name">{product.itemname}</h2>
             <p className="cart-price">Price: ${product.unitprice}</p>
-            <button
-              className="cart-add-button"
-              onClick={() =>
-                addToCart(
-                  product.itemname,
-                  product.itemimage,
-                  product.unitprice
-                )
-              }
-            >
-              Add to Cart
-            </button>
+            <center>
+              <button
+                className="cart-add-button"
+                onClick={() =>
+                  addToCart(
+                    product.itemname,
+                    product.itemimage,
+                    product.unitprice
+                  )
+                }
+              >
+                Add to Cart
+              </button>
+            </center>
           </li>
         ))}
       </ul>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Footer />
     </div>
   );

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./singleItem.css";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function ItemPage() {
   const [item, setItem] = useState({
@@ -96,6 +97,13 @@ function ItemPage() {
           Add to Cart
         </button>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <Footer />
     </div>
   );
 }

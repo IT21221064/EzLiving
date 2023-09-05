@@ -25,10 +25,10 @@ function Navbar() {
 
     if (lowercaseTranscript.includes("go to home")) {
       navigate("/items");
-    } else if (lowercaseTranscript.includes("add item")) {
-      navigate("/addItem");
-    } else if (lowercaseTranscript.includes("go to items")) {
-      navigate("/items");
+    } else if (lowercaseTranscript.includes("go to cart")) {
+      navigate("/cart");
+    } else if (lowercaseTranscript.includes("go to feedbacks")) {
+      navigate("/Feedback");
     }
   };
 

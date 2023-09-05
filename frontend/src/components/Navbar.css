@@ -8,13 +8,18 @@ body {
   display: flex;
   justify-content: space-between; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  background-color: #333; /* Background color for the navbar */
+  background-color: rgba(
+    68,
+    41,
+    2,
+    0.718
+  ); /* Background color for the navbar */
   padding: 15px; /* Add padding for spacing */
 }
 
 /* Style for the microphone button */
 .mic-button {
-  background-color: #007bff; /* Customize button background color */
+  background-color: #378de9; /* Customize button background color */
   color: white; /* Button text color */
   font-size: 20px; /* Button text size */
   border: none;
@@ -25,7 +30,9 @@ body {
 }
 
 .mic-button:hover {
-  background-color: #0056b3; /* Change color on hover */
+  background-color: #1d6bbe;
+  transform: scale(1.2); /* You can adjust the scale factor as needed */
+  transition: transform 0.3s; /* Change color on hover */
 }
 
 /* Style for the navbar brand text */
@@ -43,7 +50,8 @@ body {
 }
 
 .text:hover:hover {
-  color: #007bff; /* Change text color on hover */
+  color: #5ed0fa; /* Change text color on hover to a light blue color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
 }
 
 /* Style for the navigation links */
@@ -64,5 +72,4 @@ body {
   height: 50px;
   position: relative;
   left: -500px;
-
 }
