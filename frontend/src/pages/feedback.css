@@ -1,0 +1,44 @@
+/* Feedback Page CSS */
+
+.feedback-page {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 350px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 150px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}

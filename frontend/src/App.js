@@ -11,24 +11,28 @@ import Signup from "./pages/signup";
 import Navbar from "./components/Navbar";
 import { recognition } from "./api/VoiceRecognition";
 import { useEffect } from "react";
+import AddFeedback from './pages/AddFeedback';
+
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<ProductList />} />
-          <Route path="/items" element={<ItemList />} />
-          <Route path="/cart" element={<Shoppingcart />} />
-          <Route path="/addItem" element={<AddItem />} />
-          <Route path="/updateItem/:_id" element={<UpdateItem />} />
-          <Route path="/itempage/:_id" element={<ItemPage />} />
-          <Route path="/adminItemlist" element={<AdminItemList />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
-        </Routes>
-      </div>
+
+ 
+
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/items" element={<ItemList />} />
+        <Route path="/cart" element={<Shoppingcart />} />
+        <Route path="/addItem" element={<AddItem />} />
+        <Route path="/updateItem/:_id" element={<UpdateItem />} />
+        <Route path="/itempage/:_id" element={<ItemPage />} />
+        <Route path="/adminItemlist" element={<AdminItemList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path='/AddFeedback' element={<AddFeedback/>} />
+      </Routes>
+
     </Router>
   );
 }
