@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
+import Footer from "../components/Footer";
 
 // Import your CSS file
 
@@ -85,6 +86,7 @@ function itemlist() {
           </li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 }

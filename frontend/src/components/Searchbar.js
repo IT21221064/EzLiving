@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Searchbar.css";
 
 function Searchbar() {
   const [isListening, setIsListening] = useState(false);
@@ -33,15 +34,17 @@ function Searchbar() {
   };
 
   return (
-    <div>
-      <h1>Voice Controlled Search</h1>
+    <div className="search-container">
       <input
         type="text"
+        class="search-input"
         placeholder="Search..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleVoiceSearch}>Search by Voice</button>
+      <button onClick={handleVoiceSearch} className="search-button">
+        Search by Voice
+      </button>
     </div>
   );
 }

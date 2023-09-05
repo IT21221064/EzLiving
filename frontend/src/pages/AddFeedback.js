@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios"; // You need Axios for making HTTP requests
-import '../pages/feedback.css'; // Import your CSS file
+import "../pages/feedback.css"; // Import your CSS file
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const FeedbackPage = () => {
   const [feedbackData, setFeedbackData] = useState({
@@ -9,7 +11,7 @@ const FeedbackPage = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value} = e.target;
+    const { name, value } = e.target;
 
     setFeedbackData((prevData) => ({
       ...prevData,
@@ -19,7 +21,7 @@ const FeedbackPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("feedbacktitle", feedbackData.feedbacktitle);
     formData.append("feedbacktext", feedbackData.feedbacktext);
@@ -48,6 +50,7 @@ const FeedbackPage = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Add Feedback</h1>
       <form onSubmit={handleSubmit}>
         <div>
@@ -71,6 +74,7 @@ const FeedbackPage = () => {
         </div>
         <button type="submit">Submit Feedback</button>
       </form>
+      <Footer />
     </div>
   );
 };
