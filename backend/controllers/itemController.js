@@ -11,8 +11,8 @@ const getItem = asyncHandler(async (req, res) => {
 
 //add items
 const addItem = asyncHandler(async (req, res) => {
+  console.log(req.file);
   const { itemcode, itemname, unitprice, quantity, itemdescript } = req.body;
-  const itemimage = req.file ? req.file.path : null; // Get the uploaded image path
 
   // Check if all required fields are provided
   if (!itemcode || !itemname || !unitprice || !quantity || !itemdescript) {
@@ -29,14 +29,17 @@ const addItem = asyncHandler(async (req, res) => {
 
   try {
     // Create a new item with the uploaded image path (if available)
-    const item = await Item.create({
+    const newItem = new Item({
       itemcode,
       itemname,
       unitprice,
       quantity,
-      itemimage, // Save the image path in the database
+      itemimage: req.file ? req.file.path : null, // Set the itemimage field with the path
       itemdescript,
     });
+
+    // Save the item to the database
+    const item = await newItem.save();
 
     if (item) {
       res.status(201).json({
@@ -44,7 +47,7 @@ const addItem = asyncHandler(async (req, res) => {
         itemname: item.itemname,
         unitprice: item.unitprice,
         quantity: item.quantity,
-        itemimage: item.itemimage,
+        itemimage: item.itemimage, // Include the image path in the response
         itemdescript: item.itemdescript,
       });
     } else {
@@ -56,6 +59,7 @@ const addItem = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
 //update items
 
 const updateItem = asyncHandler(async (req, res) => {
@@ -124,13 +128,21 @@ const deleteItem = asyncHandler(async (req, res) => {
 });
 
 //get one item
+//get one item
 const getItemById = asyncHandler(async (req, res) => {
   const item = await Item.findById(req.params.id);
   if (!item) {
     res.status(401);
     throw new Error("Item not found");
   }
-  return res.status(200).json(item);
+  return res.status(200).json({
+    itemcode: item.itemcode,
+    itemname: item.itemname,
+    quantity: item.quantity,
+    unitprice: item.unitprice,
+    itemimage: item.itemimage, // Include the itemimage field in the response
+    itemdescript: item.itemdescript,
+  });
 });
 
 module.exports = {

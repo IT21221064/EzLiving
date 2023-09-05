@@ -84,12 +84,6 @@ function UpdateItem() {
           value={item.itemdescript}
           onChange={(e) => setItem({ ...item, itemdescript: e.target.value })}
         ></textarea>
-        <label>Add Image</label>
-        <input
-          type="text"
-          name="itemimage"
-          onChange={(e) => setItem({ ...item, itemimage: e.target.value })}
-        />
         <button type="submit">Update Item</button>
       </form>
     </div>
