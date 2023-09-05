@@ -8,11 +8,18 @@ import ItemPage from "./pages/ItemPage";
 import AdminItemList from "./pages/AdminItemlist";
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
+import Navbar from "./components/Navbar";
+import { recognition } from "./api/VoiceRecognition";
+import { useEffect } from "react";
 import AddFeedback from './pages/AddFeedback';
+
 
 function App() {
   return (
     <Router>
+
+ 
+
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/items" element={<ItemList />} />
@@ -25,6 +32,7 @@ function App() {
         <Route path="/Signup" element={<Signup />} />
         <Route path='/AddFeedback' element={<AddFeedback/>} />
       </Routes>
+
     </Router>
   );
 }

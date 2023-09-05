@@ -56,7 +56,7 @@
 }
 
 .cart-description:hover {
-  font-size: 24px;/* Zoom effect on hover */
+  font-size: 24px; /* Zoom effect on hover */
 }
 
 .cart-price {
@@ -69,7 +69,7 @@
 .cart-price:hover {
   font-size: 26px; /* Zoom effect on hover */
 }
-.cart-quantity:hover{
+.cart-quantity:hover {
   font-size: 20px;
 }
 .cart-quantity-input {
@@ -97,14 +97,26 @@
 .cart-remove-button:hover {
   background-color: #d32f2f;
 }
+.cart-add-button {
+  background-color: #3475ef;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.cart-add-button:hover {
+  background-color: #a22fd3;
+  transform: scale(1.1);
+}
 
 .cart-total {
   font-size: 20px;
   margin-top: 20px;
   cursor: pointer;
   transition: transform 0.3s;
-  margin-left:  1200px;
-  
+  margin-left: 1200px;
 }
 
 .cart-total:hover {
@@ -112,7 +124,7 @@
 }
 
 .speak-total-button {
-  background-color: #2196F3;
+  background-color: #2196f3;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -128,5 +140,5 @@
 }
 
 .speak-total-button:hover {
-  background-color: #1976D2;
+  background-color: #1976d2;
 }
