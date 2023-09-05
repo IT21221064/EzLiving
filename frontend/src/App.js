@@ -11,15 +11,12 @@ import Signup from "./pages/signup";
 import Navbar from "./components/Navbar";
 import { recognition } from "./api/VoiceRecognition";
 import { useEffect } from "react";
-import AddFeedback from './pages/AddFeedback';
-
+import AddFeedback from "./pages/AddFeedback";
 
 function App() {
   return (
     <Router>
-
- 
-
+      <Navbar />
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/items" element={<ItemList />} />
@@ -30,9 +27,8 @@ function App() {
         <Route path="/adminItemlist" element={<AdminItemList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path='/AddFeedback' element={<AddFeedback/>} />
+        <Route path="/AddFeedback" element={<AddFeedback />} />
       </Routes>
-
     </Router>
   );
 }
