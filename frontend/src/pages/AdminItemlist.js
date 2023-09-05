@@ -38,13 +38,12 @@ function AdminItemlist() {
         {items.map((product) => (
           <li key={product._id} className="product-item">
             <img
-              src={product.itemimage}
+              src={`http://localhost:5000/${product?.itemimage}`}
               alt={product.name}
-              className="product-image"
+              className="cart-image"
             />
-            <h2 className="product-name">{product.itemname}</h2>
-            <p className="product-description">{product.itemdescript}</p>
-            <p className="product-price">Price: ${product.unitprice}</p>
+            <h2 className="cart-name">{product.itemname}</h2>
+            <p className="cart-price">Price: ${product.unitprice}</p>
             <Link to={`/updateItem/${product._id}`}>Update</Link>
             <button
               className="add-to-cart-button"
