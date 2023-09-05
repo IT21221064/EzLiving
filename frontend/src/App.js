@@ -9,6 +9,9 @@ import AdminItemList from "./pages/AdminItemlist";
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
 import AddFeedback from './pages/AddFeedback';
+import FeedbackList from "./pages/feedbackList";
+import AddReview from './pages/AddReview';
+import ReviewList from './pages/ReviewList'
 
 function App() {
   return (
@@ -24,6 +27,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path='/AddFeedback' element={<AddFeedback/>} />
+        <Route path='/Feedback' element={<FeedbackList/>} />
+        <Route path='/AddReview' element={<AddReview/>} />
+        <Route path='/Review' element={<ReviewList/>} />
+
       </Routes>
     </Router>
   );
