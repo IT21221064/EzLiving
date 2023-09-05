@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cart.css";
+import Footer from "../components/Footer";
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
-  const [speechSynthesisSupported, setSpeechSynthesisSupported] =
-    useState(false);
+  const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(
+    false
+  );
+  const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(
+    false
+  );
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -24,6 +29,9 @@ function Shoppingcart() {
     if ("speechSynthesis" in window) {
       setSpeechSynthesisSupported(true);
     }
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+      setSpeechRecognitionSupported(true);
+    }
   }, []);
 
   const calculateTotalPrice = (items) => {
@@ -36,12 +44,45 @@ function Shoppingcart() {
 
   const removeFromCart = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/${itemId}`);
-      const updatedCartItems = cartItems.filter((item) => item._id !== itemId);
-      setCartItems(updatedCartItems);
-      // Recalculate total price using the updated cartItems
-      calculateTotalPrice(updatedCartItems);
-      console.log("Item removed from cart.");
+      const confirmationMessage = `Removing ${cartItems.find(
+        (item) => item._id === itemId
+      ).name} from cart. Say 'remove' to confirm or 'no' to cancel.`;
+
+      if (speechSynthesisSupported) {
+        const speechSynthesis = window.speechSynthesis;
+        const speechUtterance = new SpeechSynthesisUtterance(
+          confirmationMessage
+        );
+        speechSynthesis.speak(speechUtterance);
+      }
+
+      if (speechRecognitionSupported) {
+        const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+
+        recognition.onresult = (event) => {
+          const userResponse = event.results[0][0].transcript.toLowerCase();
+          
+          if (userResponse === "remove") {
+            axios.delete(`http://localhost:5000/api/cart/${itemId}`);
+            const updatedCartItems = cartItems.filter(
+              (item) => item._id !== itemId
+            );
+            setCartItems(updatedCartItems);
+            // Recalculate total price using the updated cartItems
+            calculateTotalPrice(updatedCartItems);
+            console.log("Item removed from cart.");
+          } else {
+            console.log("Removal canceled."+ userResponse);
+          }
+        };
+
+        recognition.start();
+      }
     } catch (error) {
       console.error("Error removing item from cart:", error);
     }
@@ -106,7 +147,6 @@ function Shoppingcart() {
               alt={item.name}
               className="product-image"
             />
-            {console.log(`http://localhost:5000/${item?.image}`)}
             <div className="cart-details">
               <h3 className="cart-name">{item.name}</h3>
               <p className="cart-description">{item.description}</p>
@@ -133,8 +173,11 @@ function Shoppingcart() {
           </li>
         ))}
       </ul>
+      <center>
+        <button className="cart-checkout-button">Checkout</button>
+      </center>
+      <Footer/>
     </div>
   );
 }
-
 export default Shoppingcart;
