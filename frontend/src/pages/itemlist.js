@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./cart.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ItemPage from "./ItemPage";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Searchbar from "../components/Searchbar";
 
 // Import your CSS file
 
@@ -38,9 +44,18 @@ function itemlist() {
       console.error("Error adding product to cart:", error);
     }
   };
+  const navigate = useNavigate();
+  const [isListening, setIsListening] = useState(false);
+
+  // Callback function to start listening
+  const startListening = () => {
+    setIsListening(true);
+  };
 
   return (
     <div>
+      <Navbar isListening={isListening} startListening={startListening} />
+      <Searchbar isListening={isListening} startListening={startListening} />
       <h1>Product List</h1>
       <ul className="product-list">
         {items.map((product) => (

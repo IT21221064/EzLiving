@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cart.css";
+import Navbar from "../components/Navbar";
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
@@ -88,52 +89,55 @@ function Shoppingcart() {
   };
 
   return (
-    <div className="shopping-cart">
-      <h1 className="cart-title">Shopping Cart</h1>
-      <button
-        onClick={speakText}
-        className="speak-total-button"
-        disabled={!speechSynthesisSupported}
-      >
-        Speak
-      </button>
-      <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
-      <ul className="cart-list">
-        {cartItems.map((item) => (
-          <li key={item._id} className="cart-item">
-            <img
-              src={`http://localhost:5000/${item?.image}`}
-              alt={item.name}
-              className="product-image"
-            />
-            {console.log(`http://localhost:5000/${item?.image}`)}
-            <div className="cart-details">
-              <h3 className="cart-name">{item.name}</h3>
-              <p className="cart-description">{item.description}</p>
-              <p className="cart-price">Price: ${item.price}</p>
-              <p className="cart-quantity">
-                Quantity:{" "}
-                <input
-                  type="number"
-                  value={item.quantity}
-                  min={1}
-                  onChange={(e) =>
-                    updateQuantity(item._id, parseInt(e.target.value))
-                  }
-                  className="cart-quantity-input"
-                />
-              </p>
-            </div>
-            <button
-              onClick={() => removeFromCart(item._id)}
-              className="cart-remove-button"
-            >
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <Navbar />
+      <div className="shopping-cart">
+        <h1 className="cart-title">Shopping Cart</h1>
+        <button
+          onClick={speakText}
+          className="speak-total-button"
+          disabled={!speechSynthesisSupported}
+        >
+          Speak
+        </button>
+        <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
+        <ul className="cart-list">
+          {cartItems.map((item) => (
+            <li key={item._id} className="cart-item">
+              <img
+                src={`http://localhost:5000/${item?.image}`}
+                alt={item.name}
+                className="product-image"
+              />
+              {console.log(`http://localhost:5000/${item?.image}`)}
+              <div className="cart-details">
+                <h3 className="cart-name">{item.name}</h3>
+                <p className="cart-description">{item.description}</p>
+                <p className="cart-price">Price: ${item.price}</p>
+                <p className="cart-quantity">
+                  Quantity:{" "}
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    min={1}
+                    onChange={(e) =>
+                      updateQuantity(item._id, parseInt(e.target.value))
+                    }
+                    className="cart-quantity-input"
+                  />
+                </p>
+              </div>
+              <button
+                onClick={() => removeFromCart(item._id)}
+                className="cart-remove-button"
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 

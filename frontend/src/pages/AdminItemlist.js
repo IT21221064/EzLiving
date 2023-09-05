@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductList.css"; // Import your CSS file
 import { Link } from "react-router-dom";
+import AdminNavbar from "../components/AdminNavbar";
 
 function AdminItemlist() {
   const [items, setProducts] = useState([]);
@@ -32,6 +33,7 @@ function AdminItemlist() {
 
   return (
     <div>
+      <AdminNavbar />
       <h1>Product List</h1>
       <Link to={`/AddItem`}>Add Item</Link>
       <ul className="product-list">

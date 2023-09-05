@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../components/AdminNavbar";
 
 function addItem() {
   const [item, setItem] = useState({
@@ -42,6 +43,7 @@ function addItem() {
 
   return (
     <div>
+      <AdminNavbar />
       <h2>Create Item</h2>
       <form onSubmit={onSubmit}>
         <label>Item Code</label>
