@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShoppingCart,
+  faSignOutAlt,
+  faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
+
+import "./Navbar.css"; // Import a CSS file for custom styles
 
 function Navbar() {
   const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
   let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -17,14 +24,11 @@ function Navbar() {
     const lowercaseTranscript = transcript.toLowerCase();
 
     if (lowercaseTranscript.includes("go to home")) {
-      navigate("/");
+      navigate("/items");
     } else if (lowercaseTranscript.includes("add item")) {
       navigate("/addItem");
     } else if (lowercaseTranscript.includes("go to items")) {
       navigate("/items");
-    } else {
-      // If none of the predefined commands match, treat the transcript as a search query
-      setSearchQuery(transcript);
     }
   };
 
@@ -42,65 +46,57 @@ function Navbar() {
     }
   };
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    // Implement your search functionality here, e.g., navigate to a search results page
-    // You can access the search query using the `searchQuery` state
-  };
-
   const handleStartListening = () => {
     // Start listening for voice input only when the search button is clicked
     handleMicClick();
   };
 
   return (
-    <div className="col-md-12 bg-dark py-3">
-      <button className="mic-button" onClick={handleStartListening}>
-        Start Listening
+    <div className="navbar-container">
+      <button
+        className="mic-button"
+        onClick={handleStartListening}
+        aria-label="Start Listening"
+      >
+        <FontAwesomeIcon icon={faMicrophone} aria-hidden="true" />
       </button>
-      <nav className="navbar navbar-dark">
-        <a className="navbar-brand" href={"/"}>
-          Voice controlled navigation
-        </a>
-        <form onSubmit={handleSearchSubmit} className="form-inline">
-          <div className="input-group">
-            <input
-              className="form-control"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchQuery}
-              onChange={handleSearchChange}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-success"
-                type="submit"
-                // Start listening when the button is clicked
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </form>
+      <nav className="navbar">
+        <Link to="/" className="navbar-brand">
+          <img className="nav-logo" src="/images/EYELogo.png" alt="Logo" />
+        </Link>
         <ul className="nav">
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
+            <Link to="/items" className="text">
               Home
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/addItem">
-              Add Item
+            <Link to="/feedback" className="text">
+              Feedbacks
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/viewItems">
-              View Items
+            <Link to="/profile" className="text">
+              Profile
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/cart" className="text">
+              <FontAwesomeIcon icon={faShoppingCart} /> Cart
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/login"
+              className="text"
+              onClick={(e) => {
+                e.preventDefault();
+                // Handle logout logic here
+                // For example, clear user session and navigate to the login page
+                navigate("/login");
+              }}
+            >
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </Link>
           </li>
         </ul>

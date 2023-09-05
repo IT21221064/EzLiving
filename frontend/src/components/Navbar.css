@@ -1,0 +1,68 @@
+/* Define a font-family for the entire navbar */
+body {
+  font-family: "Arial", sans-serif; /* Use your preferred font-family here */
+}
+
+/* Style for the navbar container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  background-color: #333; /* Background color for the navbar */
+  padding: 15px; /* Add padding for spacing */
+}
+
+/* Style for the microphone button */
+.mic-button {
+  background-color: #007bff; /* Customize button background color */
+  color: white; /* Button text color */
+  font-size: 20px; /* Button text size */
+  border: none;
+  padding: 10px 20px; /* Adjust padding for button size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 100%;
+}
+
+.mic-button:hover {
+  background-color: #0056b3; /* Change color on hover */
+}
+
+/* Style for the navbar brand text */
+.navbar-brand {
+  text-decoration: none;
+}
+
+.text {
+  font-size: 24px; /* Adjust text size as needed */
+  font-weight: bold; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+  padding: 15px;
+}
+
+.text:hover:hover {
+  color: #007bff; /* Change text color on hover */
+}
+
+/* Style for the navigation links */
+.nav-link {
+  font-size: 40px; /* Adjust text size as needed */
+  font-weight: bolder; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  margin-right: 20px; /* Add spacing between links */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Change text color on hover */
+}
+.nav-logo {
+  width: 250px;
+  height: 50px;
+  position: relative;
+  left: -500px;
+
+}

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./cart.css";
+
+import Navbar from "../components/Navbar";
+
 import Footer from "../components/Footer";
+
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
@@ -129,6 +133,7 @@ function Shoppingcart() {
   };
 
   return (
+
     <div className="shopping-cart">
       <h1 className="cart-title">Shopping Cart</h1>
       <button
