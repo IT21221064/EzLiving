@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AdminNavbar from "../components/AdminNavbar";
 
 function addItem() {
   const [item, setItem] = useState({
@@ -8,9 +9,10 @@ function addItem() {
     itemname: "",
     quantity: 0,
     unitprice: "",
-    itemimage: "",
     itemdescript: "",
   });
+  const [itemimage, setImage] = useState("");
+  console.log(itemimage);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,10 +20,20 @@ function addItem() {
   };
 
   const navigate = useNavigate();
+  const formData = new FormData();
+  formData.append("itemimage", itemimage);
   const onSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("itemcode", item.itemcode);
+    formData.append("itemname", item.itemname);
+    formData.append("quantity", item.quantity);
+    formData.append("unitprice", item.unitprice);
+    formData.append("itemdescript", item.itemdescript);
+    formData.append("itemimage", itemimage); // Append the image with the correct field name
+
     try {
-      await axios.post("http://localhost:5000/api/items/", item);
+      await axios.post("http://localhost:5000/api/items/", formData);
       alert("Item added");
       navigate("/adminItemlist");
     } catch (err) {
@@ -31,6 +43,7 @@ function addItem() {
 
   return (
     <div>
+      <AdminNavbar />
       <h2>Create Item</h2>
       <form onSubmit={onSubmit}>
         <label>Item Code</label>
@@ -69,10 +82,10 @@ function addItem() {
         ></textarea>
         <label>Add Image</label>
         <input
-          type="text"
+          type="File"
           id="itemimage"
           name="itemimage"
-          onChange={handleChange}
+          onChange={(e) => setImage(e.target.files[0])}
         />
         <button type="submit">Add Item</button>
       </form>

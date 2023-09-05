@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductList.css"; // Import your CSS file
 import { Link } from "react-router-dom";
+import AdminNavbar from "../components/AdminNavbar";
 
 function AdminItemlist() {
   const [items, setProducts] = useState([]);
@@ -32,19 +33,19 @@ function AdminItemlist() {
 
   return (
     <div>
+      <AdminNavbar />
       <h1>Product List</h1>
       <Link to={`/AddItem`}>Add Item</Link>
       <ul className="product-list">
         {items.map((product) => (
           <li key={product._id} className="product-item">
             <img
-              src={product.itemimage}
+              src={`http://localhost:5000/${product?.itemimage}`}
               alt={product.name}
-              className="product-image"
+              className="cart-image"
             />
-            <h2 className="product-name">{product.itemname}</h2>
-            <p className="product-description">{product.itemdescript}</p>
-            <p className="product-price">Price: ${product.unitprice}</p>
+            <h2 className="cart-name">{product.itemname}</h2>
+            <p className="cart-price">Price: ${product.unitprice}</p>
             <Link to={`/updateItem/${product._id}`}>Update</Link>
             <button
               className="add-to-cart-button"

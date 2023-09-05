@@ -11,7 +11,7 @@ const cartRoutes = require("./routes/cartRoutes");
 const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const feedbackRoutes = require("./routes/feedbackRoutes");
-
+const ccartRoutes = require("./routes/ccartRoutes");
 
 connectDB();
 const app = express();
@@ -24,8 +24,10 @@ app.use("/api/items", itemRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes); // Use cart routes with the "/api/cart" base path
 app.use("/api/users", userRoutes);
-app.use("/api/review",reviewRoutes);
-app.use("/api/feedback",feedbackRoutes);
+app.use("/api/review", reviewRoutes);
+app.use("/api/feedback", feedbackRoutes);
+app.use("/api/users/ccart", ccartRoutes);
+app.use("/uploads", express.static("uploads"));
 
 app.use(errorHandler);
 
