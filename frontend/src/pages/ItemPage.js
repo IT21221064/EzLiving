@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import AddReview from "./AddReview";
 import "./singleItem.css";
 import Navbar from "../components/Navbar";
 
