@@ -32,12 +32,7 @@ function Navbar() {
     }
   };
 
-  recognition.onend = () => {
-    if (!isListening) {
-      recognition.start();
-      setIsListening(true);
-    }
-  };
+ 
 
   const handleMicClick = () => {
     if (!isListening) {
