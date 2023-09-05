@@ -48,7 +48,7 @@ function Shoppingcart() {
       const confirmationMessage = `Removing ${
         cartItems.find((item) => item._id === itemId).name
       } from cart. Say 'remove' to confirm or 'no' to cancel.`;
-
+  
       if (speechSynthesisSupported) {
         const speechSynthesis = window.speechSynthesis;
         const speechUtterance = new SpeechSynthesisUtterance(
@@ -56,7 +56,7 @@ function Shoppingcart() {
         );
         speechSynthesis.speak(speechUtterance);
       }
-
+  
       if (speechRecognitionSupported) {
         const SpeechRecognition =
           window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -64,10 +64,20 @@ function Shoppingcart() {
         recognition.continuous = false;
         recognition.interimResults = false;
         recognition.lang = "en-US";
-
+  
+        // Add a delay before allowing the microphone to listen for user input
+        let allowUserInput = false;
+        setTimeout(() => {
+          allowUserInput = true;
+        }, 5000); // 3000 milliseconds (3 seconds) delay
+  
         recognition.onresult = (event) => {
+          if (!allowUserInput) {
+            return; // Delay is active, don't process speech recognition.
+          }
+  
           const userResponse = event.results[0][0].transcript.toLowerCase();
-
+  
           if (userResponse === "remove") {
             axios.delete(`http://localhost:5000/api/cart/${itemId}`);
             const updatedCartItems = cartItems.filter(
@@ -81,13 +91,14 @@ function Shoppingcart() {
             console.log("Removal canceled." + userResponse);
           }
         };
-
+  
         recognition.start();
       }
     } catch (error) {
       console.error("Error removing item from cart:", error);
     }
   };
+  
 
   const updateQuantity = async (itemId, newQuantity) => {
     try {

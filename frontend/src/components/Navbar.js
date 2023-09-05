@@ -32,6 +32,7 @@ function Navbar() {
     }
   };
 
+
   const handleMicClick = () => {
     if (!isListening) {
       recognition.start();
