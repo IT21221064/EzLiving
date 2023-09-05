@@ -13,37 +13,36 @@ function Searchbar() {
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setSearchQuery(transcript);
-      handleVoiceSearch();
+      // No need to call handleVoiceSearch here
     };
 
-    recognition.onend = () => {
-      if (!isListening) {
-        recognition.start();
-        setSearchQuery(transcript);
-        handleVoiceSearch();
-      }
+    // Start recognition when component mounts if isListening is true
+    if (isListening) {
+      recognition.start();
+    }
+
+    // Cleanup: Stop recognition when the component unmounts
+    return () => {
+      recognition.stop();
     };
   }, [isListening]);
 
   const handleVoiceSearch = () => {
-    if (!isListening) {
-      setIsListening(true);
-    }
-    // Perform your search functionality here using the searchQuery state
-    console.log("Performing search with query:", searchQuery);
+    // Toggle the isListening state
+    setIsListening(!isListening);
   };
 
   return (
     <div className="search-container">
       <input
         type="text"
-        class="search-input"
+        className="search-input"
         placeholder="Search..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button onClick={handleVoiceSearch} className="search-button">
-        Search by Voice
+        {isListening ? "Stop Listening" : "Search by Voice"}
       </button>
     </div>
   );

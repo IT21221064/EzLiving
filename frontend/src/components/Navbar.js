@@ -32,12 +32,15 @@ function Navbar() {
     }
   };
 
- 
 
   const handleMicClick = () => {
     if (!isListening) {
       recognition.start();
       setIsListening(true);
+    } else {
+      // Stop and re-start the recognition process
+      recognition.stop();
+      recognition.start();
     }
   };
 
@@ -45,6 +48,7 @@ function Navbar() {
     // Start listening for voice input only when the search button is clicked
     handleMicClick();
   };
+
 
   return (
     <div className="navbar-container">

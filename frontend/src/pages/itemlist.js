@@ -45,18 +45,12 @@ function itemlist() {
       console.error("Error adding product to cart:", error);
     }
   };
-  const navigate = useNavigate();
-  const [isListening, setIsListening] = useState(false);
-
-  // Callback function to start listening
-  const startListening = () => {
-    setIsListening(true);
-  };
+  
 
   return (
     <div>
-      <Navbar isListening={isListening} startListening={startListening} />
-      <Searchbar isListening={isListening} startListening={startListening} />
+      <Navbar />
+      <Searchbar  />
 
       <ul className="product-list">
         {items.map((product) => (
