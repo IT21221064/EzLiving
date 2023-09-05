@@ -1,0 +1,75 @@
+/* Define a font-family for the entire navbar */
+body {
+  font-family: "Arial", sans-serif; /* Use your preferred font-family here */
+}
+
+/* Style for the navbar container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  background-color: rgba(
+    68,
+    41,
+    2,
+    0.718
+  ); /* Background color for the navbar */
+  padding: 15px; /* Add padding for spacing */
+}
+
+/* Style for the microphone button */
+.mic-button {
+  background-color: #378de9; /* Customize button background color */
+  color: white; /* Button text color */
+  font-size: 20px; /* Button text size */
+  border: none;
+  padding: 10px 20px; /* Adjust padding for button size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 100%;
+}
+
+.mic-button:hover {
+  background-color: #1d6bbe;
+  transform: scale(1.2); /* You can adjust the scale factor as needed */
+  transition: transform 0.3s; /* Change color on hover */
+}
+
+/* Style for the navbar brand text */
+.navbar-brand {
+  text-decoration: none;
+}
+
+.text {
+  font-size: 24px; /* Adjust text size as needed */
+  font-weight: bold; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+  padding: 15px;
+}
+
+.text:hover:hover {
+  color: #5ed0fa; /* Change text color on hover to a light blue color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+}
+
+/* Style for the navigation links */
+.nav-link {
+  font-size: 40px; /* Adjust text size as needed */
+  font-weight: bolder; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  margin-right: 20px; /* Add spacing between links */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Change text color on hover */
+}
+.nav-logo {
+  width: 250px;
+  height: 50px;
+  position: relative;
+  left: -500px;
+}

@@ -1,44 +1,31 @@
-/* Feedback Page CSS */
-
-.feedback-page {
-  background-color: #fff;
-  padding: 20px;
-  margin: 0 auto;
-  max-width: 500px;
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
-h1 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-form {
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-right: 350px;
+.input-with-button {
+  display: flex;
+  align-items: center; /* Vertically center the input and button */
 }
 
 input,
 textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
+  flex-grow: 1; /* Grow to take available space */
+  padding: 5px;
+  margin: 5px;
 }
-
 textarea {
-  height: 150px;
+  height: 100px;
 }
 
 button {
+  margin-left: 10px; /* Add space between input and button */
+  padding: 5px 10px;
   background-color: #007bff;
   color: #fff;
-  font-size: 16px;
-  padding: 10px;
-  border: none;
+  border-radius: 5px;
+  border: 1px solid #000000;
   cursor: pointer;
-  text-align: center;
-  display: block;
-  margin: 0 auto;
+
 }
