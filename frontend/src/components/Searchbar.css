@@ -8,8 +8,9 @@
   border-radius: 5px; /* Rounded corners */
   background-color: #fff; /* Background color */
   max-width: 400px; /* Limit the width to 400px */
-  margin: 20px auto 0; /* 20px margin-top, center horizontally within the parent container */
+  margin: 20px auto 20px; /* 20px margin-top, center horizontally within the parent container, and 20px margin-bottom */
 }
+
 
 /* Search input field */
 .search-input {

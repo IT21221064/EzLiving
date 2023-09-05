@@ -130,7 +130,7 @@ function Shoppingcart() {
   };
 
   return (
-    <>
+    <div>
       <Navbar />
 
       <div className="shopping-cart">
@@ -180,9 +180,15 @@ function Shoppingcart() {
         <center>
           <button className="cart-checkout-button">Checkout</button>
         </center>
-        <Footer />
       </div>
-    </>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <Footer />
+    </div>
   );
 }
 export default Shoppingcart;
