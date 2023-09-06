@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import "./addItem.css"
 
 function addItem() {
   const [item, setItem] = useState({
@@ -41,54 +42,69 @@ function addItem() {
     }
   };
 
+
   return (
     <div>
       <AdminNavbar />
-      <h2>Create Item</h2>
-      <form onSubmit={onSubmit}>
-        <label>Item Code</label>
-        <input
-          type="text"
-          id="itemcode"
-          name="itemcode"
-          onChange={handleChange}
-        />
-        <label>Item Name</label>
-        <input
-          type="text"
-          id="itemname"
-          name="itemname"
-          onChange={handleChange}
-        />
-        <label>Item Quantity</label>
-        <input
-          type="number"
-          id="itemquantity"
-          name="quantity"
-          onChange={handleChange}
-        />
-        <label>Item Price</label>
-        <input
-          type="text"
-          id="unitprice"
-          name="unitprice"
-          onChange={handleChange}
-        />
-        <label>Item Description</label>
-        <textarea
-          id="itemdesc"
-          name="itemdescript"
-          onChange={handleChange}
-        ></textarea>
-        <label>Add Image</label>
-        <input
-          type="File"
-          id="itemimage"
-          name="itemimage"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
-        <button type="submit">Add Item</button>
-      </form>
+      <h2 className="addh2">Create Item</h2>
+      <div className="adddiv">
+        <form className="addform" onSubmit={onSubmit}>
+          <div className="column">
+            <label className="addlabel">Item Code</label>
+            <input
+              className="addinput"
+              type="text"
+              id="itemcode"
+              name="itemcode"
+              onChange={handleChange}
+            />
+            <label className="addlabel">Item Name</label>
+            <input
+              className="addinput"
+              type="text"
+              id="itemname"
+              name="itemname"
+              onChange={handleChange}
+            />
+            <label className="addlabel">Item Quantity</label>
+            <input
+              className="addinput"
+              type="number"
+              id="itemquantity"
+              name="quantity"
+              onChange={handleChange}
+            />
+            <label className="addlabel">Item Price</label>
+            <input
+              className="addinput"
+              type="text"
+              id="unitprice"
+              name="unitprice"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="right-column">
+            <label className="addlabel">Item Description</label>
+            <textarea
+              className="addinput addtextarea"
+              id="itemdesc"
+              name="itemdescript"
+              onChange={handleChange}
+            ></textarea>
+            <label className="addlabel">Add Image</label>
+            <input
+              className="addinput"
+              type="File"
+              id="itemimage"
+              name="itemimage"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+            <button className="addbutton" type="submit">
+              Add Item
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
