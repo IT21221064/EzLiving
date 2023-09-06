@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./cart.css";
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useAuthContext } from '../hooks/useAuthContext';
+import './cart.css';
+import {loadStripe} from '@stripe/stripe-js';
+import pay from './pay';
+import { Link } from 'react-router-dom';
+
+
+
 
 import Navbar from "../components/Navbar";
 
 import Footer from "../components/Footer";
+
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
@@ -13,6 +22,7 @@ function Shoppingcart() {
   const [speechRecognitionSupported, setSpeechRecognitionSupported] =
     useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  
 
   useEffect(() => {
     async function fetchCartItems() {
@@ -140,65 +150,68 @@ function Shoppingcart() {
     }
   };
 
-  return (
-    <div>
-      <Navbar />
+  /*const pay = () => {
+    const user = useAuthContext
+    console.log(cartItems)
+    axios.post('http://localhost:5000/api/stripe/create-checkout-session',{
+      cartItems,
+      userId: user._id
+    }).then((res)=> {
+      if(res.data.url){
+        window.location.href = res.data.url;
+      }
+    })
+    .catch((err) => console.log(err.message));
+  }*/
 
-      <div className="shopping-cart">
-        <h1 className="cart-title">Shopping Cart</h1>
-        <button
-          onClick={speakText}
-          className="speak-total-button"
-          disabled={!speechSynthesisSupported}
-        >
-          Speak
-        </button>
-        <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
-        <ul className="cart-list">
-          {cartItems.map((item) => (
-            <li key={item._id} className="cart-item">
-              <img
-                src={`http://localhost:5000/${item?.image}`}
-                alt={item.name}
-                className="product-image"
-              />
-              <div className="cart-details">
-                <h3 className="cart-name">{item.name}</h3>
-                <p className="cart-description">{item.description}</p>
-                <p className="cart-price">Price: ${item.price}</p>
-                <p className="cart-quantity">
-                  Quantity:{" "}
-                  <input
-                    type="number"
-                    value={item.quantity}
-                    min={1}
-                    onChange={(e) =>
-                      updateQuantity(item._id, parseInt(e.target.value))
-                    }
-                    className="cart-quantity-input"
-                  />
-                </p>
-              </div>
-              <button
-                onClick={() => removeFromCart(item._id)}
-                className="cart-remove-button"
-              >
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-        <center>
-          <button className="cart-checkout-button">Checkout</button>
-        </center>
-      </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <Footer />
+  return (
+
+    <div className="shopping-cart">
+      <h1 className="cart-title">Shopping Cart</h1>
+      <button
+        onClick={speakText}
+        className="speak-total-button"
+        disabled={!speechSynthesisSupported}
+      >
+        Speak
+      </button>
+      <p className="cart-total">Total Price: ${totalPrice.toFixed(2)}</p>
+      <ul className="cart-list">
+        {cartItems.map((item) => (
+          <li key={item._id} className="cart-item">
+            <img src={item.image} alt={item.name} className="cart-image" />
+            <div className="cart-details">
+              <h3 className="cart-name">{item.name}</h3>
+              <p className="cart-description">{item.description}</p>
+              <p className="cart-price">Price: ${item.price}</p>
+              <p className="cart-quantity">
+                Quantity:{' '}
+                <input
+                  type="number"
+                  value={item.quantity}
+                  min={1}
+                  onChange={(e) =>
+                    updateQuantity(item._id, parseInt(e.target.value))
+                  }
+                  className="cart-quantity-input"
+                />
+              </p>
+            </div>
+            <button
+              onClick={() => removeFromCart(item._id)}
+              className="cart-remove-button"
+            >
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <Link to={`/payment?totalPrice=${totalPrice}`}>Proceed to Payment</Link>
+
+      
+  
+ 
     </div>
   );
 }

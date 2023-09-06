@@ -5,6 +5,7 @@ export const useLogin = () => {
 const [error,setError] = useState(null)
 const [isLoading,setIsLoading] = useState(null)
 const {dispatch} = useAuthContext()
+const {user} = useAuthContext
 
 const login = async (username,pw) => {
     setIsLoading(true)
@@ -27,6 +28,7 @@ if(!response.ok){
 
 if(response.ok){
     localStorage.setItem('user', JSON.stringify(json))
+    //localStorage.setItem('token', user._id)
 
     dispatch({type: 'LOGIN', payload: json})
 
