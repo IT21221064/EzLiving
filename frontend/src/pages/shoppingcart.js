@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuthContext } from '../hooks/useAuthContext';
 import './cart.css';
+import {loadStripe} from '@stripe/stripe-js';
+import pay from './pay';
+import { Link } from 'react-router-dom';
+
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
   const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
+  
 
   useEffect(() => {
     async function fetchCartItems() {
@@ -84,6 +90,20 @@ function Shoppingcart() {
     }
   };
 
+  /*const pay = () => {
+    const user = useAuthContext
+    console.log(cartItems)
+    axios.post('http://localhost:5000/api/stripe/create-checkout-session',{
+      cartItems,
+      userId: user._id
+    }).then((res)=> {
+      if(res.data.url){
+        window.location.href = res.data.url;
+      }
+    })
+    .catch((err) => console.log(err.message));
+  }*/
+
   return (
     <div className="shopping-cart">
       <h1 className="cart-title">Shopping Cart</h1>
@@ -125,6 +145,9 @@ function Shoppingcart() {
           </li>
         ))}
       </ul>
+
+      <Link to={`/payment?totalPrice=${totalPrice}`}>Proceed to Payment</Link>
+
       
   
     </div>

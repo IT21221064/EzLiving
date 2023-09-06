@@ -34,11 +34,12 @@ const getCartItems = async (req, res) => {
   try {
     const cartItems = await Cart.find();
     res.json(cartItems);
+    console.log(cartItems)
   } catch (error) {
     console.error(error);
     res
       .status(500)
-      .json({ message: "Server Error - Unable to get cart items" });
+      .json( { message: "Server Error - Unable to get cart items" });
   }
 };
 

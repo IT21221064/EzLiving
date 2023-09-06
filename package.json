@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/IT21221064/EzLiving#readme",
   "dependencies": {
+    "@stripe/stripe-js": "^2.1.1",
     "bcrypt": "^5.1.1",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
@@ -28,6 +29,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.0",
     "multer": "^1.4.5-lts.1",
+    "stripe": "^13.4.0",
     "validator": "^13.11.0"
   },
   "devDependencies": {

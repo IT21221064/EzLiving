@@ -155,11 +155,11 @@ const deleteUser = async (req, res) => {
       const user = await User.login(username,pw)
       const token = createToken(user._id)
       const userid = user._id
-      const uname = user.username
+      //const uname = user.username
 
       
   
-      res.status(200).json({username,token,userid,uname})
+      res.status(200).json({username,token,userid})
   
   } catch(error){
       res.status(400).json({error:error.message})
