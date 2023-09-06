@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './ProductList.css'; // Import your CSS file
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./ProductList.css"; // Import your CSS file
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -8,7 +8,7 @@ function ProductList() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get('http://localhost:5000/api/products'); // Replace with your API endpoint
+        const response = await axios.get("http://localhost:5000/api/products"); // Replace with your API endpoint
         setProducts(response.data);
       } catch (error) {
         console.error(error);
@@ -21,16 +21,16 @@ function ProductList() {
   const addToCart = async (productName, productImage, productPrice) => {
     try {
       // Send a POST request to add the product to the cart
-      await axios.post('http://localhost:5000/api/cart', {
+      await axios.post("http://localhost:5000/api/cart", {
         name: productName,
         image: productImage,
         price: productPrice,
         quantity: 1, // Set a default quantity (you can adjust this as needed)
       });
 
-      console.log('Product added to cart.');
+      console.log("Product added to cart.");
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error("Error adding product to cart:", error);
     }
   };
 

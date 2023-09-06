@@ -1,0 +1,26 @@
+.single-image {
+  margin-left: 80px;
+  margin-top: 45px;
+  max-width: 120%;
+  max-height: 400px;
+  border: 1px solid #ddd;
+  cursor: url("../svgs/look-up-svgrepo-com.svg"), pointer;
+  transition: transform 0.3s;
+}
+
+.single-image:hover {
+  transform: scale(1.2);
+}
+
+.single-details {
+  border: 1px solid rgb(255, 255, 255);
+  margin-left: 1000px;
+  margin-top: -380px;
+  margin-right: 80px;
+  padding: 10px;
+  background-color:rgba(159, 118, 6, 0.819);
+  border-radius: 10px;
+}
+.single-details:hover {
+  transform: scale(1.2);
+}
