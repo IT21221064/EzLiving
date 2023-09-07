@@ -101,7 +101,7 @@ const PaymentDetails = () => {
         if (!hasSpokenWelcome) {
           // Wait for voices to be available
          
-            const message = new SpeechSynthesisUtterance("now you are at log in page");
+            const message = new SpeechSynthesisUtterance("now you are at payment in page");
              // Change the voice if needed
             window.speechSynthesis.speak(message);
             setHasSpokenWelcome(true);

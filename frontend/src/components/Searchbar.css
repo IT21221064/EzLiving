@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: center; /* Center horizontally */
   padding: 5px; /* Adjust padding as needed */
-  border: 1px solid #ccc; /* Border color */
+ 
   border-radius: 5px; /* Rounded corners */
-  background-color: #fff; /* Background color */
+
   max-width: 400px; /* Limit the width to 400px */
   margin: 20px auto 20px; /* 20px margin-top, center horizontally within the parent container, and 20px margin-bottom */
 }
@@ -26,7 +26,7 @@
   color: #fff; /* Button text color */
   border: none;
   border-radius: 5px; /* Rounded corners */
-  padding: 5px 10px; /* Adjust padding as needed */
+  padding: 10px 10px; /* Adjust padding as needed */
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-left: 5px;

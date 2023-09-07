@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateItem() {
   const [item, setItem] = useState({
@@ -12,11 +12,13 @@ function UpdateItem() {
     itemdescript: "",
   });
 
+  const Navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.put("http://localhost:5000/api/items/" + _id, item);
       alert("Item updated");
+      Navigate('/adminItemlist')
       // Optionally, you can reset the form or perform any other actions after a successful update.
     } catch (err) {
       console.error(err);

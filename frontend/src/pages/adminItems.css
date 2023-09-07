@@ -17,8 +17,8 @@
   
   /* Product Image */
   .admincart-image {
-    max-width: 100%;
-    height: auto;
+    width: 250px;
+    height: 250px;
   }
   
   /* Product Name */
