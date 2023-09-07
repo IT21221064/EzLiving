@@ -76,7 +76,11 @@ body {
   color: #666;
 }
 
+.feedback-delete-btn:hover{
+  background-color: red;
+  color: white;
+}
 
-/* Link Styles */
-
-
+.feedback-delete-btn{
+  border-radius: 4px;
+}
