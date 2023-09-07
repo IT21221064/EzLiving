@@ -37,12 +37,12 @@ function Searchbar() {
       <input
         type="text"
         className="search-input"
-        placeholder="Search..."
+        placeholder="Search by Voice"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button onClick={handleVoiceSearch} className="search-button">
-        {isListening ? "Stop Listening" : "Search by Voice"}
+        {isListening ? "Stop Listening" : "Search"}
       </button>
     </div>
   );

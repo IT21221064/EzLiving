@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./feedbacklist.css";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function FeedbackList() {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -21,6 +23,7 @@ function FeedbackList() {
 
   return (
     <div>
+      <Navbar/>
       <h1 className="feedback-heading">Feedback List</h1>
       <Link to="/AddFeedback" className="addfeedback-link">
         <button className="addfeedback-button">Add Feedback</button>
@@ -35,6 +38,7 @@ function FeedbackList() {
           </li>
         ))}
       </ul>
+      <Footer/>
     </div>
   );
 }

@@ -8,20 +8,22 @@ body {
   display: flex;
   justify-content: space-between; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  background-color: rgba(14, 14, 29, 0.718); /* Background color for the navbar */
-  padding: 15px; /* Add padding for spacing */
+  background-color: #292936; /* Background color for the navbar */
+  padding: 12px; /* Add padding for spacing */
 }
 
 /* Style for the microphone button */
 .mic-button {
-  background-color: #378de9; /* Customize button background color */
-  color: white; /* Button text color */
-  font-size: 20px; /* Button text size */
-  border: none;
-  padding: 10px 20px; /* Adjust padding for button size */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  border-radius: 100%;
+   
+    background-color: #378de9; /* Customize button background color */
+    color: white; /* Button text color */
+    font-size: 20px; /* Button text size */
+    border: none;
+    padding: 10px 20px; /* Adjust padding for button size */
+    cursor: pointer;
+    border-radius: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Add transitions for background-color and transform */
+  
 }
 
 .mic-button:hover {
@@ -45,8 +47,8 @@ body {
 }
 
 .text:hover:hover {
-  color: #5ed0fa; /* Change text color on hover to a light blue color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+  color: #1d6bbe; /* Change text color on hover to a light blue color */
+  text-shadow: 2px 2px 4px rgba(7, 8, 20, 0.5); /* Add a subtle shadow */
 }
 
 /* Style for the navigation links */
@@ -64,7 +66,7 @@ body {
 }
 .nav-logo {
   width: 250px;
-  height: 50px;
+  height: 60px;
   position: relative;
   left: -500px;
 }
