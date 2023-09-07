@@ -66,7 +66,7 @@ function Welcome() {
   return (
     <div>
       <div className="welcomecontainer">
-        <h2 className="welcomeh1">Welcome to Our Website</h2>
+        <h2 className="welcomeh1">Welcome to </h2>
         <br/>
         <div className="center-content">
           

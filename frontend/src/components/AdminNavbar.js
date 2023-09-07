@@ -5,7 +5,7 @@ function AdminNavbar() {
   return (
     <div className="col-md-12 bg-dark py-3">
       <nav className="navbar navbar-dark">
-        <a className="navbar-brand">Voice controlled navigation</a>
+        
         <ul className="nav">
           <li className="nav-item">
             <Link className="nav-link text-white" to="/adminItemlist">
@@ -13,13 +13,13 @@ function AdminNavbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/addItem">
-              Add Item
+            <Link className="nav-link text-white" to="/deletefeedback">
+              Feedback
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/viewItems">
-              View Items
+             Payments
             </Link>
           </li>
         </ul>
