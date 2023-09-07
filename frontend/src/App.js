@@ -2,7 +2,7 @@
 
 
 
-
+import { useAuthContext } from "./hooks/useAuthContext";
 import AdminLogin from './pages/adminLogin'
 import PaymentDetails from './pages/paymentDetails';
 
@@ -12,6 +12,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 
 import Shoppingcart from "./pages/shoppingcart";
@@ -26,14 +27,22 @@ import FeedbackList from "./pages/feedbackList";
 import AddReview from './pages/AddReview';
 import ReviewList from './pages/ReviewList'
 import AddFeedback from "./pages/AddFeedback";
+import Welcome from "./pages/Welcome";
+
+import UserProfile from './pages/UserProfile';
+import UpdateProfile from './pages/updateProfile';
+
 import { RefreshProvider } from "./context/RefreshContext";
 
+
 function App() {
+  const { user } = useAuthContext();
   return (
     <RefreshProvider>
     <Router>
       <Routes>
-      
+
+      <Route path="/" element={<Welcome />} />
 
         
         <Route path='/adminLogin' element={<AdminLogin/>}/>
@@ -45,13 +54,16 @@ function App() {
         <Route path="/updateItem/:_id" element={<UpdateItem />} />
         <Route path="/itempage/:_id" element={<ItemPage />} />
         <Route path="/adminItemlist" element={<AdminItemList />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={
+                      !user ? <Login /> : <Navigate to="/items" />
+                    } />
         <Route path="/Signup" element={<Signup />} />
         <Route path='/Feedback' element={<FeedbackList/>} />
         <Route path='/AddReview' element={<AddReview/>} />
         <Route path='/Review' element={<ReviewList/>} />
         <Route path="/AddFeedback" element={<AddFeedback />} />
-
+        <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/UpdateProfile" element={<UpdateProfile />} />
 
       </Routes>
     </Router>
