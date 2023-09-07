@@ -27,6 +27,7 @@ import AddReview from './pages/AddReview';
 import ReviewList from './pages/ReviewList'
 import AddFeedback from "./pages/AddFeedback";
 import { RefreshProvider } from "./context/RefreshContext";
+import DeleteFeedback from './pages/deleteFeedback';
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
         <Route path='/AddReview' element={<AddReview/>} />
         <Route path='/Review' element={<ReviewList/>} />
         <Route path="/AddFeedback" element={<AddFeedback />} />
-
+        <Route path="/AdminFeedback" element={<DeleteFeedback />} />
 
       </Routes>
     </Router>
