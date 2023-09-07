@@ -27,6 +27,7 @@ import FeedbackList from "./pages/feedbackList";
 import AddReview from './pages/AddReview';
 import ReviewList from './pages/ReviewList'
 import AddFeedback from "./pages/AddFeedback";
+import Welcome from "./pages/Welcome";
 
 import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/updateProfile';
@@ -40,7 +41,9 @@ function App() {
     <RefreshProvider>
     <Router>
       <Routes>
-        <Route path="/" element={<ProductList />} />
+
+        <Route path="/" element={<Welcome />} />
+
 
         
         <Route path='/adminLogin' element={<AdminLogin/>}/>

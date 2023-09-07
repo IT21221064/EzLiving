@@ -1,0 +1,85 @@
+/* Reset some default browser styles */
+
+/* Center the content vertically and horizontally */
+
+/* Style the container */
+.welcomecontainer {
+    text-align: center;
+}
+
+/* Style the heading */
+.welcomeh1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Style the description */
+.welcomedescription {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* Style the image */
+.welcomelogo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 40px;
+}
+
+/* Style the admin button */
+.adminbtn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.adminbtn:hover {
+    background-color: #258cd1;
+}
+
+/* Style the user login button */
+.btn-user {
+    background-color: #2ecc71;
+}
+
+.btn-user:hover {
+    background-color: #27ae60;
+}
+
+/* Style the mic button */
+.welcome-mic-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    outline: none;
+}
+
+.welcome-mic-button:hover {
+    background-color: #258cd1;
+    transform: scale(1.05);
+}
+
+.welcome-mic-button.listening {
+    background-color: #e74c3c;
+}
+
+.welcome-mic-button.listening:hover {
+    background-color: #c0392b;
+}
