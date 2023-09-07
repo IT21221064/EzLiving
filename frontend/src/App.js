@@ -13,7 +13,7 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import ProductList from "./pages/ProductList";
+
 import Shoppingcart from "./pages/shoppingcart";
 import ItemList from "./pages/itemlist";
 import AddItem from "./pages/addItem";
@@ -33,7 +33,7 @@ function App() {
     <RefreshProvider>
     <Router>
       <Routes>
-        <Route path="/" element={<ProductList />} />
+      
 
         
         <Route path='/adminLogin' element={<AdminLogin/>}/>
