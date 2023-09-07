@@ -1,0 +1,86 @@
+/* Product List Container */
+.adminproduct-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Individual Product Item */
+  .product-item {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  /* Product Image */
+  .admincart-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Product Name */
+  .admincart-name {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  /* Product Price */
+  .admincart-price {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  /* Button Container */
+  .adminbutton-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  /* Update Button */
+  .button-link-update {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-link-update:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Delete Button */
+  .admindelete-button {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admindelete-button:hover {
+    background-color: #c82333;
+  }
+  
+  /* Add Item Button */
+  .button-link-add {
+    background-color: #28a745;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-link-add:hover {
+    background-color: #218838;
+  }
+  

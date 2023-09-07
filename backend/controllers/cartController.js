@@ -5,24 +5,28 @@ const asyncHandler = require("express-async-handler");
 const addToCart = asyncHandler(async (req, res) => {
   const { name, image, price, quantity } = req.body;
   try {
-    // Create a new cart item
-    const cartItem = await Cart.create({
-      name,
-      image,
-      price,
-      quantity,
-    });
+    let cartItem = await Cart.findOne({ name });
+
     if (cartItem) {
-      res.status(201).json({
-        name: cartItem.name,
-        image: cartItem.image,
-        price: cartItem.price,
-        quantity: cartItem.quantity,
-      });
+      // If the item already exists in the cart, update the quantity
+      cartItem.quantity += quantity;
+      await cartItem.save();
     } else {
-      res.status(400);
-      throw new Error("Invalid input");
+      // If the item is not in the cart, create a new cart item
+      cartItem = await Cart.create({
+        name,
+        image,
+        price,
+        quantity,
+      });
     }
+
+    res.status(201).json({
+      name: cartItem.name,
+      image: cartItem.image,
+      price: cartItem.price,
+      quantity: cartItem.quantity,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error - Unable to add to cart" });
