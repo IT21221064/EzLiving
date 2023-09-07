@@ -27,12 +27,17 @@ import FeedbackList from "./pages/feedbackList";
 import AddReview from './pages/AddReview';
 import ReviewList from './pages/ReviewList'
 import AddFeedback from "./pages/AddFeedback";
+
 import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/updateProfile';
+
+import { RefreshProvider } from "./context/RefreshContext";
+
 
 function App() {
   const { user } = useAuthContext();
   return (
+    <RefreshProvider>
     <Router>
       <Routes>
         <Route path="/" element={<ProductList />} />
@@ -60,6 +65,7 @@ function App() {
 
       </Routes>
     </Router>
+    </RefreshProvider>
   );
 }
 

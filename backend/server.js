@@ -17,6 +17,7 @@ const stripe = require("./routes/stripe");
 const paymentRoutes = require("./routes/paymentRoute")
 
 
+
 connectDB();
 const app = express();
 
@@ -28,12 +29,12 @@ app.use("/api/items", itemRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes); // Use cart routes with the "/api/cart" base path
 app.use("/api/users", userRoutes);
-
-app.use("/api/review",reviewRoutes);
-app.use("/api/feedback",feedbackRoutes);
+app.use("/api/review", reviewRoutes);
+app.use("/api/feedback", feedbackRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/api/stripe",stripe);
 app.use("/api/payment", paymentRoutes)
+
 
 
 

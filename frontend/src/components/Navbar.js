@@ -34,15 +34,12 @@ function Navbar() {
     }
   };
 
+ 
 
   const handleMicClick = () => {
     if (!isListening) {
       recognition.start();
       setIsListening(true);
-    } else {
-      // Stop and re-start the recognition process
-      recognition.stop();
-      recognition.start();
     }
   };
 
@@ -56,7 +53,6 @@ function Navbar() {
     navigate("/login")
     console.log('logout')
   }
-
 
   return (
     <div className="navbar-container">
