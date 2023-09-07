@@ -39,9 +39,9 @@ function FeedbackList() {
   return (
     <div>
       <Navbar/>
-      <h1 className="feedback-heading">Feedback List</h1>
+      <h1 className="feedback-heading">User Feedbacks on our site</h1>
       <Link to="/AddFeedback" className="addfeedback-link">
-        <button className="addfeedback-button">Add Feedback</button>
+        <button className="addfeedback-button">Add a Feedback</button>
       </Link>
       <ul className="feedback-list">
         {feedbackList.map((feedback) => (

@@ -33,6 +33,7 @@ import UserProfile from './pages/UserProfile';
 import UpdateProfile from './pages/updateProfile';
 
 import { RefreshProvider } from "./context/RefreshContext";
+import DeleteFeedback from './pages/deleteFeedback';
 
 
 function App() {
@@ -42,11 +43,10 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path="/" element={<Welcome />} />
-
+      <Route path="/" element={<Welcome />} />
 
         
-        <Route path='/adminLogin' element={!user ? <AdminLogin /> : <Navigate to="/items" />}/>
+        <Route path='/adminLogin' element={<AdminLogin/>}/>
         <Route path='/payment' element={<PaymentDetails/>}/>
 
         <Route path="/items" element={<ItemList />} />
@@ -63,6 +63,7 @@ function App() {
         <Route path='/AddReview' element={<AddReview/>} />
         <Route path='/Review' element={<ReviewList/>} />
         <Route path="/AddFeedback" element={<AddFeedback />} />
+        <Route path="/AdminFeedback" element={<DeleteFeedback />} />
         <Route path="/UserProfile" element={<UserProfile />} />
         <Route path="/UpdateProfile" element={<UpdateProfile />} />
 

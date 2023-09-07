@@ -15,8 +15,10 @@ import Footer from "../components/Footer";
 
 function Itemlist() {
   const [items, setProducts] = useState([]);
+
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+
 
   useEffect(() => {
     async function fetchProducts() {
@@ -33,20 +35,38 @@ function Itemlist() {
 
   const addToCart = async (itemname, itemimage, unitprice) => {
     try {
-      // Send a POST request to add the product to the cart
-      await axios.post("http://localhost:5000/api/cart", {
-        name: itemname,
-        image: itemimage,
-        price: unitprice,
-        quantity: 1, // Set a default quantity (you can adjust this as needed)
-      });
-
-      alert("Item added successfully");
-      console.log("Product added to cart.");
+      const existingCartItem = items.find((cartItem) => cartItem.name === itemname);
+  
+      if (existingCartItem) {
+        // If the item already exists in the cart, update the quantity
+        const updatedCart = items.map((cartItem) => {
+          if (cartItem.name === itemname) {
+            return {
+              ...cartItem,
+              quantity: cartItem.quantity + 1,
+            };
+          }
+          return cartItem;
+        });
+  
+        setProducts(updatedCart);
+        alert("Item quantity updated in the cart.");
+      } else {
+        // If the item is not in the cart, add a new item
+        await axios.post("http://localhost:5000/api/cart", {
+          name: itemname,
+          image: itemimage,
+          price: unitprice,
+          quantity: 1,
+        });
+  
+        alert("Item added to the cart.");
+      }
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
+
   const onVoiceSearch = (voiceQuery) => {
     // Filter items based on the voiceQuery and update filteredItems
     const filtered = items.filter((item) =>
@@ -68,10 +88,11 @@ function Itemlist() {
     };
   }, []);
 
+
   return (
     <div>
       <Navbar />
-      <Searchbar onVoiceSearch={onVoiceSearch} />
+      <Searchbar  />
 
       <ul className="product-list">
         {items.map((product) => (

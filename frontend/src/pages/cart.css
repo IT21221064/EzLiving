@@ -40,9 +40,10 @@
   padding: 10px;
   margin-top: 10px;
   background-color: #fff;
+  border-radius: 5px;
 }
 
-.product-image {
+.cart-image {
   max-width: 100px;
   max-height: 100px;
   margin-right: 10px;
@@ -85,12 +86,13 @@
   cursor: pointer;
   align-self: center;
   margin-left: 10px;
+  border-radius: 5px;
 }
 
 .cart-remove-button:hover {
   background-color: #c82333;
 }
-.product-image:hover {
+.cart-image:hover {
   transform: scale(1.2); /* You can adjust the scale factor as needed */
   transition: transform 0.3s;
 }
@@ -103,7 +105,7 @@
   font-size: 20px; /* You can adjust the font size as needed */
   transition: font-size 0.3s ease-in-out;
 }
-.cart-checkout-button {
+.button-link-add {
   background-color: #34a11ea8;
   color: #fff;
   border: none;
@@ -115,6 +117,7 @@
   width: 150px;
   height: 60px;
   border-radius: 5px;
+  text-decoration: none;
 }
 .cart-checkout-button:hover {
   background-color: #91d750;

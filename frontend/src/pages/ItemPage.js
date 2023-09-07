@@ -99,13 +99,13 @@ function ItemPage() {
       />
       {console.log(`http://localhost:5000/${item?.itemimage}`)}
       <div className="single-details">
-        <button onClick={speakText} disabled={!speechSynthesisSupported}>
+        <button className="btn-speak" onClick={speakText} disabled={!speechSynthesisSupported}>
           Speak
         </button>
-        <h2 className="cart-name">{item.itemcode}</h2>
+       
         <h2 className="cart-name">{item.itemname}</h2>
-        <h2 className="cart-description">{item.quantity}</h2>
-        <p className="cart-description">{item.itemdescript}</p>
+        <h2 className="cart-description">Quantity: {item.quantity}</h2>
+        <p className="cart-description">description: {item.itemdescript}</p>
         <p className="cart-price">Price: ${item.unitprice}</p>
         <button
           className="cart-add-button"
@@ -118,10 +118,9 @@ function ItemPage() {
       </div>
       <br></br>
       <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+  
+   
+      
       <Footer />
     </div>
   );
