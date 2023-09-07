@@ -15,12 +15,13 @@ import AdminItemList from "./pages/AdminItemlist";
 import Login from "./pages/Login";
 import Signup from "./pages/signup";
 import AddFeedback from "./pages/AddFeedback";
+import Welcome from "./pages/Welcome";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ProductList />} />
+        <Route path="/" element={<Welcome />} />
         <Route path="/items" element={<ItemList />} />
         <Route path="/cart" element={<Shoppingcart />} />
         <Route path="/addItem" element={<AddItem />} />
