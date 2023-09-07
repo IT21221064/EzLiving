@@ -1,3 +1,11 @@
+
+
+
+
+
+import AdminLogin from './pages/adminLogin'
+import PaymentDetails from './pages/paymentDetails';
+
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -26,6 +34,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<ProductList />} />
+
+        
+        <Route path='/adminLogin' element={<AdminLogin/>}/>
+        <Route path='/payment' element={<PaymentDetails/>}/>
+
         <Route path="/items" element={<ItemList />} />
         <Route path="/cart" element={<Shoppingcart />} />
         <Route path="/addItem" element={<AddItem />} />
@@ -38,6 +51,7 @@ function App() {
         <Route path='/AddReview' element={<AddReview/>} />
         <Route path='/Review' element={<ReviewList/>} />
         <Route path="/AddFeedback" element={<AddFeedback />} />
+
 
       </Routes>
     </Router>

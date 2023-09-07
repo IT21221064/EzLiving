@@ -15,6 +15,7 @@ import Footer from "../components/Footer";
 
 function itemlist() {
   const [items, setProducts] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -45,12 +46,18 @@ function itemlist() {
       console.error("Error adding product to cart:", error);
     }
   };
-  
+  const onVoiceSearch = (voiceQuery) => {
+    // Filter items based on the voiceQuery and update filteredItems
+    const filtered = items.filter((item) =>
+      item.itemname.toLowerCase().includes(voiceQuery.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
 
   return (
     <div>
       <Navbar />
-      <Searchbar  />
+      <Searchbar onVoiceSearch={onVoiceSearch} />
 
       <ul className="product-list">
         {items.map((product) => (

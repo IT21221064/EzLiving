@@ -12,6 +12,11 @@ const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const feedbackRoutes = require("./routes/feedbackRoutes");
 
+const adminRoutes = require("./routes/adminRoutes");
+const stripe = require("./routes/stripe");
+const paymentRoutes = require("./routes/paymentRoute")
+
+
 
 connectDB();
 const app = express();
@@ -26,8 +31,16 @@ app.use("/api/cart", cartRoutes); // Use cart routes with the "/api/cart" base p
 app.use("/api/users", userRoutes);
 app.use("/api/review", reviewRoutes);
 app.use("/api/feedback", feedbackRoutes);
+app.use("/api/admin",adminRoutes);
+app.use("/api/stripe",stripe);
+app.use("/api/payment", paymentRoutes)
+
+
+
+
 
 app.use("/uploads", express.static("uploads"));
+
 
 app.use(errorHandler);
 

@@ -1,7 +1,8 @@
+// Searchbar.js
 import React, { useState, useEffect } from "react";
 import "./Searchbar.css";
 
-function Searchbar() {
+function Searchbar({ onVoiceSearch }) {
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
@@ -13,7 +14,8 @@ function Searchbar() {
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
       setSearchQuery(transcript);
-      // No need to call handleVoiceSearch here
+      // Trigger the voice search when recognition is successful
+      onVoiceSearch(transcript);
     };
 
     // Start recognition when component mounts if isListening is true
@@ -25,7 +27,7 @@ function Searchbar() {
     return () => {
       recognition.stop();
     };
-  }, [isListening]);
+  }, [isListening, onVoiceSearch]);
 
   const handleVoiceSearch = () => {
     // Toggle the isListening state
@@ -42,7 +44,9 @@ function Searchbar() {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <button onClick={handleVoiceSearch} className="search-button">
+
         {isListening ? "Stop Listening" : "Search"}
+
       </button>
     </div>
   );
