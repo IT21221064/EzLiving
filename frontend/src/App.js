@@ -14,7 +14,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import ProductList from "./pages/ProductList";
+
 import Shoppingcart from "./pages/shoppingcart";
 import ItemList from "./pages/itemlist";
 import AddItem from "./pages/addItem";
@@ -42,8 +42,7 @@ function App() {
     <Router>
       <Routes>
 
-        <Route path="/" element={<Welcome />} />
-
+      <Route path="/" element={<Welcome />} />
 
         
         <Route path='/adminLogin' element={!user ? <AdminLogin /> : <Navigate to="/items" />}/>
