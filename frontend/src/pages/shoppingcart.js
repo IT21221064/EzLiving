@@ -156,7 +156,10 @@ function Shoppingcart() {
   }*/
 
   return (
-
+<div>
+  <Navbar/>
+  <br></br>
+    <br></br>
     <div className="shopping-cart">
       <h1 className="cart-title">Shopping Cart</h1>
       <button
@@ -203,6 +206,11 @@ function Shoppingcart() {
       
   
  
+    </div>
+    <br></br>
+    <br></br>
+    <br></br>
+    <Footer/>
     </div>
   );
 }
