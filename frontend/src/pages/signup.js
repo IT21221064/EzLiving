@@ -1,5 +1,6 @@
 import {  useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import './Signup.css'
 //import Swal from 'sweetalert2';
 
 const Signup = () => {
@@ -73,10 +74,15 @@ const Signup = () => {
     
 
     return (
+        <div className="signpage">
+            
+        <div className="signcard">
+           
         <form className="signup" onSubmit={handleSubmit}>
-            <h3>User Registration</h3>
+            <h3 className="topic">User Registration</h3>
             <label>Name:</label>
             <input
+                id="name"
                 type="text"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -89,10 +95,6 @@ const Signup = () => {
                 onChange={(e) => setNIC(e.target.value)}
                 value={NIC}
                 className={emptyFields.includes('NIC') ? 'error' : ""}/><br/>
-
-            
-
-            
 
             <label>Email:</label>
             <input
@@ -131,6 +133,8 @@ const Signup = () => {
             
 
         </form>
+        </div>
+        </div>
     )
 
 

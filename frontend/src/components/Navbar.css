@@ -8,12 +8,7 @@ body {
   display: flex;
   justify-content: space-between; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  background-color: rgba(
-    68,
-    41,
-    2,
-    0.718
-  ); /* Background color for the navbar */
+  background-color: rgba(14, 14, 29, 0.718); /* Background color for the navbar */
   padding: 15px; /* Add padding for spacing */
 }
 
