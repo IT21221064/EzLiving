@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../pages/feedback.css';
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function AddReview() {
   const [review, setReview] = useState({
@@ -30,7 +32,8 @@ function AddReview() {
 
   return (
     <div>
-      <h1>Add Review</h1>
+      <Navbar/>
+      <h1>Leave a Review</h1>
       <Link to="/Review" className="feedback-link">
         <button className="link-button">View Reviews</button>
       </Link>
@@ -60,6 +63,7 @@ function AddReview() {
         </div>
         <button type="submit">Submit Review</button>
       </form>
+      <Footer/>
     </div>
   );
 }

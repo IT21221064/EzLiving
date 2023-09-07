@@ -1,33 +1,106 @@
+/* feedback.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.feedback-link {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.link-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+
+.link-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.2);
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  margin-right: 30px;
-  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+label {
+  font-weight: bold;
 }
 
 .input-with-button {
   display: flex;
-  align-items: center; /* Vertically center the input and button */
+  align-items: center;
 }
 
-input,
+input[type="text"],
 textarea {
-  flex-grow: 1; /* Grow to take available space */
-  padding: 5px;
-  margin: 5px;
-}
-textarea {
-  height: 100px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-button {
-  margin-left: 10px; /* Add space between input and button */
-  padding: 5px 10px;
+button[type="button"] {
+  padding: 8px 16px;
   background-color: #007bff;
   color: #fff;
-  border-radius: 5px;
-  border: 1px solid #000000;
+  border: none;
   cursor: pointer;
-
+  font-size: 14px;
+  border-radius: 5px;
+  margin-left: 50px;
+  margin-right: 80px;
 }
+
+button[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+button[type="submit"] {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-left: 30px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  transform: scale(1.2);
+}
+
+/* Navbar and Footer styles go here (import them from your existing CSS or customize as needed) */
+
