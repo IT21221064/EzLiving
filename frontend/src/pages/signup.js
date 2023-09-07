@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import {  useState,useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import './Signup.css'
 //import Swal from 'sweetalert2';
@@ -15,6 +15,7 @@ const Signup = () => {
     const { dispatch } = useAuthContext()
     const {user} = useAuthContext()
     const [emptyFields, setEmptyFields] = useState([])
+    const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
     
 
@@ -72,14 +73,28 @@ const Signup = () => {
 
     }
     
+    useEffect(() => {
+        if (!hasSpokenWelcome) {
+          // Wait for voices to be available
+         
+            const message = new SpeechSynthesisUtterance("now you are at sign up page");
+             // Change the voice if needed
+            window.speechSynthesis.speak(message);
+            setHasSpokenWelcome(true);
+        
+        }
+        return () => {
+          window.speechSynthesis.cancel();
+        };
+      }, [0]);
 
     return (
         <div className="signpage">
             
         <div className="signcard">
-           
+        <h3 className="topic">User Registration</h3>
         <form className="signup" onSubmit={handleSubmit}>
-            <h3 className="topic">User Registration</h3>
+            
             <label>Name:</label>
             <input
                 id="name"

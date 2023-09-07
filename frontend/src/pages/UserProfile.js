@@ -9,6 +9,7 @@ const  UserProfile = () => {
     const [User,setUser] = useState(null)
 
     const{user} = useAuthContext()
+    const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
     useEffect(() =>{
 
@@ -25,6 +26,21 @@ const  UserProfile = () => {
             
             fetchProfile()}
     },[user])
+    useEffect(() => {
+        if (!hasSpokenWelcome) {
+          // Wait for voices to be available
+         
+            const message = new SpeechSynthesisUtterance("now you are at profile page");
+             // Change the voice if needed
+            window.speechSynthesis.speak(message);
+            setHasSpokenWelcome(true);
+        
+        }
+        return () => {
+          window.speechSynthesis.cancel();
+        };
+      }, [0]);
+    
 
     return(
         <div className="container">

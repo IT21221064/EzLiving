@@ -19,7 +19,7 @@ function Shoppingcart() {
   const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false);
   const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
-  
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   useEffect(() => {
     async function fetchCartItems() {
@@ -140,6 +140,19 @@ function Shoppingcart() {
       console.log("Speech synthesis is not supported in this browser.");
     }
   };
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at Shopping Cart page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, []);
 
   /*const pay = () => {
     const user = useAuthContext

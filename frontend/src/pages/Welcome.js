@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./welcome.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 function Welcome() {
   const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -19,11 +20,13 @@ function Welcome() {
     const lowercaseTranscript = transcript.toLowerCase();
 
     if (lowercaseTranscript.includes("go to user login")) {
-      navigate("/items");
+      navigate("/login");
     } else if (lowercaseTranscript.includes("go to cart")) {
       navigate("/cart");
     } else if (lowercaseTranscript.includes("go to feedbacks")) {
       navigate("/Feedback");
+    } else if (lowercaseTranscript.includes("go to admin login")) {
+      navigate("/adminlogin");
     }
   };
 
@@ -31,42 +34,57 @@ function Welcome() {
     if (!isListening) {
       recognition.start();
       setIsListening(true);
+
+      if (!hasSpokenWelcome) {
+        setHasSpokenWelcome(true);
+      }
     } else {
-      // Stop and re-start the recognition process
       recognition.stop();
       recognition.start();
     }
   };
 
   const handleStartListening = () => {
-    // Start listening for voice input only when the mic button is clicked
     handleMicClick();
   };
+
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("Welcome to easy living. To navigate to the user login page, please click the microphone and say 'go to user login'.");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div>
       <div className="welcomecontainer">
-        <h1 className="welcomeh1">Welcome to Our Website</h1>
+        <h2 className="welcomeh1">Welcome to Our Website</h2>
+        <br/>
         <div className="center-content">
-          <img
-            src="/path/to/your/image.png" // Replace with the actual image path
-            alt="Website Logo"
-            className="welcomelogo"
-          />
+          
+            <img src="/images/EYELogo.png" alt="Logo" />
+          
           <p className="welcomedescription">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac
             libero quis lacus tincidunt vehicula.
           </p>
         </div>
         <p>Please select your login type:</p>
-        <Link to="/user-login" className="btn btn-user">
+        <Link to="/login" className="btn-user">
           User Login
         </Link>
-        <Link to="/admin-login" className="adminbtn">
+        <Link to="/adminlogin" className="adminbtn">
           Admin Login
         </Link>
 
-        {/* Mic button */}
         <button
           className="mic-button"
           onClick={handleStartListening}

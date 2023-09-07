@@ -66,7 +66,22 @@ body {
 }
 .nav-logo {
   width: 250px;
-  height: 60px;
+  height: 80px;
   position: relative;
   left: -500px;
+  display: flex; /* Align items horizontally and vertically */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+  background-color: #333; /* Add a background color */
+  color: #fff; /* Text color */
+  font-size: 20px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+  border-radius: 5px; /* Add some rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+  text-transform: uppercase; /* Uppercase text */
+  text-decoration: none; /* Remove underlines if used as a link */
+}
+
+.nav-logo:hover {
+  background-color: #555; /* Change background color on hover */
 }

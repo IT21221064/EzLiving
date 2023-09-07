@@ -19,7 +19,7 @@ const PaymentDetails = () => {
     const [cartItems, setCartItems] = useState([]);
 
     const [totalPrice1, setTotalPrice] = useState(0);
-
+    const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
     useEffect(() => {
         async function fetchCartItems() {
             try {
@@ -97,6 +97,20 @@ const PaymentDetails = () => {
             }
         }).catch((err) => console.log(err.message));
     }
+    useEffect(() => {
+        if (!hasSpokenWelcome) {
+          // Wait for voices to be available
+         
+            const message = new SpeechSynthesisUtterance("now you are at log in page");
+             // Change the voice if needed
+            window.speechSynthesis.speak(message);
+            setHasSpokenWelcome(true);
+        
+        }
+        return () => {
+          window.speechSynthesis.cancel();
+        };
+      }, [0]);
 
     return (
         <form className="addpay" onSubmit={handleSubmit}>

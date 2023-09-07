@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function ReviewList() {
   const [reviewList, setReviewList] = useState([]);
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   useEffect(() => {
     async function fetchReview() {
@@ -17,6 +18,19 @@ function ReviewList() {
     }
 
     fetchReview();
+  }, []);
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at review page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
   }, []);
 
   return (

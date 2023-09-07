@@ -13,9 +13,10 @@ import Footer from "../components/Footer";
 
 // Import your CSS file
 
-function itemlist() {
+function Itemlist() {
   const [items, setProducts] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -53,6 +54,19 @@ function itemlist() {
     );
     setFilteredItems(filtered);
   };
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at Home page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, []);
 
   return (
     <div>
@@ -100,4 +114,4 @@ function itemlist() {
   );
 }
 
-export default itemlist;
+export default Itemlist;

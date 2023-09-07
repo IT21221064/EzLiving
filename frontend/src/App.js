@@ -14,7 +14,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import ProductList from "./pages/ProductList";
+
 import Shoppingcart from "./pages/shoppingcart";
 import ItemList from "./pages/itemlist";
 import AddItem from "./pages/addItem";

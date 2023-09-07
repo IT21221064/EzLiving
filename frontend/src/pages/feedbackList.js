@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 
 function FeedbackList() {
   const [feedbackList, setFeedbackList] = useState([]);
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   useEffect(() => {
     async function fetchFeedback() {
@@ -20,6 +21,20 @@ function FeedbackList() {
 
     fetchFeedback();
   }, []);
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at feedback page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div>
