@@ -1,12 +1,3 @@
-/* cart.css */
-body {
-  background-image: url("/public/images/bc1.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  /* Adjust the size as needed */
-}
 
 .shopping-cart {
   width: 80%;

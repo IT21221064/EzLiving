@@ -7,12 +7,13 @@ function Footer() {
       <div className="footer-content">
         <div className="footer-section">
           <h2>About Us</h2>
-          <p>We are committed to making the web accessible to everyone.</p>
+          <p>Welcome to EzLiving, your trusted source for home appliances designed with accessibility and convenience in mind. We are committed to making daily life easier for everyone, especially those with visual impairments.
+</p>
         </div>
         <div className="footer-section">
           <h2>Contact Us</h2>
           <address>
-            Email: <a href="mailto:contact@example.com">contact@example.com</a>
+            Email: <a href="mailto:contact@example.com">contact@EzLiving.com</a>
           </address>
         </div>
         <div className="footer-section">
@@ -25,7 +26,7 @@ function Footer() {
               <a href="/products">Products</a>
             </li>
             <li>
-              <a href="/services">Services</a>
+              <a href="/services">Feedbacks</a>
             </li>
             <li>
               <a href="/contact">Contact</a>
@@ -34,7 +35,7 @@ function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2023 Your Company. All rights reserved.</p>
+        <p>&copy; 2023 EzLiving. All rights reserved.</p>
       </div>
     </footer>
   );

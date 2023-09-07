@@ -114,9 +114,9 @@ const updateUser = async (req, res) => {
   if (!username) {
     emptyFields.push("username");
   }
-  if (!type) {
+  /*if (!type) {
     emptyFields.push("type");
-  }
+  }*/
 
   if (emptyFields.length > 0) {
     return res
@@ -140,37 +140,50 @@ const updateUser = async (req, res) => {
   }
   if (emptyFields.length == 0) {
     res.status(200).json(user);
+
+    }
+  };
+  
+  //login user 
+  const loginUser = async (req,res) => {
+    const {username,pw} = req.body
+  
+    try{
+      const user = await User.login(username,pw)
+      const token = createToken(user._id)
+      const userid = user._id
+      //const uname = user.username
+
+      
+  
+      res.status(200).json({username,token,userid})
+  
+  } catch(error){
+      res.status(400).json({error:error.message})
+  
   }
-};
-
-//login user
-const loginUser = async (req, res) => {
-  const { username, pw } = req.body;
-
-  try {
-    const user = await User.login(username, pw);
-    const token = createToken(user._id);
-    const userid = user._id;
-    const uname = user.username;
-
-    res.status(200).json({ username, token, userid, uname });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+  
+  
+    
   }
-};
+  
+  const fetchProfile = async(req,res) => {
+    
+      const profile = await User.profile()
+  
+      res.status(200).json(profile)
+    
+    
+  }
+  
+  module.exports = {
+    getUsers,
+    getUser,
+    creatingUser,
+    deleteUser,
+    updateUser,
+    loginUser,
+    fetchProfile,
+  };
 
-const fetchProfile = async (req, res) => {
-  const profile = await User.profile();
 
-  res.status(200).json(profile);
-};
-
-module.exports = {
-  getUsers,
-  getUser,
-  creatingUser,
-  deleteUser,
-  updateUser,
-  loginUser,
-  fetchProfile,
-};

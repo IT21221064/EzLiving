@@ -6,10 +6,12 @@ import {
   faSignOutAlt,
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
+import { useLogout } from "../hooks/useLogout";
 
 import "./Navbar.css"; // Import a CSS file for custom styles
 
 function Navbar() {
+  const { logout } = useLogout()
   const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
 
@@ -32,14 +34,12 @@ function Navbar() {
     }
   };
 
+ 
+
   const handleMicClick = () => {
     if (!isListening) {
       recognition.start();
       setIsListening(true);
-    } else {
-      // Stop and re-start the recognition process
-      recognition.stop();
-      recognition.start();
     }
   };
 
@@ -47,7 +47,12 @@ function Navbar() {
     // Start listening for voice input only when the search button is clicked
     handleMicClick();
   };
-
+  const handleClick = () =>
+  {
+    logout()
+    navigate("/login")
+    console.log('logout')
+  }
 
   return (
     <div className="navbar-container">
@@ -84,19 +89,22 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
+            <Link 
               to="/login"
               className="text"
               onClick={(e) => {
                 e.preventDefault();
                 // Handle logout logic here
                 // For example, clear user session and navigate to the login page
-                navigate("/login");
+                handleClick();
               }}
             >
-              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+              <FontAwesomeIcon icon={faSignOutAlt}  /> Logout
+
             </Link>
+            
           </li>
+          
         </ul>
       </nav>
     </div>
