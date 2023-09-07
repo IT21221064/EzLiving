@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useLogin } from '../hooks/useLogin';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ const UserLogin = () => {
   const [pw, setPW] = useState('');
   const { login, error, isLoading } = useLogin();
   const navigate = useNavigate();
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +21,20 @@ const UserLogin = () => {
       navigate("/items"); // Redirect to the "/items" page
     }
   }
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at log in page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div className="login-container">

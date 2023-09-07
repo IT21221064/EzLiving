@@ -18,6 +18,7 @@ const  UpdateProfile = () => {
     const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState(null)
     const {user} = useAuthContext()
+    const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
 
     useEffect(() => {
@@ -85,6 +86,19 @@ const  UpdateProfile = () => {
           console.log(error)
         }
       }
+      useEffect(() => {
+        if (!hasSpokenWelcome) {
+          // Wait for voices to be available
+         
+            const message = new SpeechSynthesisUtterance("now you are at update profile page");
+             // Change the voice if needed
+            window.speechSynthesis.speak(message);
+            setHasSpokenWelcome(true);
+        }
+        return () => {
+          window.speechSynthesis.cancel();
+        };
+      }, []);
 
 
     return(

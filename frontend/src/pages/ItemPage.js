@@ -16,6 +16,9 @@ function ItemPage() {
   });
   const [speechSynthesisSupported, setSpeechSynthesisSupported] =
     useState(false);
+    const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+    useState(false);
+    const [prhasSpokenWelcome, setprHasSpokenWelcome] = useState(false);
 
   const { _id } = useParams();
   useEffect(() => {
@@ -70,6 +73,21 @@ function ItemPage() {
       console.log("Speech synthesis is not supported in this browser.");
     }
   };
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at product page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
+ 
 
   return (
     <div>
