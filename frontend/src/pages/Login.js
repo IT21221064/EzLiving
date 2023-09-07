@@ -1,9 +1,7 @@
-
-
 import React, { useState } from "react";
 import { useLogin } from '../hooks/useLogin';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import './login.css';
 
 const UserLogin = () => {
@@ -11,24 +9,25 @@ const UserLogin = () => {
   const [username, setUser] = useState('');
   const [pw, setPW] = useState('');
   const { login, error, isLoading } = useLogin();
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, pw);
+    const user = await login(username, pw);
 
-    if (user) {
-     
-      navigate("/cart");
+    
+    if (user) { // Assuming `user` has an `id` property
+      navigate("/items"); // Redirect to the "/items" page
     }
   }
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2 className="logintop">Login</h2>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <br></br>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
@@ -38,7 +37,7 @@ const UserLogin = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -47,12 +46,12 @@ const UserLogin = () => {
             placeholder="Enter your password"
           />
         </div>
+        <p>Don't have an account? <a href="/Signup">Register here</a></p>
         <button className="btn-submit" disabled={isLoading}>Login</button>
         {error && <div className="error">{error}</div>}
       </form>
     </div>
   );
 }
-
 
 export default UserLogin;

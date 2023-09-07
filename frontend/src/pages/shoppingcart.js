@@ -11,16 +11,13 @@ import { Link } from 'react-router-dom';
 
 
 import Navbar from "../components/Navbar";
-
 import Footer from "../components/Footer";
 
 
 function Shoppingcart() {
   const [cartItems, setCartItems] = useState([]);
-  const [speechSynthesisSupported, setSpeechSynthesisSupported] =
-    useState(false);
-  const [speechRecognitionSupported, setSpeechRecognitionSupported] =
-    useState(false);
+  const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false);
+  const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   
 
@@ -58,7 +55,7 @@ function Shoppingcart() {
       const confirmationMessage = `Removing ${
         cartItems.find((item) => item._id === itemId).name
       } from cart. Say 'remove' to confirm or 'no' to cancel.`;
-  
+
       if (speechSynthesisSupported) {
         const speechSynthesis = window.speechSynthesis;
         const speechUtterance = new SpeechSynthesisUtterance(
@@ -66,29 +63,22 @@ function Shoppingcart() {
         );
         speechSynthesis.speak(speechUtterance);
       }
-  
+
       if (speechRecognitionSupported) {
         const SpeechRecognition =
           window.SpeechRecognition || window.webkitSpeechRecognition;
         const recognition = new SpeechRecognition();
-        recognition.continuous = false;
+        recognition.continuous = true; // Enable continuous listening
         recognition.interimResults = false;
         recognition.lang = "en-US";
-  
-        // Add a delay before allowing the microphone to listen for user input
-        let allowUserInput = false;
-        setTimeout(() => {
-          allowUserInput = true;
-        }, 5000); // 3000 milliseconds (3 seconds) delay
-  
+
+        // Start listening when the "Remove" button is clicked
+        recognition.start();
+
         recognition.onresult = (event) => {
-          if (!allowUserInput) {
-            return; // Delay is active, don't process speech recognition.
-          }
-  
           const userResponse = event.results[0][0].transcript.toLowerCase();
-  
-          if (userResponse === "remove") {
+
+          if (userResponse.includes("remove")) {
             axios.delete(`http://localhost:5000/api/cart/${itemId}`);
             const updatedCartItems = cartItems.filter(
               (item) => item._id !== itemId
@@ -98,17 +88,18 @@ function Shoppingcart() {
             calculateTotalPrice(updatedCartItems);
             console.log("Item removed from cart.");
           } else {
-            console.log("Removal canceled." + userResponse);
+            console.log("Removal canceled. " + userResponse);
           }
+            
+
+          // Stop listening after the user responds
+          recognition.stop();
         };
-  
-        recognition.start();
       }
     } catch (error) {
       console.error("Error removing item from cart:", error);
     }
   };
-  
 
   const updateQuantity = async (itemId, newQuantity) => {
     try {
@@ -215,4 +206,5 @@ function Shoppingcart() {
     </div>
   );
 }
+
 export default Shoppingcart;

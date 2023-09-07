@@ -26,9 +26,11 @@ import FeedbackList from "./pages/feedbackList";
 import AddReview from './pages/AddReview';
 import ReviewList from './pages/ReviewList'
 import AddFeedback from "./pages/AddFeedback";
+import { RefreshProvider } from "./context/RefreshContext";
 
 function App() {
   return (
+    <RefreshProvider>
     <Router>
       <Routes>
         <Route path="/" element={<ProductList />} />
@@ -53,6 +55,7 @@ function App() {
 
       </Routes>
     </Router>
+    </RefreshProvider>
   );
 }
 

@@ -29,6 +29,7 @@
   padding: 5px 10px; /* Adjust padding as needed */
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-left: 5px;
 }
 
 /* Hover effect for the search button */
