@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../pages/feedback.css';
@@ -11,6 +11,7 @@ function AddReview() {
     reviewtitle: "",
     reviewtext: "",
   });
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,6 +30,20 @@ function AddReview() {
       alert("An error occurred while adding the review.");
     }
   };
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at add review page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div>

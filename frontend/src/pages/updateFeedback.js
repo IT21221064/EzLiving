@@ -7,6 +7,8 @@ function UpdateFeedback() {
     feedbacktitle: "",
     feedbacktext: "",
   });
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +37,19 @@ function UpdateFeedback() {
     } catch (err) {
       console.error(err);
     }
+  }, []);
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at update feedback page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
   }, []);
 
   return (

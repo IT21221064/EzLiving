@@ -3,6 +3,13 @@
 /* Center the content vertically and horizontally */
 
 /* Style the container */
+
+body {
+    background-image: url('../../public/images/bc3.jpg'); /* Replace with the actual image path */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.226); 
+}
 .welcomecontainer {
     text-align: center;
 }
@@ -10,8 +17,9 @@
 /* Style the heading */
 .welcomeh1 {
     font-size: 36px;
-    color: #333;
+    color: #6b6666;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* Style the description */
@@ -19,42 +27,63 @@
     font-size: 18px;
     color: #666;
     margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 /* Style the image */
 .welcomelogo {
-    width: 150px;
+    display: none;
+    
+   width: 150px;
     height: 150px;
-    border-radius: 50%;
+   
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     margin-bottom: 40px;
 }
 
 /* Style the admin button */
+/* Style the admin button */
 .adminbtn {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 18px;
-    text-decoration: none;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
-    margin: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    background-color: #e74c3c; /* Background color for the admin button */
+    color: #fff; /* Text color for the admin button */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 16px; /* Font size for the text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
+    outline: none; /* Remove outline on focus (consider adding a different focus style) */
+    text-decoration: none; /* Remove underline if it's used as a link */
+    display: inline-block; /* Make it an inline-block element */
+    margin-right: 10px; /* Add some spacing if needed */
 }
 
 .adminbtn:hover {
-    background-color: #258cd1;
+    background-color: #c0392b; /* Background color on hover */
+    transform: scale(1.05); /* Apply a slight scale effect on hover */
 }
 
+
+/* Style the user login button */
 /* Style the user login button */
 .btn-user {
-    background-color: #2ecc71;
+    background-color: #2ecc71; /* Background color for the user login button */
+    color: #fff; /* Text color for the user login button */
+    padding: 10px 20px; /* Adjust padding as needed */
+    font-size: 16px; /* Font size for the text */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
+    outline: none; /* Remove outline on focus (consider adding a different focus style) */
+    text-decoration: none; /* Remove underline if it's used as a link */
+    display: inline-block; /* Make it an inline-block element */
+    margin-right: 10px; /* Add some spacing if needed */
 }
 
 .btn-user:hover {
-    background-color: #27ae60;
+    background-color: #27ae60; /* Background color on hover */
+    transform: scale(1.05); /* Apply a slight scale effect on hover */
 }
 
 /* Style the mic button */

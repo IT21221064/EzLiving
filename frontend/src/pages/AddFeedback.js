@@ -13,6 +13,7 @@ function AddFeedback() {
   });
 
   const [isListening, setIsListening] = useState(false);
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -52,6 +53,20 @@ function AddFeedback() {
       alert("An error occurred while adding the feedback.");
     }
   };
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+     
+        const message = new SpeechSynthesisUtterance("now you are at add feedback page");
+         // Change the voice if needed
+        window.speechSynthesis.speak(message);
+        setHasSpokenWelcome(true);
+    
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div>
