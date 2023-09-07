@@ -114,9 +114,9 @@ const updateUser = async (req, res) => {
   if (!username) {
     emptyFields.push("username");
   }
-  if (!type) {
+  /*if (!type) {
     emptyFields.push("type");
-  }
+  }*/
 
   if (emptyFields.length > 0) {
     return res
