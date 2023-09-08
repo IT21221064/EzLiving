@@ -5,7 +5,7 @@
 /* Style the container */
 
 body {
-  background-image: url("../../public/images/bc3.jpg"); /* Replace with the actual image path */
+  background-image: url("../../public/images/bc3.jpg"); 
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.226);
@@ -25,24 +25,19 @@ body {
 /* Style the description */
 .welcomedescription {
   font-size: 18px;
-  color: #666;
+  color: #05031df1;
   margin-bottom: 40px;
   margin-top: 20px;
 }
 
 /* Style the image */
 .welcomelogo {
-  display: none;
-
-  width: 150px;
-  height: 150px;
-
+  width: 600px;
+  height: 200px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 40px;
 }
 
-/* Style the admin button */
-/* Style the admin button */
 .adminbtn {
   background-color: #353442; /* Dark gray background */
   color: #fff; /* Text color for the admin button */
