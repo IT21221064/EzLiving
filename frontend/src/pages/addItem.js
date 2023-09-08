@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
-import "./addItem.css"
+import "./addItem.css";
 
-function addItem() {
+function AddItem() {
   const [item, setItem] = useState({
     itemcode: "",
     itemname: "",
@@ -21,8 +21,7 @@ function addItem() {
   };
 
   const navigate = useNavigate();
-  const formData = new FormData();
-  formData.append("itemimage", itemimage);
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -41,7 +40,6 @@ function addItem() {
       console.error(err);
     }
   };
-
 
   return (
     <div>
@@ -94,7 +92,7 @@ function addItem() {
             <label className="addlabel">Add Image</label>
             <input
               className="addinput"
-              type="File"
+              type="file"
               id="itemimage"
               name="itemimage"
               onChange={(e) => setImage(e.target.files[0])}
@@ -109,4 +107,4 @@ function addItem() {
   );
 }
 
-export default addItem;
+export default AddItem;

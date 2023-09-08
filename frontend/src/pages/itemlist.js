@@ -92,7 +92,7 @@ function Itemlist() {
   return (
     <div>
       <Navbar />
-      <Searchbar  />
+      <Searchbar />
 
       <ul className="product-list">
         {items.map((product) => (
@@ -109,7 +109,7 @@ function Itemlist() {
             <p className="cart-price">Price: ${product.unitprice}</p>
             <center>
               <button
-                className="cart-add-button"
+                className="add-button"
                 onClick={() =>
                   addToCart(
                     product.itemname,

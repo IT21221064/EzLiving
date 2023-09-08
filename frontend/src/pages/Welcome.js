@@ -67,17 +67,16 @@ function Welcome() {
     <div>
       <div className="welcomecontainer">
         <h2 className="welcomeh1">Welcome to </h2>
-        <br/>
+        <br />
         <div className="center-content">
-          
-            <img src="/images/EYELogo.png" alt="Logo" />
-          
+          <img src="/images/EYELogo.png" alt="Logo" />
+
           <p className="welcomedescription">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac
             libero quis lacus tincidunt vehicula.
           </p>
         </div>
-        <p>Please select your login type:</p>
+        <p className="instructionText">Please select your login type:</p>
         <Link to="/login" className="btn-user">
           User Login
         </Link>

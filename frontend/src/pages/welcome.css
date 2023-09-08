@@ -5,110 +5,115 @@
 /* Style the container */
 
 body {
-    background-image: url('../../public/images/bc3.jpg'); /* Replace with the actual image path */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: rgba(255, 255, 255, 0.226); 
+  background-image: url("../../public/images/bc3.jpg"); /* Replace with the actual image path */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.226);
 }
 .welcomecontainer {
-    text-align: center;
+  text-align: center;
 }
 
 /* Style the heading */
 .welcomeh1 {
-    font-size: 36px;
-    color: #6b6666;
-    margin-bottom: 20px;
-    margin-top: 20px;
+  font-size: 36px;
+  color: #6b6666;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 /* Style the description */
 .welcomedescription {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 40px;
-    margin-top: 20px;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 /* Style the image */
 .welcomelogo {
-    display: none;
-    
-   width: 150px;
-    height: 150px;
-   
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin-bottom: 40px;
+  display: none;
+
+  width: 150px;
+  height: 150px;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
 }
 
 /* Style the admin button */
 /* Style the admin button */
 .adminbtn {
-    background-color: #e74c3c; /* Background color for the admin button */
-    color: #fff; /* Text color for the admin button */
-    padding: 10px 20px; /* Adjust padding as needed */
-    font-size: 16px; /* Font size for the text */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add some border radius for rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
-    outline: none; /* Remove outline on focus (consider adding a different focus style) */
-    text-decoration: none; /* Remove underline if it's used as a link */
-    display: inline-block; /* Make it an inline-block element */
-    margin-right: 10px; /* Add some spacing if needed */
+  background-color: #353442; /* Dark gray background */
+  color: #fff; /* Text color for the admin button */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
+  outline: none; /* Remove outline on focus (consider adding a different focus style) */
+  text-decoration: none; /* Remove underline if it's used as a link */
+  display: inline-block; /* Make it an inline-block element */
+  margin-right: 10px; /* Add some spacing if needed */
 }
 
 .adminbtn:hover {
-    background-color: #c0392b; /* Background color on hover */
-    transform: scale(1.05); /* Apply a slight scale effect on hover */
+  background-color: rgb(37, 37, 37); /* Background color on hover */
+  transform: scale(1.05); /* Apply a slight scale effect on hover */
 }
-
 
 /* Style the user login button */
 /* Style the user login button */
 .btn-user {
-    background-color: #2ecc71; /* Background color for the user login button */
-    color: #fff; /* Text color for the user login button */
-    padding: 10px 20px; /* Adjust padding as needed */
-    font-size: 16px; /* Font size for the text */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Add some border radius for rounded corners */
-    cursor: pointer; /* Change cursor on hover */
-    transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
-    outline: none; /* Remove outline on focus (consider adding a different focus style) */
-    text-decoration: none; /* Remove underline if it's used as a link */
-    display: inline-block; /* Make it an inline-block element */
-    margin-right: 10px; /* Add some spacing if needed */
+  background-color: #1c0d41; /* Background color for the user login button */
+  color: #fff; /* Text color for the user login button */
+  padding: 10px 20px; /* Adjust padding as needed */
+  font-size: 16px; /* Font size for the text */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Add some border radius for rounded corners */
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Add smooth transitions */
+  outline: none; /* Remove outline on focus (consider adding a different focus style) */
+  text-decoration: none; /* Remove underline if it's used as a link */
+  display: inline-block; /* Make it an inline-block element */
+  margin-right: 10px; /* Add some spacing if needed */
 }
 
 .btn-user:hover {
-    background-color: #27ae60; /* Background color on hover */
-    transform: scale(1.05); /* Apply a slight scale effect on hover */
+  background-color: #0c0129; /* Background color on hover */
+  transform: scale(1.05); /* Apply a slight scale effect on hover */
 }
 
 /* Style the mic button */
 .welcome-mic-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    outline: none;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  outline: none;
 }
 
 .welcome-mic-button:hover {
-    background-color: #258cd1;
-    transform: scale(1.05);
+  background-color: #258cd1;
+  transform: scale(1.05);
 }
 
 .welcome-mic-button.listening {
-    background-color: #e74c3c;
+  background-color: #e74c3c;
 }
 
 .welcome-mic-button.listening:hover {
-    background-color: #c0392b;
+  background-color: #c0392b;
+}
+.instructionText {
+  font-size: 16px; /* Adjust the font size as needed */
+  font-weight: bold; /* Optional: Add bold font weight for emphasis */
+  color: #333; /* Text color */
+  margin-bottom: 10px; /* Optional: Add margin to separate from other elements */
 }

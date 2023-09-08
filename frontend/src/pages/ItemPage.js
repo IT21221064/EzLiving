@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import AddReview from "./AddReview";
+import { useParams , Link } from "react-router-dom";
+import Review from "./ReviewList";
 import "./singleItem.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -108,13 +108,16 @@ function ItemPage() {
         <p className="cart-description">description: {item.itemdescript}</p>
         <p className="cart-price">Price: ${item.unitprice}</p>
         <button
-          className="cart-add-button"
+          className="add-button"
           onClick={() =>
             addToCart(item.itemname, item.itemimage, item.unitprice)
           }
         >
           Add to Cart
         </button>
+        <Link to="/Review">
+        <button className="cart-add-button">View Reviews</button>
+      </Link>
       </div>
       <br></br>
       <br></br>
