@@ -5,7 +5,7 @@
 /* Style the container */
 
 body {
-  background-image: url("../../public/images/bc3.jpg"); 
+  background-image: url("../../public/images/bc3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.226);
@@ -17,7 +17,7 @@ body {
 /* Style the heading */
 .welcomeh1 {
   font-size: 36px;
-  color: #6b6666;
+  color: #363434;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -25,9 +25,15 @@ body {
 /* Style the description */
 .welcomedescription {
   font-size: 18px;
-  color: #05031df1;
-  margin-bottom: 40px;
-  margin-top: 20px;
+  color: #353536e5;
+  background-color: rgba(255, 255, 255, 0.364);
+  border-radius: 10px;
+  max-width: 900px; /* Set the maximum width for the text */
+  margin-left: auto; /* Center the text horizontally */
+  margin-right: auto; /* Center the text horizontally */
+  text-align: center; /* Center-align the text */
+  padding: 0 20px; /* Add padding for better readability and spacing */
+  font-weight: 600; /* Increase text weight */
 }
 
 /* Style the image */
