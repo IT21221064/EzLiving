@@ -71,7 +71,7 @@ function AddFeedback() {
   return (
     <div>
       <Navbar />
-      <h1>Tell us about what u feel about our website..</h1>
+      <h1 className="feedback-heading">Tell us about what u feel about our website..</h1>
       <Link to="/Feedback" className="feedback-link">
         <button className="link-button">View Feedbacks</button>
       </Link>
