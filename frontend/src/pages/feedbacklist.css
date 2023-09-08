@@ -85,3 +85,13 @@ body {
 .feedback-delete-btn{
   border-radius: 4px;
 }
+
+.reviewupdate-btn{
+  background-color: #312f67;
+  border-radius: 4px;
+  color: #fff;
+}
+.reviewupdate-btn:hover{
+  background-color: #211342;
+  transform: scale(1.2);
+}
