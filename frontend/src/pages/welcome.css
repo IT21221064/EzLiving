@@ -5,7 +5,7 @@
 /* Style the container */
 
 body {
-  background-image: url("../../public/images/bc3.jpg"); /* Replace with the actual image path */
+  background-image: url("../../public/images/bc3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgba(255, 255, 255, 0.226);
@@ -17,7 +17,7 @@ body {
 /* Style the heading */
 .welcomeh1 {
   font-size: 36px;
-  color: #6b6666;
+  color: #363434;
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -25,24 +25,25 @@ body {
 /* Style the description */
 .welcomedescription {
   font-size: 18px;
-  color: #666;
-  margin-bottom: 40px;
-  margin-top: 20px;
+  color: #353536e5;
+  background-color: rgba(255, 255, 255, 0.364);
+  border-radius: 10px;
+  max-width: 900px; /* Set the maximum width for the text */
+  margin-left: auto; /* Center the text horizontally */
+  margin-right: auto; /* Center the text horizontally */
+  text-align: center; /* Center-align the text */
+  padding: 0 20px; /* Add padding for better readability and spacing */
+  font-weight: 600; /* Increase text weight */
 }
 
 /* Style the image */
 .welcomelogo {
-  display: none;
-
-  width: 150px;
-  height: 150px;
-
+  width: 600px;
+  height: 200px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   margin-bottom: 40px;
 }
 
-/* Style the admin button */
-/* Style the admin button */
 .adminbtn {
   background-color: #353442; /* Dark gray background */
   color: #fff; /* Text color for the admin button */

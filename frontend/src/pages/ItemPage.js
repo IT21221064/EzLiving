@@ -116,7 +116,7 @@ function ItemPage() {
           Add to Cart
         </button>
         <Link to="/Review">
-        <button className="cart-add-button">View Reviews</button>
+        <button className="add-button">View Reviews</button>
       </Link>
       </div>
       <br></br>
