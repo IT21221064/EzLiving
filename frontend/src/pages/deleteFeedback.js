@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
 import "./feedbacklist.css";
+import AdminNavbar from "../components/AdminNavbar";
 
 function DeleteFeedback() {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -35,7 +36,7 @@ function DeleteFeedback() {
 
   return (
     <div>
-      <Navbar />
+      <AdminNavbar />
       <h1 className="feedback-heading">User Feedbacks on our site</h1>
       <br />
       <br />
