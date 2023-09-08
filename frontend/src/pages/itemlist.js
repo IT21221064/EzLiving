@@ -19,7 +19,6 @@ function Itemlist() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
-
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -35,8 +34,10 @@ function Itemlist() {
 
   const addToCart = async (itemname, itemimage, unitprice) => {
     try {
-      const existingCartItem = items.find((cartItem) => cartItem.name === itemname);
-  
+      const existingCartItem = items.find(
+        (cartItem) => cartItem.name === itemname
+      );
+
       if (existingCartItem) {
         // If the item already exists in the cart, update the quantity
         const updatedCart = items.map((cartItem) => {
@@ -48,7 +49,7 @@ function Itemlist() {
           }
           return cartItem;
         });
-  
+
         setProducts(updatedCart);
         alert("Item quantity updated in the cart.");
       } else {
@@ -59,7 +60,7 @@ function Itemlist() {
           price: unitprice,
           quantity: 1,
         });
-  
+
         alert("Item added to the cart.");
       }
     } catch (error) {
@@ -77,17 +78,18 @@ function Itemlist() {
   useEffect(() => {
     if (!hasSpokenWelcome) {
       // Wait for voices to be available
-     
-        const message = new SpeechSynthesisUtterance("now you are at Home page");
-         // Change the voice if needed
-        window.speechSynthesis.speak(message);
-        setHasSpokenWelcome(true);
+
+      const message = new SpeechSynthesisUtterance(
+        "now you are at Home page, to navigate cart page press microphone button and say go to cart, to navigate feedback page say go to feedbacks"
+      );
+      // Change the voice if needed
+      window.speechSynthesis.speak(message);
+      setHasSpokenWelcome(true);
     }
     return () => {
       window.speechSynthesis.cancel();
     };
   }, []);
-
 
   return (
     <div>
