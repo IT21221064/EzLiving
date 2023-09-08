@@ -26,7 +26,7 @@ function DeleteFeedback() {
   const handleDeleteFeedback = async (feedbackId) => {
     try {
       await axios.delete(`http://localhost:5000/api/feedback/${feedbackId}`);
-      alert("Review deleted successfully!");
+      alert("A user's feedback deleted successfully!");
       // After deleting, fetch the updated feedback list
       fetchFeedback();
     } catch (error) {
