@@ -27,7 +27,7 @@ function AdminNavbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/deletefeedback">
+            <Link className="nav-link text-white" to="/adminfeedback">
               Feedback
             </Link>
           </li>

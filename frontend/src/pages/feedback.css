@@ -3,7 +3,6 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
 }
 
 .container {
@@ -40,7 +39,11 @@ h1 {
 }
 
 form {
-  background-color: #fff;
+  margin-top: 50px;
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-bottom: 100px;
+  background-color: #ffffff62;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
