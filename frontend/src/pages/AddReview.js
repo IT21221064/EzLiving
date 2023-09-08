@@ -45,18 +45,15 @@ function AddReview() {
     try {
       await axios.post("http://localhost:5000/api/review", review);
       alert("Review added successfully!");
-      navigate("/Review"); //redirect to all review
+      navigate("/Review");
     } catch (err) {
       console.error(err);
       alert("An error occurred while adding the review.");
     }
   };
   useEffect(() => {
-    if (!hasSpokenWelcome) {
-      // Wait for voices to be available
-     
+    if (!hasSpokenWelcome) {    
         const message = new SpeechSynthesisUtterance("now you are at add review page");
-         // Change the voice if needed
         window.speechSynthesis.speak(message);
         setHasSpokenWelcome(true);
     
