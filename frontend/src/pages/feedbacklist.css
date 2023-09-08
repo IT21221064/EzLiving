@@ -18,8 +18,8 @@ body {
 
 /* Add Feedback Button Styles */
 .addfeedback-link {
-  justify-content: center;
-  margin-top: 20px;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .addfeedback-button {
