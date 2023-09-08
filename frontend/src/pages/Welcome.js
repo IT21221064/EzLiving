@@ -69,13 +69,15 @@ function Welcome() {
         <h2 className="welcomeh1">Welcome to </h2>
         <br />
         <div className="center-content">
-          <img src="/images/EYELogo.png" alt="Logo" />
-
+          <img className="welcomelogo" src="/images/EYELogo.png" alt="Logo" />
+          
+          <br></br>
           <p className="welcomedescription">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac
-            libero quis lacus tincidunt vehicula.
+          Welcome to EzLiving, a user-centric website designed with accessibility in mind. At EzLiving, we believe that everyone deserves equal access to information and services, which is why we've crafted an inclusive online environment that caters to the visually challenged. Explore our extensive range of appliances, where our commitment to "Your Vision, Our Appliance" ensures that every product is thoughtfully selected and equipped with features that enhance usability and convenience, making daily living a seamless experience for all.
           </p>
         </div>
+        <br></br>
+      
         <p className="instructionText">Please select your login type:</p>
         <Link to="/login" className="btn-user">
           User Login
