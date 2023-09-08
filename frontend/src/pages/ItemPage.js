@@ -108,7 +108,7 @@ function ItemPage() {
         <p className="cart-description">description: {item.itemdescript}</p>
         <p className="cart-price">Price: ${item.unitprice}</p>
         <button
-          className="cart-add-button"
+          className="add-button"
           onClick={() =>
             addToCart(item.itemname, item.itemimage, item.unitprice)
           }
