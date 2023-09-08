@@ -11,7 +11,7 @@ import { useLogout } from "../hooks/useLogout";
 import "./Navbar.css"; // Import a CSS file for custom styles
 
 function Navbar() {
-  const { logout } = useLogout()
+  const { logout } = useLogout();
   const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
 
@@ -34,8 +34,6 @@ function Navbar() {
     }
   };
 
- 
-
   const handleMicClick = () => {
     if (!isListening) {
       recognition.start();
@@ -47,12 +45,11 @@ function Navbar() {
     // Start listening for voice input only when the search button is clicked
     handleMicClick();
   };
-  const handleClick = () =>
-  {
-    logout()
-    navigate("/login")
-    console.log('logout')
-  }
+  const handleClick = () => {
+    logout();
+    navigate("/");
+    console.log("logout");
+  };
 
   return (
     <div className="navbar-container">
@@ -89,8 +86,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link 
-              to="/login"
+            <Link
+              to="/"
               className="text"
               onClick={(e) => {
                 e.preventDefault();
@@ -99,12 +96,9 @@ function Navbar() {
                 handleClick();
               }}
             >
-              <FontAwesomeIcon icon={faSignOutAlt}  /> Logout
-
+              <FontAwesomeIcon icon={faSignOutAlt} /> Logout
             </Link>
-            
           </li>
-          
         </ul>
       </nav>
     </div>

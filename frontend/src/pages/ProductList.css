@@ -45,8 +45,8 @@
 }
 
 /* Add to Cart Button */
-.cart-add-button {
-  background-color: #007bff;
+.add-button {
+  background-color: #312f67;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -56,8 +56,8 @@
   transition: background-color 0.3s ease;
 }
 
-.cart-add-button:hover {
-  background-color: #0056b3;
+.add-button:hover {
+  background-color: #211342;
 }
 
 /* Responsive Grid */

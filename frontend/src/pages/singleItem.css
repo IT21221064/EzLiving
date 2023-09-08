@@ -61,17 +61,3 @@
 }
 
 /* Add to Cart Button */
-.cart-add-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
-}
-
-.cart-add-button:hover {
-  background-color: #0056b3;
-}
