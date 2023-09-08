@@ -13,16 +13,17 @@ body {
   font-size: 28px;
   text-align: center;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 /* Add Feedback Button Styles */
 .addfeedback-link {
-  display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
 .addfeedback-button {
+  margin-left: 130px;
   background-color: #007bff;
   color: #fff;
   border: none;
