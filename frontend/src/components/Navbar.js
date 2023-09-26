@@ -32,6 +32,9 @@ function Navbar() {
     } else if (lowercaseTranscript.includes("go to feedbacks")) {
       navigate("/Feedback");
     }
+    else if (lowercaseTranscript.includes("go to profile")) {
+      navigate("/UserProfile");
+    }
   };
 
   const handleMicClick = () => {
@@ -76,7 +79,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/profile" className="text">
+            <Link to="/UserProfile" className="text">
               Profile
             </Link>
           </li>

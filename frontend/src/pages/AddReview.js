@@ -48,7 +48,7 @@ function AddReview() {
       navigate("/Review"); //redirect to all review
     } catch (err) {
       console.error(err);
-      alert("An error occurred while adding the review.");
+      alert("please fill all the fields");
     }
   };
   useEffect(() => {
