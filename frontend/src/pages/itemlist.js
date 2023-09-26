@@ -80,7 +80,7 @@ function Itemlist() {
       // Wait for voices to be available
 
       const message = new SpeechSynthesisUtterance(
-        "now you are at Home page, to navigate cart page press microphone button and say go to cart, to navigate feedback page say go to feedbacks"
+        "now you are at Home page, to navigate cart page press microphone button and say go to cart, to navigate feedback page say go to feedbacks,to navigate profile page say go to profile"
       );
       // Change the voice if needed
       window.speechSynthesis.speak(message);

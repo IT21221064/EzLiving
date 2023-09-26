@@ -14,7 +14,7 @@ const  UpdateProfile = () => {
     
     const [email,setEmail] = useState(null)
     const [username,setUsername] = useState(null)
-    const [pw,setPW] = useState(null)
+   // const [pw,setPW] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState(null)
     const {user} = useAuthContext()
@@ -35,7 +35,7 @@ const  UpdateProfile = () => {
                 setEmail(json.email)
                 setUsername(json.username)
                 
-                setPW(json.pw)
+               // setPW(json.pw)
                 setNIC(json.NIC)
             }
         }
@@ -54,7 +54,7 @@ const  UpdateProfile = () => {
               name,
               email,
               
-              pw,
+              //pw,
               
               username,
               
@@ -143,14 +143,8 @@ const  UpdateProfile = () => {
              value={username}
              className={emptyFields.includes('username') ? 'error' : ""}
             />
-            <label>Password</label>
-            <input
-            class="form-control"
-             type="text"
-             onChange={(e) => setEmail(e.target.value)}
-             value={pw}
-             className={emptyFields.includes('pw') ? 'error' : ""}
-            /><br/>
+            
+            
             <button className="btnSubmit" type="submit">Update</button>
             {error && <div className="error">{error}</div>}
             </form>

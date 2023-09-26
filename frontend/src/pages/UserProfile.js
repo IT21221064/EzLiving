@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 
 
@@ -43,6 +45,8 @@ const  UserProfile = () => {
     
 
     return(
+    <div>
+        <Navbar/>
         <div className="container">
             
         
@@ -68,6 +72,10 @@ const  UserProfile = () => {
             
             
         
+    </div>
+    <br></br>
+    <br></br>
+    <Footer/>
     </div>
     )
 }
