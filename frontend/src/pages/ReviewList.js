@@ -49,7 +49,7 @@ function ReviewList() {
               <h2 className="feedback-title">{reviews.reviewtitle}</h2>
               <p className="feedback-text">{reviews.reviewtext}</p>
 
-              <Link to={`/updateReview/${reviews._id}`} className="update-button-link">
+              <Link to={`/UpdateReview/${reviews._id}`} className="update-button-link">
               <button className="reviewupdate-btn">Update</button>
               </Link>
             

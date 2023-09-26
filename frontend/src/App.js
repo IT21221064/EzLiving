@@ -34,6 +34,7 @@ import UpdateProfile from './pages/updateProfile';
 
 import { RefreshProvider } from "./context/RefreshContext";
 import DeleteFeedback from "./pages/deleteFeedback";
+import UpdateReview from "./pages/UpdateReview"
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
         <Route path="/UserProfile" element={<UserProfile />} />
         <Route path="/UpdateProfile" element={<UpdateProfile />} />
         <Route path="/Adminfeedback" element={<DeleteFeedback />} />
+        <Route path="/UpdateReview" element={<UpdateReview />} />
 
       </Routes>
     </Router>
