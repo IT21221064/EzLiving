@@ -4,6 +4,9 @@ import "./ProductList.css"; // Import your CSS file
 
 function ProductList() {
   const [products, setProducts] = useState([]);
+  const [token, setToken] = useState(""); // State to store the JWT token
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user ? user._id : null; // Retrieve the user ID
 
   useEffect(() => {
     async function fetchProducts() {
@@ -18,15 +21,36 @@ function ProductList() {
     fetchProducts();
   }, []);
 
-  const addToCart = async (productName, productImage, productPrice) => {
+  useEffect(() => {
+    // Retrieve the token from local storage
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
+  const addToCart = async ( productName, productImage, productPrice) => {
     try {
-      // Send a POST request to add the product to the cart
-      await axios.post("http://localhost:5000/api/cart", {
-        name: productName,
-        image: productImage,
-        price: productPrice,
-        quantity: 1, // Set a default quantity (you can adjust this as needed)
-      });
+    
+      if (!token) {
+        console.error("User not authenticated");
+        return;
+      }
+
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      await axios.post(
+        "http://localhost:5000/api/cart",
+        {
+          userID: userId,
+          name: productName,
+          image: productImage,
+          price: productPrice,
+          quantity: 1,
+        },
+        { headers }
+      );
 
       console.log("Product added to cart.");
     } catch (error) {
@@ -34,8 +58,17 @@ function ProductList() {
     }
   };
 
+
+
   return (
     <div>
+      <header>
+        {token ? (
+          <button onClick={logout}>Logout</button>
+        ) : (
+          <button onClick={login}>Login</button>
+        )}
+      </header>
       <h1>Product List</h1>
       <ul className="product-list">
         {products.map((product) => (
@@ -51,7 +84,11 @@ function ProductList() {
             <button
               className="add-to-cart-button"
               onClick={() =>
-                addToCart(product.name, product.imageUrl, product.price)
+                addToCart(
+                  product.name,
+                  product.imageUrl,
+                  product.price
+                )
               }
             >
               Add to Cart
