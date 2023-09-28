@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./Searchbar.css";
 
-function Searchbar({ onVoiceSearch }) {
+function Searchbar({ onVoiceSearch, onTypingSearch }) {
   const [isListening, setIsListening] = useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for the search query
 
@@ -12,7 +12,8 @@ function Searchbar({ onVoiceSearch }) {
     const recognition = new SpeechRecognition();
 
     recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
+      let transcript = event.results[0][0].transcript;
+      transcript = transcript.replace(/\./g, "");
       setSearchQuery(transcript);
       // Trigger the voice search when recognition is successful
       onVoiceSearch(transcript);
@@ -30,8 +31,13 @@ function Searchbar({ onVoiceSearch }) {
   }, [isListening, onVoiceSearch]);
 
   const handleVoiceSearch = () => {
-    // Toggle the isListening state
     setIsListening(!isListening);
+  };
+
+  const handleTypingSearch = (event) => {
+    const typedQuery = event.target.value;
+    setSearchQuery(typedQuery);
+    onTypingSearch(typedQuery);
   };
 
   return (
@@ -41,12 +47,10 @@ function Searchbar({ onVoiceSearch }) {
         className="search-input"
         placeholder="Search by Voice"
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={handleTypingSearch}
       />
       <button onClick={handleVoiceSearch} className="search-button">
-
         {isListening ? "Stop Listening" : "Search"}
-
       </button>
     </div>
   );

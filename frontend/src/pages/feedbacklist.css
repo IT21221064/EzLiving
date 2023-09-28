@@ -13,16 +13,17 @@ body {
   font-size: 28px;
   text-align: center;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 /* Add Feedback Button Styles */
 .addfeedback-link {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .addfeedback-button {
+  margin-left: 130px;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -83,4 +84,14 @@ body {
 
 .feedback-delete-btn{
   border-radius: 4px;
+}
+
+.reviewupdate-btn{
+  background-color: #312f67;
+  border-radius: 4px;
+  color: #fff;
+}
+.reviewupdate-btn:hover{
+  background-color: #211342;
+  transform: scale(1.2);
 }
