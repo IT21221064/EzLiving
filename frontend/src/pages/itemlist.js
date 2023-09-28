@@ -21,6 +21,19 @@ function Itemlist() {
 
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+  const onVoiceSearch = (voiceQuery) => {
+    // Filter items based on the voiceQuery and update filteredItems
+    const filtered = items.filter((item) =>
+      item.itemname.toLowerCase().includes(voiceQuery.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
+  const onTypingSearch = (typedQuery) => {
+    const filtered = items.filter((item) =>
+      item.itemname.toLowerCase().includes(typedQuery.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
 
   useEffect(() => {
     async function fetchProducts() {
@@ -81,6 +94,7 @@ function Itemlist() {
     );
     setFilteredItems(filtered);
   };
+
   useEffect(() => {
     if (!hasSpokenWelcome) {
       // Wait for voices to be available
@@ -96,14 +110,18 @@ function Itemlist() {
       window.speechSynthesis.cancel();
     };
   }, []);
+  const renderedItems = filteredItems.length > 0 ? filteredItems : items;
 
   return (
     <div>
       <Navbar />
-      <Searchbar />
+      <Searchbar
+        onVoiceSearch={onVoiceSearch}
+        onTypingSearch={onTypingSearch}
+      />
 
       <ul className="product-list">
-        {items.map((product) => (
+        {renderedItems.map((product) => (
           <li key={product._id} className="product-item">
             <Link to={`/itempage/${product._id}`} className="card-link">
               <img
