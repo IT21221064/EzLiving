@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ProductList.css"; // Import your CSS file
+import "./ProductList.css";
 
 function ProductList() {
+  const { user } = useAuthContext()
   const [products, setProducts] = useState([]);
-  const [token, setToken] = useState(""); // State to store the JWT token
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user ? user._id : null; // Retrieve the user ID
+  const [ID, setUserID] = useState(""); 
+
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get("http://localhost:5000/api/products"); // Replace with your API endpoint
+        const response = await axios.get("http://localhost:5000/api/products"); 
         setProducts(response.data);
       } catch (error) {
         console.error(error);
@@ -22,53 +22,53 @@ function ProductList() {
   }, []);
 
   useEffect(() => {
-    // Retrieve the token from local storage
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
-  const addToCart = async ( productName, productImage, productPrice) => {
-    try {
-    
-      if (!token) {
-        console.error("User not authenticated");
-        return;
+    async function fetchProfile() {
+      try {
+        // Fetch the user's ID here and set it to the state
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+        console.log(json.username);
+
+        if (response.ok) {
+
+          setUserID(json.userid);
+        } 
+      } catch (error) {
+        console.error(error);
       }
+    }
+      fetchProfile();
+    
+  }, [user]); 
 
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
+  if (!ID) {
+    console.log("User ID is missing");
+    return null; 
+  }
 
+  const addToCart = async (productName, productImage, productPrice) => {
+    try {
+      
+      // Send the userID along with other product data
       await axios.post(
         "http://localhost:5000/api/cart",
         {
-          userID: userId,
+          userID: ID, // Use the userID from the state
           name: productName,
           image: productImage,
           price: productPrice,
           quantity: 1,
-        },
-        { headers }
+        }
       );
 
-      console.log("Product added to cart.");
+      console.log("Product added to cart."+ID+"id");
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
 
-
-
   return (
     <div>
-      <header>
-        {token ? (
-          <button onClick={logout}>Logout</button>
-        ) : (
-          <button onClick={login}>Login</button>
-        )}
-      </header>
       <h1>Product List</h1>
       <ul className="product-list">
         {products.map((product) => (

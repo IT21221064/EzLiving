@@ -4,27 +4,29 @@ const asyncHandler = require("express-async-handler");
 // Add an item to the cart
 const addToCart = async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ message: "User not authenticated" });
-    }
+    // Extract product details from the request body
+    const { username, name, image, price, quantity } = req.body;
 
-    const { userID, name, image, price, quantity } = req.body;
+    // Check if the product with the same name already exists in the user's cart
+    let cartItem = await Cart.findOne({ username, name });
 
-    const existingCartItem = await Cart.findOne({ userID: req.user._id, name });
-
-    if (existingCartItem) {
-      existingCartItem.quantity += quantity;
-      await existingCartItem.save();
+    if (cartItem) {
+      // If it exists, update the quantity by adding the new quantity to the existing quantity
+      cartItem.quantity += quantity;
     } else {
-      const cartItem = new Cart({
-        userID: req.user._id,
+      // If it doesn't exist, create a new cart item
+      cartItem = new Cart({
+        username,   // User details
         name,
         image,
         price,
         quantity,
+        // Add more user details here, if needed
       });
-      await cartItem.save();
     }
+
+    // Save the cart item to the database
+    await cartItem.save();
 
     res.json({ message: "Product added to cart." });
   } catch (error) {
@@ -33,14 +35,15 @@ const addToCart = async (req, res) => {
   }
 };
 
-// Get all cart items
+// Get all cart items for a specific user
 const getCartItems = async (req, res) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({ message: "User not authenticated" });
+    if (!req.query.uname) {
+      return res.status(400).json({ message: "Username is required" });
     }
 
-    const cartItems = await Cart.find({ userID: req.user._id });
+    const username = req.query.uname; // Retrieve username from query parameter
+    const cartItems = await Cart.find({ username }); // Retrieve cart items based on the username
     res.json(cartItems);
   } catch (error) {
     console.error(error);
@@ -85,9 +88,33 @@ const deleteCartItem = async (req, res) => {
   }
 };
 
+// Delete all cart items associated with a specific user
+const deleteAllCartItems = async (req, res) => {
+  try {
+    if (!req.params.uname) {
+      return res.status(400).json({ message: "Username is required" });
+    }
+
+    const username = req.params.uname; // Retrieve username from URL parameter
+
+    // Delete all cart items associated with the provided username
+    const result = await Cart.deleteMany({ username });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No cart items found for the specified username" });
+    }
+
+    res.json({ message: "All cart items deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error - Unable to delete all cart items" });
+  }
+};
+
 module.exports = {
   addToCart,
   getCartItems,
   updateCartItemQuantity,
   deleteCartItem,
+  deleteAllCartItems,
 };

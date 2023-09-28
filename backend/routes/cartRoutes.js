@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const requireUserAuth = require('../middleware/requireUserAuth'); // Import your user authentication middleware
 const Cart = require('../models/cart');
 
 const {
     addToCart,
     getCartItems,
     updateCartItemQuantity,
-    deleteCartItem
+    deleteCartItem,
+    deleteAllCartItems,
 } = require('../controllers/cartController');
 
-// Protect the cart routes with requireUserAuth middleware
-router.use(requireUserAuth);
+
+
 
 // Add a product to the cart
 router.post('/', addToCart);
@@ -24,5 +24,7 @@ router.put('/:id', updateCartItemQuantity);
 
 // Delete a cart item
 router.delete('/:id', deleteCartItem);
+
+router.delete('/', deleteAllCartItems);
 
 module.exports = router;

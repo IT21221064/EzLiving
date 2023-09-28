@@ -10,22 +10,47 @@ import { Link } from 'react-router-dom';
 
 
 
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 
 function Shoppingcart() {
+  const { user } = useAuthContext()
   const [cartItems, setCartItems] = useState([]);
   const [speechSynthesisSupported, setSpeechSynthesisSupported] = useState(false);
   const [speechRecognitionSupported, setSpeechRecognitionSupported] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+  const [uname, setUsername] = useState(""); 
 
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        // Fetch the user's ID here and set it to the state
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+        console.log(json.username);
+
+        if (response.ok) {
+
+          setUsername(json.username);
+        } 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+      fetchProfile();
+    
+  }, [user]); 
   useEffect(() => {
     async function fetchCartItems() {
       try {
-        const response = await axios.get("http://localhost:5000/api/cart");
+        const response = await axios.get("http://localhost:5000/api/cart", {
+        params: { uname } 
+      });
         setCartItems(response.data);
+
         calculateTotalPrice(response.data); // Calculate and set the total price
       } catch (error) {
         console.error(error);
@@ -40,7 +65,7 @@ function Shoppingcart() {
     if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
       setSpeechRecognitionSupported(true);
     }
-  }, []);
+  }, [uname]);
 
   const calculateTotalPrice = (items) => {
     const totalPrice = items.reduce(
