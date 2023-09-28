@@ -69,6 +69,9 @@ const creatingUser = async (req, res) => {
     const token = createToken(user._id);
     const userid = user._id;
     const uname = user.username;
+    localStorage.setItem('token', token);
+
+    setToken(token);
 
     console.log(user);
     res.status(200).json({ user, token, userid, uname });
@@ -152,7 +155,7 @@ const updateUser = async (req, res) => {
       const user = await User.login(username,pw)
       const token = createToken(user._id)
       const userid = user._id
-      //const uname = user.username
+      
 
       
   

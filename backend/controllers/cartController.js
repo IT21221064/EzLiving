@@ -2,48 +2,52 @@ const Cart = require("../models/cart");
 const asyncHandler = require("express-async-handler");
 
 // Add an item to the cart
-const addToCart = asyncHandler(async (req, res) => {
-  const { name, image, price, quantity } = req.body;
+const addToCart = async (req, res) => {
   try {
-    let cartItem = await Cart.findOne({ name });
+    // Extract product details from the request body
+    const { username, name, image, price, quantity } = req.body;
+
+    // Check if the product with the same name already exists in the user's cart
+    let cartItem = await Cart.findOne({ username, name });
 
     if (cartItem) {
-      // If the item already exists in the cart, update the quantity
+      // If it exists, update the quantity by adding the new quantity to the existing quantity
       cartItem.quantity += quantity;
-      await cartItem.save();
     } else {
-      // If the item is not in the cart, create a new cart item
-      cartItem = await Cart.create({
+      // If it doesn't exist, create a new cart item
+      cartItem = new Cart({
+        username,   // User details
         name,
         image,
         price,
         quantity,
+        // Add more user details here, if needed
       });
     }
 
-    res.status(201).json({
-      name: cartItem.name,
-      image: cartItem.image,
-      price: cartItem.price,
-      quantity: cartItem.quantity,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error - Unable to add to cart" });
-  }
-});
+    // Save the cart item to the database
+    await cartItem.save();
 
-// Get all cart items
+    res.json({ message: "Product added to cart." });
+  } catch (error) {
+    console.error("Error adding product to cart:", error);
+    res.status(500).json({ message: "Server Error - Unable to add product to cart" });
+  }
+};
+
+// Get all cart items for a specific user
 const getCartItems = async (req, res) => {
   try {
-    const cartItems = await Cart.find();
+    if (!req.query.uname) {
+      return res.status(400).json({ message: "Username is required" });
+    }
+
+    const username = req.query.uname; // Retrieve username from query parameter
+    const cartItems = await Cart.find({ username }); // Retrieve cart items based on the username
     res.json(cartItems);
-    console.log(cartItems)
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json( { message: "Server Error - Unable to get cart items" });
+    res.status(500).json({ message: "Server Error - Unable to get cart items" });
   }
 };
 
@@ -64,9 +68,7 @@ const updateCartItemQuantity = async (req, res) => {
     res.json(cartItem);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Server Error - Unable to update cart item" });
+    res.status(500).json({ message: "Server Error - Unable to update cart item" });
   }
 };
 
@@ -82,9 +84,30 @@ const deleteCartItem = async (req, res) => {
     res.json({ message: "Cart item removed" });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Server Error - Unable to delete cart item" });
+    res.status(500).json({ message: "Server Error - Unable to delete cart item" });
+  }
+};
+
+// Delete all cart items associated with a specific user
+const deleteAllCartItems = async (req, res) => {
+  try {
+    if (!req.params.uname) {
+      return res.status(400).json({ message: "Username is required" });
+    }
+
+    const username = req.params.uname; // Retrieve username from URL parameter
+
+    // Delete all cart items associated with the provided username
+    const result = await Cart.deleteMany({ username });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "No cart items found for the specified username" });
+    }
+
+    res.json({ message: "All cart items deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error - Unable to delete all cart items" });
   }
 };
 
@@ -93,4 +116,5 @@ module.exports = {
   getCartItems,
   updateCartItemQuantity,
   deleteCartItem,
+  deleteAllCartItems,
 };
