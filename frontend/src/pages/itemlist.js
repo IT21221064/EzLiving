@@ -11,8 +11,11 @@ import {
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Footer from "../components/Footer";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function Itemlist() {
+  const { user } = useAuthContext()
+  const [uname, setUsername] = useState(""); 
   const [items, setProducts] = useState([]);
   const [User, setUser] = useState(null);
   const { user } = useAuthContext();
@@ -47,40 +50,57 @@ function Itemlist() {
 
     fetchProducts();
   }, []);
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        // Fetch the user's ID here and set it to the state
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+        console.log(json.username);
 
-  const addToCart = async (itemname, itemimage, unitprice) => {
+        if (response.ok) {
+
+
+          setUsername(json.username);
+        } 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+      fetchProfile();
+    
+  }, [user]); 
+
+  const addToCart = async (productName, productImage, productPrice) => {
     try {
-      const existingCartItem = items.find(
-        (cartItem) => cartItem.name === itemname
+      
+      // Send the userID along with other product data
+      await axios.post(
+        "http://localhost:5000/api/cart",
+        {
+          username: uname, // Use the userID from the state
+          name: productName,
+          image: productImage,
+          price: productPrice,
+
+          quantity: 1,
+        }
       );
 
-      if (existingCartItem) {
-        const updatedCart = items.map((cartItem) => {
-          if (cartItem.name === itemname) {
-            return {
-              ...cartItem,
-              quantity: cartItem.quantity + 1,
-            };
-          }
-          return cartItem;
-        });
-
-        setProducts(updatedCart);
-        alert("Item quantity updated in the cart.");
-      } else {
-        await axios.post("http://localhost:5000/api/cart", {
-          name: itemname,
-          image: itemimage,
-          price: unitprice,
-          quantity: 1,
-        });
-
-        alert("Item added to the cart.");
-      }
+      console.log("Product added to cart.");
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
+
+  const onVoiceSearch = (voiceQuery) => {
+    // Filter items based on the voiceQuery and update filteredItems
+    const filtered = items.filter((item) =>
+      item.itemname.toLowerCase().includes(voiceQuery.toLowerCase())
+    );
+    setFilteredItems(filtered);
+  };
+
 
   useEffect(() => {
     if (!hasSpokenWelcome) {
