@@ -11,30 +11,17 @@ import {
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Footer from "../components/Footer";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 function Itemlist() {
-  const { user } = useAuthContext()
-  const [uname, setUsername] = useState(""); 
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
   const [items, setProducts] = useState([]);
   const [User, setUser] = useState(null);
-  const { user } = useAuthContext();
+
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   // Function to map user type to CSS file path
-  const mapUserTypeToCSSFilePath = (type) => {
-    switch (type) {
-      case "protanopia":
-        return "../pages/colorblind/ItemlistPageCSS/protanopiaItemlist.css"; // Path to theme1.css
-      case "deuteranopia":
-        return "../pages/colorblind/ItemlistPageCSS/deuteranopiaItemlist.css"; // Path to theme2.css
-      case "tritanopia":
-        return "../pages/colorblind/ItemlistPageCSS/tritanopiaItemlist.css"; // Path to theme3.css
-      default:
-        return "./ProductList.css"; // Default CSS file path
-    }
-  };
 
   const onVoiceSearch = (voiceQuery) => {
     const filtered = items.filter((item) =>
@@ -66,53 +53,39 @@ function Itemlist() {
     async function fetchProfile() {
       try {
         // Fetch the user's ID here and set it to the state
-        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const response = await fetch(
+          `http://localhost:5000/api/users/${user.userid}`
+        );
         const json = await response.json();
         console.log(json.username);
 
         if (response.ok) {
-
-
           setUsername(json.username);
-        } 
+        }
       } catch (error) {
         console.error(error);
       }
     }
-      fetchProfile();
-    
-  }, [user]); 
+    fetchProfile();
+  }, [user]);
 
   const addToCart = async (productName, productImage, productPrice) => {
     try {
-      
       // Send the userID along with other product data
-      await axios.post(
-        "http://localhost:5000/api/cart",
-        {
-          username: uname, // Use the userID from the state
-          name: productName,
-          image: productImage,
-          price: productPrice,
+      await axios.post("http://localhost:5000/api/cart", {
+        username: uname, // Use the userID from the state
+        name: productName,
+        image: productImage,
+        price: productPrice,
 
-          quantity: 1,
-        }
-      );
+        quantity: 1,
+      });
 
       console.log("Product added to cart.");
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
-
-  const onVoiceSearch = (voiceQuery) => {
-    // Filter items based on the voiceQuery and update filteredItems
-    const filtered = items.filter((item) =>
-      item.itemname.toLowerCase().includes(voiceQuery.toLowerCase())
-    );
-    setFilteredItems(filtered);
-  };
-
 
   useEffect(() => {
     if (!hasSpokenWelcome) {
@@ -146,12 +119,9 @@ function Itemlist() {
   }, [user]);
 
   // Get the CSS file path based on the user's type
-  const cssFilePath = mapUserTypeToCSSFilePath(User?.type);
 
   return (
     <div>
-      {/* Apply the CSS file based on the user's type */}
-      <link rel="stylesheet" href={cssFilePath} />
       <Navbar />
       <Searchbar
         onVoiceSearch={onVoiceSearch}
