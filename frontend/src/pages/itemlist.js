@@ -20,18 +20,6 @@ function Itemlist() {
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   // Function to map user type to CSS file path
-  const mapUserTypeToCSSFilePath = (type) => {
-    switch (type) {
-      case "protanopia":
-        return "../pages/colorblind/ItemlistPageCSS/protanopiaItemlist.css"; // Path to theme1.css
-      case "deuteranopia":
-        return "../pages/colorblind/ItemlistPageCSS/deuteranopiaItemlist.css"; // Path to theme2.css
-      case "tritanopia":
-        return "../pages/colorblind/ItemlistPageCSS/tritanopiaItemlist.css"; // Path to theme3.css
-      default:
-        return "./ProductList.css"; // Default CSS file path
-    }
-  };
 
   const onVoiceSearch = (voiceQuery) => {
     const filtered = items.filter((item) =>
@@ -126,12 +114,9 @@ function Itemlist() {
   }, [user]);
 
   // Get the CSS file path based on the user's type
-  const cssFilePath = mapUserTypeToCSSFilePath(User?.type);
 
   return (
     <div>
-      {/* Apply the CSS file based on the user's type */}
-      <link rel="stylesheet" href={cssFilePath} />
       <Navbar />
       <Searchbar
         onVoiceSearch={onVoiceSearch}
