@@ -14,16 +14,15 @@ body {
 
 /* Style for the microphone button */
 .mic-button {
-   
-    background-color: #378de9; /* Customize button background color */
-    color: white; /* Button text color */
-    font-size: 20px; /* Button text size */
-    border: none;
-    padding: 10px 20px; /* Adjust padding for button size */
-    cursor: pointer;
-    border-radius: 100%;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Add transitions for background-color and transform */
-  
+  background-color: #378de9; /* Customize button background color */
+  color: white; /* Button text color */
+  font-size: 20px; /* Button text size */
+  border: none;
+  padding: 10px 20px; /* Adjust padding for button size */
+  cursor: pointer;
+  border-radius: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transitions for background-color and transform */
+  margin-left: 40px;
 }
 
 .mic-button:hover {
@@ -68,7 +67,7 @@ body {
   width: 250px;
   height: 80px;
   position: relative;
-  left: -500px;
+  left: -350px;
   display: flex; /* Align items horizontally and vertically */
   align-items: center; /* Vertically center the content */
   justify-content: center; /* Horizontally center the content */
@@ -84,4 +83,9 @@ body {
 
 .nav-logo:hover {
   background-color: #555; /* Change background color on hover */
+}
+.nav-themes {
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  margin-left: 20px; /* Add some spacing between the themes and other navbar items */
 }
