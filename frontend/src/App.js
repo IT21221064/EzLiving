@@ -29,7 +29,7 @@ import UpdateProfile from "./pages/updateProfile";
 
 import { RefreshProvider } from "./context/RefreshContext";
 import DeleteFeedback from "./pages/deleteFeedback";
-import UpdateReview from "./pages/UpdateReview"
+import UpdateReview from "./pages/updateReview"
 
 function App() {
   const { user } = useAuthContext();
