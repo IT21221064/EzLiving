@@ -20,7 +20,9 @@ const PaymentDetails = () => {
 
     const [totalPrice1, setTotalPrice] = useState(0);
     const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+
     useEffect(() => {
+        
         async function fetchCartItems() {
             try {
                 const response = await axios.get('http://localhost:5000/api/cart');
@@ -53,7 +55,7 @@ const PaymentDetails = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const response = await fetch('http://localhost:5000/api/payment', {
                 method: 'POST',
@@ -66,51 +68,60 @@ const PaymentDetails = () => {
                     contact,
                     totalPrice
                 })
-            })
+            });
 
-            const json1 = await response.json()
+            const json1 = await response.json();
 
             if (response.ok) {
-                setAddress('')
-                setContact('')
-                setPrice(receivedValue || '') // Reset the price to receivedValue
-                setError(null)
-                setEmptyFields([])
+                setAddress('');
+                setContact('');
+                setPrice(receivedValue || ''); // Reset the price to receivedValue
+                setError(null);
+                setEmptyFields([]);
             } else {
-                setError(json1.error)
-                setEmptyFields(json1.emptyFields)
+                setError(json1.error);
+                setEmptyFields(json1.emptyFields);
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
-    const pay = () => {
-        const user = useAuthContext
-        console.log(cartItems)
-        axios.post('http://localhost:5000/api/stripe/create-checkout-session', {
-            cartItems,
-            userId: user._id
-        }).then((res) => {
-            if (res.data.url) {
-                window.location.href = res.data.url;
+    const pay = async () => {
+        try {
+            // Delete cart items
+            const deleteResponse = await axios.delete("http://localhost:5000/api/cart", {
+                params: { cusName }
+            });
+    
+            if (deleteResponse.data.message === "All cart items deleted") {
+                // Create Stripe checkout session
+                const createSessionResponse = await axios.post('http://localhost:5000/api/stripe/create-checkout-session', {
+                    cartItems,
+                    userId: user._id
+                });
+    
+                if (createSessionResponse.data.url) {
+                    // Redirect to the Stripe checkout page
+                    window.location.href = createSessionResponse.data.url;
+                }
             }
-        }).catch((err) => console.log(err.message));
-    }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
+
     useEffect(() => {
         if (!hasSpokenWelcome) {
-          // Wait for voices to be available
-         
-            const message = new SpeechSynthesisUtterance("now you are at payment in page");
-             // Change the voice if needed
+            const message = new SpeechSynthesisUtterance("Now you are at the payment page.");
             window.speechSynthesis.speak(message);
             setHasSpokenWelcome(true);
-        
         }
         return () => {
-          window.speechSynthesis.cancel();
+            window.speechSynthesis.cancel();
         };
-      }, [0]);
+    }, [0]);
 
     return (
         <form className="addpay" onSubmit={handleSubmit}>

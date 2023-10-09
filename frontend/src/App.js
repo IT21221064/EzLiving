@@ -29,6 +29,7 @@ import UpdateProfile from "./pages/updateProfile";
 
 import { RefreshProvider } from "./context/RefreshContext";
 import DeleteFeedback from "./pages/deleteFeedback";
+import UpdateReview from "./pages/UpdateReview"
 
 function App() {
   const { user } = useAuthContext();
@@ -43,6 +44,8 @@ function App() {
             element={!user ? <AdminLogin /> : <Navigate to="/adminItemlist" />}
           />
           <Route path="/payment" element={<PaymentDetails />} />
+        <Route path="/UpdateReview" element={<UpdateReview />} />
+
 
           <Route path="/items" element={<ItemList />} />
           <Route path="/cart" element={<Shoppingcart />} />

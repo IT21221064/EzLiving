@@ -1,61 +1,78 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-function UpdateReview() {
+function UpdateReview(){
+  const { reviewId } = useParams();
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const [reviewData, setReviewData] = useState({
     reviewtitle: "",
     reviewtext: "",
   });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    async function fetchReview() {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/review/${reviewId}`);
+        setReviewData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchReview();
+  }, [reviewId]);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setReviewData({
+      ...reviewData,
+      [name]: value,
+    });
+  };
+
+  const handleUpdateReview = async () => {
     try {
-      await axios.put("http://localhost:5000/api/review" + _id, reviewData);
-      alert("Review updated");
-      // Optionally, you can reset the form or perform any other actions after a successful update.
-    } catch (err) {
-      console.error(err);
+      await axios.put(`http://localhost:5000/api/review/${reviewId}`, reviewData);
+      navigate("/reviewList"); // Use navigate to redirect to the review list page after updating
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  const { _id } = useParams();
-  useEffect(() => {
-    // Fetch the existing review data based on review ID when the component loads
-    try {
-      axios
-        .get("http://localhost:5000/api/getReview/" + _id)
-        // Update the 'reviewData' state with the retrieved data
-        .then((res) => {
-          setReviewData({
-            reviewtitle: res.data.reviewtitle,
-            reviewtext: res.data.reviewtext,
-          });
-        });
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
-
   return (
     <div>
-      <h2>Update Review</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Review Title</label>
-        <input
-          type="text"
-          name="reviewtitle"
-          value={reviewData.reviewtitle}
-          onChange={(e) => setReviewData({ ...reviewData, reviewtitle: e.target.value })}
-        />
-        <label>Review Text</label>
-        <textarea
-          name="reviewtext"
-          value={reviewData.reviewtext}
-          onChange={(e) => setReviewData({ ...reviewData, reviewtext: e.target.value })}
-        ></textarea>
-        <button type="submit">Update Review</button>
-      </form>
+      <Navbar />
+      <h1 className="feedback-heading">Update Review</h1>
+      <div className="update-review-form">
+        <div className="form-group">
+          <label htmlFor="reviewtitle">Review Title</label>
+          <input
+            type="text"
+            id="reviewtitle"
+            name="reviewtitle"
+            value={reviewData.reviewtitle}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="reviewtext">Review Text</label>
+          <textarea
+            id="reviewtext"
+            name="reviewtext"
+            value={reviewData.reviewtext}
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <button className="update-button" onClick={handleUpdateReview}>
+          Update Review
+        </button>
+      </div>
+      <Footer />
     </div>
   );
 }
