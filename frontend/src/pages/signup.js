@@ -132,14 +132,17 @@ const Signup = () => {
                 value={pw}
                 className={emptyFields.includes('pw') ? 'error' : ""}/><br/>
 
-            <label>Type:</label>
-            <input
-                type="text"
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-                className={emptyFields.includes('username') ? 'error' : ""}/>  <br/>
-
-            
+            <label>Type:</label><br/>
+            <select
+               onChange={(e) => setType(e.target.value)}
+               value={type}
+              className={emptyFields.includes('type') ? 'error' : ""}
+            >
+                 <option value="">Select Type</option>
+                 <option value="deuteranopia">Deuteranopia</option>
+                 <option value="protanopia">Protanopia</option>
+                 <option value="tritanopia">Tritanopia</option>
+            </select><br/>
 
 
             <button className="btnSubmit" disabled={isLoading}>Register</button>

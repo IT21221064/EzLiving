@@ -11,14 +11,13 @@ import {
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Footer from "../components/Footer";
-import { useAuthContext } from "../hooks/useAuthContext";
+
 
 function Itemlist() {
   const { user } = useAuthContext()
   const [uname, setUsername] = useState(""); 
   const [items, setProducts] = useState([]);
   const [User, setUser] = useState(null);
-  const { user } = useAuthContext();
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
@@ -36,12 +35,7 @@ function Itemlist() {
     }
   };
 
-  const onVoiceSearch = (voiceQuery) => {
-    const filtered = items.filter((item) =>
-      item.itemname.toLowerCase().includes(voiceQuery.toLowerCase())
-    );
-    setFilteredItems(filtered);
-  };
+  
 
   const onTypingSearch = (typedQuery) => {
     const filtered = items.filter((item) =>
