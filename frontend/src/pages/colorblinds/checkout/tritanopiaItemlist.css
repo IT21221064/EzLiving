@@ -1,0 +1,74 @@
+/* payment-details.css */
+
+/* Reset default margin and padding */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+.addpay {
+    background-color: #ffcc80; /* Orange background color */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Adjust the maximum width as needed */
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Header styles */
+h3 {
+    color: #ff5722; /* Orange text color */
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Label styles */
+label {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Input styles */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Checkout button styles */
+.btnSubmit {
+    background-color: #ff5722; /* Orange button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btnSubmit:hover {
+    background-color: #ff7043; /* Darker orange on hover */
+}
+
+/* Error message styles */
+.error {
+    color: #ff0000; /* Red error text color */
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .addpay {
+        width: 90%; /* Adjust for smaller screens */
+    }
+}
