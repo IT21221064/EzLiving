@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Footer from "../components/Footer";
 
+
 function Itemlist() {
   const { user } = useAuthContext();
   const [uname, setUsername] = useState("");
@@ -22,6 +23,18 @@ function Itemlist() {
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   // Function to map user type to CSS file path
+  const mapUserTypeToCSSFilePath = (type) => {
+    switch (type) {
+      case "protanopia":
+        return "../pages/colorblind/ItemlistPageCSS/protanopiaItemlist.css"; // Path to theme1.css
+      case "deuteranopia":
+        return "../pages/colorblind/ItemlistPageCSS/deuteranopiaItemlist.css"; // Path to theme2.css
+      case "tritanopia":
+        return "../pages/colorblind/ItemlistPageCSS/tritanopiaItemlist.css"; // Path to theme3.css
+      default:
+        return "./ProductList.css"; // Default CSS file path
+    }
+  };
 
   const onVoiceSearch = (voiceQuery) => {
     const filtered = items.filter((item) =>
