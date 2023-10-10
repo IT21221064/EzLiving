@@ -31,8 +31,7 @@ function Navbar() {
       navigate("/cart");
     } else if (lowercaseTranscript.includes("go to feedbacks")) {
       navigate("/Feedback");
-    }
-    else if (lowercaseTranscript.includes("go to profile")) {
+    } else if (lowercaseTranscript.includes("go to profile")) {
       navigate("/UserProfile");
     }
   };
