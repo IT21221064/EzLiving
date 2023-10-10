@@ -1,0 +1,82 @@
+/* UserProfile.css */
+
+/* Reset default margin and padding */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Body styles */
+  
+  
+  /* Container styles */
+  .container {
+    background-color: #ffffff; /* Light green background */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Adjust the maximum width as needed */
+    text-align: center;
+  }
+  
+  /* Header styles */
+  h1 {
+    color: #007f5f; /* Dark green text color */
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Subheading styles */
+  h2 {
+    font-size: 30px;
+    margin-top: 20px;
+    font-weight: 50px;
+    color: #007f5f; /* Dark green text color */
+  }
+  
+  /* Profile details styles */
+  .formbox1 {
+    border: 1px solid #007f5f; /* Dark green border */
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #007f5f; /* Dark green text color */
+  }
+  
+  .formbox1 p {
+    margin-bottom: 10px;
+  }
+  
+  /* Edit profile button styles */
+  .btnupdate {
+    background-color: #007f5f; /* Dark green button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .btnupdate:hover {
+    background-color: #005634; /* Darker green on hover */
+  }
+  
+  /* Footer styles */
+  .footer {
+    background-color: #007f5f; /* Dark green footer background */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 90%; /* Adjust for smaller screens */
+    }
+  }
+  

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const PaymentDetails = () => {
     const location = useLocation();
@@ -17,7 +19,7 @@ const PaymentDetails = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const [cartItems, setCartItems] = useState([]);
-
+    const [type, setType] = useState("");
     const [totalPrice1, setTotalPrice] = useState(0);
     const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
@@ -40,11 +42,32 @@ const PaymentDetails = () => {
             console.log(json.username)
 
             if (response.ok) {
-                setName(json.username)
+                setName(json.username);
+                setType(json.type);
             }
         }
         fetchProfile()
     }, [user])
+    useEffect(() => {
+        const importCSSBasedOnType = async () => {
+          switch (type) {
+            case "deuteranopia":
+               import("../pages/colorblinds/checkout/deuteranopiaItemlist.css");
+              break;
+            case "protanopia":
+               import("../pages/colorblinds/checkout/protanopiaItemlist.css");
+              break;
+            case "tritanopia":
+               import("../pages/colorblinds/checkout/tritanopiaItemlist.css");
+              break;
+            default:
+               import("./ProductList.css"); 
+              break;
+          }
+        };
+    
+        importCSSBasedOnType();
+      }, [type]);
 
     const calculateTotalPrice = (items) => {
         const totalPrice = items.reduce(
@@ -124,6 +147,9 @@ const PaymentDetails = () => {
     }, [0]);
 
     return (
+        <div>
+            <Navbar/>
+            <br></br>
         <form className="addpay" onSubmit={handleSubmit}>
             <h3>Payment Details</h3>
             <label>Name:</label>
@@ -156,7 +182,9 @@ const PaymentDetails = () => {
 
             <button className="btnSubmit" disabled={isLoading} onClick={pay}>Checkout</button>
             {error && <div className="error">{error}</div>}
-        </form>
+        </form><br></br>
+        <Footer/>
+        </div>
     )
 }
 

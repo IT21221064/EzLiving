@@ -9,7 +9,7 @@ import Navbar from "../components/Navbar";
 
 const  UserProfile = () => {
     const [User,setUser] = useState(null)
-
+    const [type, setType] = useState("");
     const{user} = useAuthContext()
     const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
@@ -22,12 +22,34 @@ const  UserProfile = () => {
             if(response.ok)
             {
                 setUser(json)
+                setType(json.type);
             }
         }
         if(user != null){
             
             fetchProfile()}
     },[user])
+    useEffect(() => {
+        const importCSSBasedOnType = async () => {
+          switch (type) {
+            case "deuteranopia":
+               import("../pages/colorblinds/profile/deuteranopiaItemlist.css");
+              break;
+            case "protanopia":
+               import("../pages/colorblinds/profile/protanopiaItemlist.css");
+              break;
+            case "tritanopia":
+               import("../pages/colorblinds/profile/tritanopiaItemlist.css");
+              break;
+            default:
+               import("./ProductList.css"); 
+              break;
+          }
+        };
+    
+        importCSSBasedOnType();
+      }, [type]);
+    
     useEffect(() => {
         if (!hasSpokenWelcome) {
           // Wait for voices to be available
@@ -42,15 +64,16 @@ const  UserProfile = () => {
           window.speechSynthesis.cancel();
         };
       }, [0]);
+      
     
 
     return(
     <div>
-        <Navbar/>
+        <Navbar/><br></br>
         <div className="container">
             
         
-            <h1>HELLO {User?.name ?? 'null'}!</h1><br/>
+            <h1 className="title">HELLO {User?.name ?? 'null'}!</h1><br/>
             <h2>Here is your profile details</h2>
             <br/><br/>
 

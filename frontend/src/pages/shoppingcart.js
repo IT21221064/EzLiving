@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
-import './cart.css';
+
 import {loadStripe} from '@stripe/stripe-js';
 import pay from './pay';
 import { Link } from 'react-router-dom';
@@ -23,6 +23,7 @@ function Shoppingcart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
   const [uname, setUsername] = useState(""); 
+  const [type, setType] = useState("");
 
   useEffect(() => {
     async function fetchProfile() {
@@ -35,6 +36,7 @@ function Shoppingcart() {
         if (response.ok) {
 
           setUsername(json.username);
+          setType(json.type);
         } 
       } catch (error) {
         console.error(error);
@@ -43,6 +45,26 @@ function Shoppingcart() {
       fetchProfile();
     
   }, [user]); 
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/cart/deuteranopiaItemlist.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/cart/protanopiaItemlist.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/cart/tritanopiaItemlist.css");
+          break;
+        default:
+           import("./cart.css"); 
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
   useEffect(() => {
     async function fetchCartItems() {
       try {

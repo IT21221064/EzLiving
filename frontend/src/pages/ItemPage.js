@@ -5,8 +5,12 @@ import Review from "./ReviewList";
 import "./singleItem.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 function ItemPage() {
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState("");
   const [item, setItem] = useState({
     itemcode: "",
     itemname: "",
@@ -21,6 +25,47 @@ function ItemPage() {
     const [prhasSpokenWelcome, setprHasSpokenWelcome] = useState(false);
 
   const { _id } = useParams();
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        // Fetch the user's ID here and set it to the state
+        const response = await fetch(
+          `http://localhost:5000/api/users/${user.userid}`
+        );
+        const json = await response.json();
+        console.log(json.username);
+
+        if (response.ok) {
+          setUsername(json.username);
+          setType(json.type);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProfile();
+  }, [user]);
+  
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/singleItem/deuteranopiaItemlist.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/singleItem/protanopiaItemlist.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/singleItem/tritanopiaItemlist.css");
+          break;
+        default:
+           import("./ProductList.css"); 
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
   useEffect(() => {
     // Fetch the existing item data based on item ID when the component loads
     try {
@@ -42,17 +87,17 @@ function ItemPage() {
     }
   }, []);
 
-  const addToCart = async (itemname, itemimage, unitprice) => {
+  const addToCart = async (productName, productImage, productPrice) => {
     try {
-      // Send a POST request to add the product to the cart
+      // Send the userID along with other product data
       await axios.post("http://localhost:5000/api/cart", {
-        name: itemname,
-        image: itemimage,
-        price: unitprice,
-        quantity: 1, // Set a default quantity (you can adjust this as needed)
+        username: uname, // Use the userID from the state
+        name: productName,
+        image: productImage,
+        price: productPrice,
+        quantity: 1,
       });
 
-      alert("Item added successfully");
       console.log("Product added to cart.");
     } catch (error) {
       console.error("Error adding product to cart:", error);
@@ -120,10 +165,7 @@ function ItemPage() {
       </Link>
       </div>
       <br></br>
-      <br></br>
-  
-   
-      
+    
       <Footer />
     </div>
   );

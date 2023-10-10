@@ -1,0 +1,76 @@
+/* UserProfile.css */
+
+/* Reset default margin and padding */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Body styles */
+  
+  /* Container styles */
+  .container {
+    background-color: #ffffff; /* Orange background */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 600px; /* Adjust the maximum width as needed */
+    text-align: center;
+  }
+  
+  /* Header styles */
+  .title {
+    color: #e29117; /* Blue text color (change if needed) */
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  /* Subheading styles */
+  h2 {
+    font-size: 30px;
+    margin-top: 20px;
+    font-weight: 50px;
+    color: #FFFFFF; /* White text color */
+  }
+  
+  /* Profile details styles */
+  .formbox1 {
+    border: 1px solid #FFA500; /* Orange border */
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 600;
+    background-color: #FFFFFF; /* White background */
+    color: #000; /* Black text color */
+  }
+  
+  .formbox1 p {
+    margin-bottom: 10px;
+  }
+  
+  /* Edit profile button styles */
+  .btnupdate {
+    background-color: #FFA500; /* Orange button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .btnupdate:hover {
+    background-color: #FF8C00; /* Darker orange on hover */
+  }
+  
+  
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 90%; /* Adjust for smaller screens */
+    }
+  }
+  
