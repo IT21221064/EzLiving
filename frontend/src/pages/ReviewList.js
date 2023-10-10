@@ -4,10 +4,26 @@ import "./feedbacklist.css";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Searchbar from "../components/Searchbar";
 
 function ReviewList() {
   const [reviewList, setReviewList] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+  const [filteredReviews, setFilteredReviews] = useState([]);
+
+  const onVoiceSearch = (voiceQuery) => {
+    const filtered = reviewList.filter((reviews) =>
+    reviews.reviewtitle.toLowerCase().includes(voiceQuery.toLowerCase())
+    );
+    setFilteredReviews(filtered);
+  };
+
+  const onTypingSearch = (typedQuery) => {
+    const filtered = reviewList.filter((reviews) =>
+    reviews.reviewtitle.toLowerCase().includes(typedQuery.toLowerCase())
+    );
+    setFilteredReviews(filtered);
+  };
 
   useEffect(() => {
     async function fetchReview() {
@@ -35,23 +51,27 @@ function ReviewList() {
     };
   }, []);
 
+  const renderedItems = filteredReviews.length > 0 ? filteredReviews : reviewList;
+
   return (
     <div>
       <Navbar/>
       <h1 className="feedback-heading">Review List</h1>
+      <Searchbar
+        onVoiceSearch={onVoiceSearch}
+        onTypingSearch={onTypingSearch}
+      />
       <Link to="/AddReview" className="feedback-link">
         <button className="link-button">Add Reviews</button>
       </Link>
       <ul className="feedback-list">
-        {reviewList.map((reviews) => (
+        {renderedItems.map((reviews) => (
           <li key={reviews._id} className="feedback-item-box">
             
               <h2 className="feedback-title">{reviews.reviewtitle}</h2>
               <p className="feedback-text">{reviews.reviewtext}</p>
 
-              <Link to={`/UpdateReview/${reviews._id}`} className="update-button-link">
-              <button className="reviewupdate-btn">Update</button>
-              </Link>
+              
             
           </li>
         ))}

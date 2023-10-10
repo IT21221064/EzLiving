@@ -29,7 +29,8 @@ import UpdateProfile from "./pages/updateProfile";
 
 import { RefreshProvider } from "./context/RefreshContext";
 import DeleteFeedback from "./pages/deleteFeedback";
-import UpdateReview from "./pages/updateReview"
+import UpdateReview from "./pages/updateReview";
+import UserReview from "./pages/userReviews"
 
 function App() {
   const { user } = useAuthContext();
@@ -65,6 +66,7 @@ function App() {
           <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/Adminfeedback" element={<DeleteFeedback />} />
+          <Route path="/UserReview" element={<UserReview/>} />
         </Routes>
       </Router>
     </RefreshProvider>

@@ -1,12 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../pages/feedback.css';
 import { Link } from "react-router-dom";
+import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function AddReview() {
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState(""); 
   const [review, setReview] = useState({
     reviewtitle: "",
     reviewtext: "",
@@ -18,6 +21,37 @@ function AddReview() {
     const { name, value } = event.target;
     setReview({ ...review, [name]: value });
   };
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+        const username = json.username;
+  
+        if (response.ok) {
+          setUsername(username);
+        } 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProfile();
+  }, [user]);
+
+  useEffect(() => {
+    async function fetchreview() {
+      try {
+        const response = await axios.get("http://localhost:5000/api/review", {
+          params: { uname } 
+        });
+        setReview(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchreview();
+  }, [uname]);
 
   const navigate = useNavigate();
   const startRecognition = (field) => {
@@ -42,24 +76,28 @@ function AddReview() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    console.log("Submit button clicked");
+    if (!review.reviewtitle || !review.reviewtext) {
+      alert("Please fill in all the fields");
+      return; // Don't proceed with the submission
+    }
     try {
-      await axios.post("http://localhost:5000/api/review", review);
+      // Include the username in the review object
+      const reviewWithUsername = { ...review, username: uname };
+      await axios.post("http://localhost:5000/api/review", reviewWithUsername);
       alert("Review added successfully!");
-      navigate("/Review"); //redirect to all review
+      navigate("/Review"); // Redirect to all reviews
     } catch (err) {
       console.error(err);
-      alert("please fill all the fields");
     }
   };
   useEffect(() => {
     if (!hasSpokenWelcome) {
       // Wait for voices to be available
-     
-        const message = new SpeechSynthesisUtterance("now you are at add review page");
-         // Change the voice if needed
-        window.speechSynthesis.speak(message);
-        setHasSpokenWelcome(true);
-    
+      const message = new SpeechSynthesisUtterance("Now you are at the Add Review page");
+      // Change the voice if needed
+      window.speechSynthesis.speak(message);
+      setHasSpokenWelcome(true);
     }
     return () => {
       window.speechSynthesis.cancel();
@@ -77,29 +115,30 @@ function AddReview() {
         <div className="input-container">
           <label>Review Title</label>
           <div className="input-with-button">
-          <input
-            type="text"
-            id="reviewtitle"
-            name="reviewtitle"
-            value={review.reviewtitle}
-            onChange={handleChange}
-          />
-          <button type="button" onClick={() => startRecognition("reviewtitle")}>
+            <input
+              type="text"
+              id="reviewtitle"
+              name="reviewtitle"
+              value={review.reviewtitle}
+              onChange={handleChange}
+            />
+            <button type="button" onClick={() => startRecognition("reviewtitle")}>
               {isListening ? "Listening..." : "Speak"}
-          </button>
+            </button>
           </div>
         </div>
         <div className="input-container">
           <label>Review Text</label>
           <div className="input-with-button">
-          <textarea
-            id="reviewtext"
-            name="reviewtext"
-            value={review.reviewtext}
-            onChange={handleChange}
-          ></textarea>
-          <button type="button" onClick={() => startRecognition("reviewtext")}>
-              {isListening ? "Listening..." : "Speak"}</button>
+            <textarea
+              id="reviewtext"
+              name="reviewtext"
+              value={review.reviewtext}
+              onChange={handleChange}
+            ></textarea>
+            <button type="button" onClick={() => startRecognition("reviewtext")}>
+              {isListening ? "Listening..." : "Speak"}
+            </button>
           </div>
         </div>
         <button type="submit">Submit Review</button>

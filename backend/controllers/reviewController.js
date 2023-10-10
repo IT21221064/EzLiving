@@ -5,11 +5,12 @@ const path = require("path");
 
 // Add a review to an item
 const addReview = asyncHandler(async (req, res) => {
-  const { reviewtitle , reviewtext } = req.body;
+  const { username, reviewtitle , reviewtext } = req.body;
   const reviewimage = req.file? req.file.path:null;
   try {
     // Create a new review
     const review = await Review.create({
+        username,
         reviewtitle,
         reviewtext,
         reviewimage,
