@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./adminItems.css"; // Import your custom CSS file
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import AdminNavbar from "../components/AdminNavbar";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -24,13 +25,26 @@ function AdminItemlist() {
   }, []);
 
   const handleDelete = (_id) => {
-    axios
-      .delete("http://localhost:5000/api/items/" + _id)
-      .then((res) => {
-        alert("Item deleted successfully");
-        window.location.reload();
-      })
-      .catch((er) => console.log(er));
+
+    Swal.fire({
+      title: "Delete Item",
+      text: "Are you sure you want to delete this item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete("http://localhost:5000/api/items/" + _id)
+          .then((res) => {
+            alert("Item deleted successfully");
+            window.location.reload();
+          })
+          .catch((er) => console.log(er));
+      }
+    });
+
   };
 
   const handleGenerateReport = () => {
