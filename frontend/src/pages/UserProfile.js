@@ -88,6 +88,8 @@ const  UserProfile = () => {
             </div><br></br>
             <br/>
             <a href="/UpdateProfile"><button className="btnupdate">Edit Profile</button></a>
+            <br/>
+            <a href="/userreview"><button className="btnupdate">My Reviews</button></a>
             
           
 

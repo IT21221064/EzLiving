@@ -22,27 +22,45 @@ body {
   margin: 20px 0;
 }
 
+.link-buttonR{
+  margin-left: 130px;
+  background-color: #ffa500;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  
+}
+
 .link-buttonR:hover{
-  background-color: #007bff;
+  background-color: #ff8c00;
   scale: 1.2;
   transition: scale 0.7s;
 }
 
-.addfeedback-button {
-  margin-left: 130px;
-  background-color: #0056b3;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
+.feedback-title {
+  font-size: 22px;
+  margin: 0;
+  color: #ff5722;
+}
+
+.feedback-text {
   font-size: 18px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 10px;
+  color: #666;
+}
+.feedback-textUser{
+  font-size: 17px;
+  margin-top: 10px;
+  color: #666;
+  font-style: italic;
 }
 
 .addfeedback-button {
   margin-left: 130px;
-  background-color: #007bff;
+  background-color: #ffa500;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -53,8 +71,9 @@ body {
 }
 
 .addfeedback-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  background-color: #ff8c00;
+  scale: 1.2;
+  transition: scale 0.6s;
 }
 
 /* Feedback List Styles */
@@ -83,17 +102,6 @@ body {
   transform: scale(1.1);
 }
 
-.feedback-title {
-  font-size: 20px;
-  margin: 0;
-  color: #333;
-}
-
-.feedback-text {
-  font-size: 16px;
-  margin-top: 10px;
-  color: #666;
-}
 
 .feedback-delete-btn:hover{
   background-color: red;
