@@ -1,13 +1,59 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./feedbacklist.css";
+import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function FeedbackList() {
   const [feedbackList, setFeedbackList] = useState([]);
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState("");
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
+
+  console.log("type"+type);
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/ItemlistPageCSS/deuteranopiaItemlist.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/ItemlistPageCSS/protanopiaItemlist.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/ReviewsList/tritanopiafeedbacklist.css");
+          break;
+        default:
+           import("../pages/colorblinds/ReviewsList/feedbacklist.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        // Fetch the user's ID here and set it to the state
+        const response = await fetch(
+          `http://localhost:5000/api/users/${user.userid}`
+        );
+        const json = await response.json();
+        console.log(json.username);
+
+        if (response.ok) {
+          setUsername(json.username);
+          setType(json.type);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProfile();
+  }, [user]);
 
   useEffect(() => {
     async function fetchFeedback() {

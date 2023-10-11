@@ -13,31 +13,55 @@ function AddItem() {
     itemdescript: "",
   });
   const [itemimage, setImage] = useState("");
-  console.log(itemimage);
+  const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setItem({ ...item, [name]: value });
   };
 
-  const navigate = useNavigate();
+  const validateForm = () => {
+    const errors = {};
+
+    if (!item.itemcode.match(/^[A-Z0-9]+$/)) {
+      errors.itemcode =
+        "Item code must contain only uppercase letters and numbers.";
+    }
+
+    if (item.quantity < 1) {
+      errors.quantity = "Item quantity must be greater than 0.";
+    }
+
+    if (!item.unitprice.match(/^\d+(\.\d{1,2})?$/)) {
+      errors.unitprice = "Invalid price format. Use 0.00 format.";
+    }
+
+    return errors;
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("itemcode", item.itemcode);
-    formData.append("itemname", item.itemname);
-    formData.append("quantity", item.quantity);
-    formData.append("unitprice", item.unitprice);
-    formData.append("itemdescript", item.itemdescript);
-    formData.append("itemimage", itemimage); // Append the image with the correct field name
 
-    try {
-      await axios.post("http://localhost:5000/api/items/", formData);
-      alert("Item added");
-      navigate("/adminItemlist");
-    } catch (err) {
-      console.error(err);
+    const errors = validateForm();
+    setFormErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      const formData = new FormData();
+      formData.append("itemcode", item.itemcode);
+      formData.append("itemname", item.itemname);
+      formData.append("quantity", item.quantity);
+      formData.append("unitprice", item.unitprice);
+      formData.append("itemdescript", item.itemdescript);
+      formData.append("itemimage", itemimage);
+
+      try {
+        await axios.post("http://localhost:5000/api/items/", formData);
+        alert("Item added");
+        navigate("/adminItemlist");
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -50,36 +74,56 @@ function AddItem() {
           <div className="column">
             <label className="addlabel">Item Code</label>
             <input
-              className="addinput"
+              className={`addinput ${formErrors.itemcode ? "error" : ""}`}
               type="text"
               id="itemcode"
               name="itemcode"
               onChange={handleChange}
+              required
             />
+            {formErrors.itemcode && (
+              <span className="error-message">{formErrors.itemcode}</span>
+            )}
+
             <label className="addlabel">Item Name</label>
             <input
-              className="addinput"
+              className={`addinput ${formErrors.itemname ? "error" : ""}`}
               type="text"
               id="itemname"
               name="itemname"
               onChange={handleChange}
+              required
             />
+            {formErrors.itemname && (
+              <span className="error-message">{formErrors.itemname}</span>
+            )}
+
             <label className="addlabel">Item Quantity</label>
             <input
-              className="addinput"
+              className={`addinput ${formErrors.quantity ? "error" : ""}`}
               type="number"
               id="itemquantity"
               name="quantity"
               onChange={handleChange}
+              required
+              min="1"
             />
+            {formErrors.quantity && (
+              <span className="error-message">{formErrors.quantity}</span>
+            )}
+
             <label className="addlabel">Item Price</label>
             <input
-              className="addinput"
+              className={`addinput ${formErrors.unitprice ? "error" : ""}`}
               type="text"
               id="unitprice"
               name="unitprice"
               onChange={handleChange}
+              required
             />
+            {formErrors.unitprice && (
+              <span className="error-message">{formErrors.unitprice}</span>
+            )}
           </div>
           <div className="right-column">
             <label className="addlabel">Item Description</label>

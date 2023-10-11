@@ -1,0 +1,68 @@
+.stock-report {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 10px #ddd;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stock-report h1 {
+  color: #333;
+  font-size: 24px;
+  margin: 0;
+}
+
+.stock-report p {
+  color: #777;
+  margin: 0;
+  font-size: 16px;
+}
+
+.report-date {
+  font-weight: bold;
+}
+
+.stock-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stock-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+}
+
+.stock-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.total-stock-value {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.btn-success{
+  background-color: #4CAF50; /* Green background color */
+  border: none; /* Remove border */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding */
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline on links */
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  margin-top: 20px; /* Add some space at the top */
+  transition: background-color 0.3s; /* Smooth hover effect */
+  margin-left: 700px;
+}
+
+.btn-success:hover {
+  background-color: #45a049; /* Darker green on hover */
+}

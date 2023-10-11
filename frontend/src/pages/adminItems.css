@@ -1,3 +1,4 @@
+
 /* Product List Container */
 .adminproduct-list {
     list-style: none;
@@ -90,3 +91,109 @@
     background-color: #218838;
   }
   
+
+
+
+/* Product item */
+.product-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+/* Product image */
+.admin-cart-image {
+  max-width: 100%;
+}
+
+/* Product name */
+.admin-cart-name {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Product price */
+.admin-cart-price {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Button container */
+.admin-button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* Update button */
+.button-link-update {
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button-link-update:hover {
+  background-color: #2980b9;
+}
+
+/* Delete button */
+.admin-delete-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* Add and Generate Report buttons */
+.button-link-add {
+  background-color: #2ecc71;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+  border: none;
+  text-align: center;
+}
+
+.button-link-add:hover,
+.generate-report-button:hover {
+  background-color: #27ae60;
+}
+.generate-report-button{
+
+  background-color: #078039;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+  border: none;
+  text-align: center;
+  margin-left: 1300px;
+  margin-top: -1000px;
+
+}
+

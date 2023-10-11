@@ -3,6 +3,10 @@ const router = require("../routes/reviewRoutes");
 
 const reviewSchema = new mongoose.Schema(
   {
+    username: {
+      type: String,
+
+    },
     reviewtitle: {
       type: String,
       required: true,

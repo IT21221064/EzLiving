@@ -29,7 +29,9 @@ import UpdateProfile from "./pages/updateProfile";
 
 import { RefreshProvider } from "./context/RefreshContext";
 import DeleteFeedback from "./pages/deleteFeedback";
-import UpdateReview from "./pages/updateReview"
+import UpdateReview from "./pages/updateReview";
+import UserReview from "./pages/userReviews"
+import StockReport from "./pages/stockReport";
 
 function App() {
   const { user } = useAuthContext();
@@ -44,8 +46,7 @@ function App() {
             element={!user ? <AdminLogin /> : <Navigate to="/adminItemlist" />}
           />
           <Route path="/payment" element={<PaymentDetails />} />
-        <Route path="/UpdateReview" element={<UpdateReview />} />
-
+          <Route path="/UpdateReview" element={<UpdateReview />} />
 
           <Route path="/items" element={<ItemList />} />
           <Route path="/cart" element={<Shoppingcart />} />
@@ -65,6 +66,8 @@ function App() {
           <Route path="/UserProfile" element={<UserProfile />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/Adminfeedback" element={<DeleteFeedback />} />
+          <Route path="/UserReview" element={<UserReview />} />
+          <Route path="/report" element={<StockReport />} />
         </Routes>
       </Router>
     </RefreshProvider>
