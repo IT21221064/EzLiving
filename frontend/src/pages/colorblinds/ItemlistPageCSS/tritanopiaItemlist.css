@@ -13,7 +13,7 @@
   border: 1px solid #ccc; /* Light gray border */
   padding: 20px;
   text-align: center;
-  background-color: #f0f0f0; /* Very light gray background */
+  background-color: #fdfdfd; /* Very light gray background */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -38,14 +38,14 @@
 }
 
 /* Product Name */
-.cart-name {
+.cart-names {
   margin: 10px 0;
   font-size: 1.2rem;
-  color: #333; /* Dark gray text */
+  color: #a04609; /* Dark gray text */
 }
 
 /* Product Price */
-.cart-price {
+.cart-prices {
   font-size: 1.1rem;
   color: #555; /* Medium gray text */
 }
@@ -60,6 +60,7 @@
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  margin-right: 30px;
 }
 
 .add-button:hover {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./ProductList.css";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 function ProductList() {
   const { user } = useAuthContext()
   const [products, setProducts] = useState([]);

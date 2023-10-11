@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./ProductList.css";
 import { useAuthContext } from "../hooks/useAuthContext";
 import {
   BrowserRouter as Router,
@@ -15,13 +14,35 @@ import Footer from "../components/Footer";
 function Itemlist() {
   const { user } = useAuthContext();
   const [uname, setUsername] = useState("");
+  const [type, setType] = useState("");
   const [items, setProducts] = useState([]);
   const [User, setUser] = useState(null);
-
   const [filteredItems, setFilteredItems] = useState([]);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
-  // Function to map user type to CSS file path
+  // Define the 'type' variable with a default value
+    console.log("type"+type);
+  // Import CSS files conditionally based on 'type'
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/ItemlistPageCSS/deuteranopiaItemlist.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/ItemlistPageCSS/protanopiaItemlist.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/ItemlistPageCSS/tritanopiaItemlist.css");
+          break;
+        default:
+           import("./ProductList.css"); 
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
 
   const onVoiceSearch = (voiceQuery) => {
     const filtered = items.filter((item) =>
@@ -49,6 +70,7 @@ function Itemlist() {
 
     fetchProducts();
   }, []);
+
   useEffect(() => {
     async function fetchProfile() {
       try {
@@ -61,6 +83,7 @@ function Itemlist() {
 
         if (response.ok) {
           setUsername(json.username);
+          setType(json.type);
         }
       } catch (error) {
         console.error(error);
@@ -77,7 +100,6 @@ function Itemlist() {
         name: productName,
         image: productImage,
         price: productPrice,
-
         quantity: 1,
       });
 
@@ -90,7 +112,7 @@ function Itemlist() {
   useEffect(() => {
     if (!hasSpokenWelcome) {
       const message = new SpeechSynthesisUtterance(
-        "now you are at Home page, to navigate cart page press microphone button and say go to cart, to navigate feedback page say go to feedbacks, to navigate profile page say go to profile"
+        "Now you are at the Home page. To navigate to the cart page, press the microphone button and say 'go to cart.' To navigate to the feedback page, say 'go to feedbacks.' To navigate to the profile page, say 'go to profile.'"
       );
       window.speechSynthesis.speak(message);
       setHasSpokenWelcome(true);
@@ -99,8 +121,6 @@ function Itemlist() {
       window.speechSynthesis.cancel();
     };
   }, []);
-
-  const renderedItems = filteredItems.length > 0 ? filteredItems : items;
 
   useEffect(() => {
     const fetchProfileType = async () => {
@@ -118,7 +138,7 @@ function Itemlist() {
     }
   }, [user]);
 
-  // Get the CSS file path based on the user's type
+  const renderedItems = filteredItems.length > 0 ? filteredItems : items;
 
   return (
     <div>
@@ -139,8 +159,8 @@ function Itemlist() {
               />
             </Link>
             {console.log(`http://localhost:5000/${product?.itemimage}`)}
-            <h2 className="cart-name">{product.itemname}</h2>
-            <p className="cart-price">Price: ${product.unitprice}</p>
+            <h2 className="cart-names">{product.itemname}</h2>
+            <p className="cart-prices">Price: ${product.unitprice}</p>
             <center>
               <button
                 className="add-button"
