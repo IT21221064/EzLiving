@@ -7,7 +7,7 @@ import {
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
 import { useLogout } from "../hooks/useLogout";
-
+import Swal from 'sweetalert2'; // Import SweetAlert
 import "./Navbar.css"; // Import a CSS file for custom styles
 
 function Navbar() {
@@ -47,10 +47,23 @@ function Navbar() {
     // Start listening for voice input only when the search button is clicked
     handleMicClick();
   };
+
   const handleClick = () => {
-    logout();
-    navigate("/");
-    console.log("logout");
+    Swal.fire({
+      title: "Logout",
+      text: "Are you sure you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, log out",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // User confirmed the logout
+        logout();
+        navigate("/");
+        console.log("logout");
+      }
+    });
   };
 
   return (
@@ -93,8 +106,7 @@ function Navbar() {
               className="text"
               onClick={(e) => {
                 e.preventDefault();
-                // Handle logout logic here
-                // For example, clear user session and navigate to the login page
+                // Show the logout confirmation
                 handleClick();
               }}
             >

@@ -10,6 +10,7 @@ import {
 import Navbar from "../components/Navbar";
 import Searchbar from "../components/Searchbar";
 import Footer from "../components/Footer";
+import Swal from 'sweetalert2';
 
 function Itemlist() {
   const { user } = useAuthContext();
@@ -102,12 +103,20 @@ function Itemlist() {
         price: productPrice,
         quantity: 1,
       });
-
+  
       console.log("Product added to cart.");
+  
+      // Show a success message using SweetAlert
+      Swal.fire({
+        icon: 'success',
+        title: 'Item Added to Cart',
+        text: 'The item has been successfully added to your cart.',
+      });
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
+  
 
   useEffect(() => {
     if (!hasSpokenWelcome) {
