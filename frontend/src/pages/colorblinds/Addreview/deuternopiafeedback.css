@@ -1,0 +1,108 @@
+/* feedback.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+
+.feedback-heading {
+  font-size: 28px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.feedback-link {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.link-button {
+  padding: 10px 20px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-left: 250px;
+}
+
+.link-button:hover {
+  background-color: #00796b;
+  scale: 1.1;
+  transition: scale 0.5s;
+}
+
+form {
+  margin-top: 50px;
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-bottom: 100px;
+  background-color: #ffffff62;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input-with-button {
+  display: flex;
+  align-items: center;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button[type="button"] {
+  padding: 8px 16px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+  border-radius: 5px;
+  margin-left: 50px;
+  margin-right: 80px;
+}
+
+button[type="button"]:hover {
+  background-color: #00796b;
+  scale: 1.25;
+  transition: scale 0.5s;
+}
+
+button[type="submit"] {
+  padding: 10px 15px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-left: 30px;
+}
+
+button[type="submit"]:hover {
+  background-color: #00796b;
+  scale: 1.1;
+  transition: scale 0.5s;
+}
+
