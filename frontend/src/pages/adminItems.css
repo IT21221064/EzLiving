@@ -1,86 +1,113 @@
-/* Product List Container */
-.adminproduct-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  /* Individual Product Item */
-  .product-item {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 300px;
-  }
-  
-  /* Product Image */
-  .admincart-image {
-    width: 250px;
-    height: 250px;
-  }
-  
-  /* Product Name */
-  .admincart-name {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  /* Product Price */
-  .admincart-price {
-    font-size: 16px;
-    color: #777;
-  }
-  
-  /* Button Container */
-  .adminbutton-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  
-  /* Update Button */
-  .button-link-update {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button-link-update:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Delete Button */
-  .admindelete-button {
-    background-color: #dc3545;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .admindelete-button:hover {
-    background-color: #c82333;
-  }
-  
-  /* Add Item Button */
-  .button-link-add {
-    background-color: #28a745;
-    color: #fff;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button-link-add:hover {
-    background-color: #218838;
-  }
-  
+/* AdminItemlist.css (or your custom CSS file) */
+
+/* Main container */
+.admin-product-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+/* Product item */
+.product-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+/* Product image */
+.admin-cart-image {
+  max-width: 100%;
+}
+
+/* Product name */
+.admin-cart-name {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+/* Product price */
+.admin-cart-price {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Button container */
+.admin-button-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* Update button */
+.button-link-update {
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button-link-update:hover {
+  background-color: #2980b9;
+}
+
+/* Delete button */
+.admin-delete-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-delete-button:hover {
+  background-color: #c0392b;
+}
+
+/* Add and Generate Report buttons */
+.button-link-add {
+  background-color: #2ecc71;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+  border: none;
+  text-align: center;
+}
+
+.button-link-add:hover,
+.generate-report-button:hover {
+  background-color: #27ae60;
+}
+.generate-report-button{
+
+  background-color: #078039;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px;
+  border: none;
+  text-align: center;
+  margin-left: 1300px;
+  margin-top: -1000px;
+
+}

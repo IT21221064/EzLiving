@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./adminItems.css"; // Import your CSS file
+import "./adminItems.css"; // Import your custom CSS file
 import { Link } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function AdminItemlist() {
   const [items, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await axios.get("http://localhost:5000/api/items"); // Replace with your API endpoint
+        const response = await axios.get("http://localhost:5000/api/items");
         setProducts(response.data);
       } catch (error) {
         console.error(error);
@@ -24,19 +27,20 @@ function AdminItemlist() {
     axios
       .delete("http://localhost:5000/api/items/" + _id)
       .then((res) => {
-        // You may want to update the state or perform other actions after a successful delete
         alert("Item deleted successfully");
-        window.location.reload()
-       
+        window.location.reload();
       })
       .catch((er) => console.log(er));
+  };
+
+  const handleGenerateReport = () => {
+    navigate("/report");
   };
 
   return (
     <div>
       <AdminNavbar />
       <br />
-
       <Link to={`/AddItem`} className="button-link-add">
         Add Item
       </Link>
@@ -44,22 +48,28 @@ function AdminItemlist() {
       <br />
       <br />
       <br />
-      <ul className="adminproduct-list">
+      <button onClick={handleGenerateReport} className="generate-report-button">
+        Generate Report
+      </button>
+      <ul className="admin-product-list">
         {items.map((product) => (
           <li key={product._id} className="product-item">
             <img
               src={`http://localhost:5000/${product?.itemimage}`}
               alt={product.name}
-              className="admincart-image"
+              className="admin-cart-image"
             />
-            <h2 className="admincart-name">{product.itemname}</h2>
-            <p className="admincart-price">Price: ${product.unitprice}</p>
-            <div className="adminbutton-container">
-              <Link to={`/updateItem/${product._id}`} className="button-link-update">
+            <h2 className="admin-cart-name">{product.itemname}</h2>
+            <p className="admin-cart-price">Price: ${product.unitprice}</p>
+            <div className="admin-button-container">
+              <Link
+                to={`/updateItem/${product._id}`}
+                className="button-link-update"
+              >
                 Update
               </Link>
               <button
-                className="admindelete-button"
+                className="admin-delete-button"
                 onClick={() => handleDelete(product._id)}
               >
                 Delete
@@ -68,6 +78,7 @@ function AdminItemlist() {
           </li>
         ))}
       </ul>
+<Footer/>
     </div>
   );
 }
