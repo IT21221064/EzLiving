@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuthContext } from '../hooks/useAuthContext';
-import './cart.css';
+import Swal from 'sweetalert2';
 import {loadStripe} from '@stripe/stripe-js';
 import pay from './pay';
 import { Link } from 'react-router-dom';
@@ -23,6 +23,7 @@ function Shoppingcart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
   const [uname, setUsername] = useState(""); 
+  const [type, setType] = useState("");
 
   useEffect(() => {
     async function fetchProfile() {
@@ -35,6 +36,7 @@ function Shoppingcart() {
         if (response.ok) {
 
           setUsername(json.username);
+          setType(json.type);
         } 
       } catch (error) {
         console.error(error);
@@ -43,6 +45,26 @@ function Shoppingcart() {
       fetchProfile();
     
   }, [user]); 
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/cart/deuteranopiaItemlist.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/cart/protanopiaItemlist.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/cart/tritanopiaItemlist.css");
+          break;
+        default:
+           import("./cart.css"); 
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
   useEffect(() => {
     async function fetchCartItems() {
       try {
@@ -80,7 +102,7 @@ function Shoppingcart() {
       const confirmationMessage = `Removing ${
         cartItems.find((item) => item._id === itemId).name
       } from cart. Say 'remove' to confirm or 'no' to cancel.`;
-
+  
       if (speechSynthesisSupported) {
         const speechSynthesis = window.speechSynthesis;
         const speechUtterance = new SpeechSynthesisUtterance(
@@ -88,7 +110,7 @@ function Shoppingcart() {
         );
         speechSynthesis.speak(speechUtterance);
       }
-
+  
       if (speechRecognitionSupported) {
         const SpeechRecognition =
           window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -96,13 +118,13 @@ function Shoppingcart() {
         recognition.continuous = true; // Enable continuous listening
         recognition.interimResults = false;
         recognition.lang = "en-US";
-
+  
         // Start listening when the "Remove" button is clicked
         recognition.start();
-
+  
         recognition.onresult = (event) => {
           const userResponse = event.results[0][0].transcript.toLowerCase();
-
+  
           if (userResponse.includes("remove")) {
             axios.delete(`http://localhost:5000/api/cart/${itemId}`);
             const updatedCartItems = cartItems.filter(
@@ -112,11 +134,17 @@ function Shoppingcart() {
             // Recalculate total price using the updated cartItems
             calculateTotalPrice(updatedCartItems);
             console.log("Item removed from cart.");
+  
+            // Show a success message using SweetAlert
+            Swal.fire({
+              icon: 'success',
+              title: 'Item Removed',
+              text: 'The item has been successfully removed from the cart.',
+            });
           } else {
             console.log("Removal canceled. " + userResponse);
           }
-            
-
+  
           // Stop listening after the user responds
           recognition.stop();
         };
@@ -125,6 +153,7 @@ function Shoppingcart() {
       console.error("Error removing item from cart:", error);
     }
   };
+  
 
   const updateQuantity = async (itemId, newQuantity) => {
     try {
@@ -179,19 +208,6 @@ function Shoppingcart() {
     };
   }, []);
 
-  /*const pay = () => {
-    const user = useAuthContext
-    console.log(cartItems)
-    axios.post('http://localhost:5000/api/stripe/create-checkout-session',{
-      cartItems,
-      userId: user._id
-    }).then((res)=> {
-      if(res.data.url){
-        window.location.href = res.data.url;
-      }
-    })
-    .catch((err) => console.log(err.message));
-  }*/
 
   return (
 <div>

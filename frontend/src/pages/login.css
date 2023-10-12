@@ -14,13 +14,16 @@
 
 /* Login form */
 .login-form {
-  background-color: rgba(255, 255, 255, 0.753);
+  background-color: rgba(207, 205, 205, 0.86);
   border-radius: 8px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   padding: 20px;
-  max-width: 400px;
+  max-width: 500px;
+  max-height: 700px;
   width: 100%;
   text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s; /* Add the transform property for magnification effect */
 }
 
 /* Form title */
@@ -33,6 +36,7 @@
 /* Form input fields */
 .form-group {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .form-group label {
@@ -53,15 +57,21 @@
 
 /* Submit button */
 .btn-submit {
-  background-color: #007bff;
+  background-color: #03274d;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 12px 20px;
   font-size: 1.2rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s; /* Add the transform property for magnification effect */
   margin-top: 10px;
+}
+
+/* Magnify the button on hover */
+.btn-submit:hover {
+  background-color: #2f0351; /* Change the background color on hover */
+  transform: scale(1.05); /* Increase the size on hover */
 }
 
 /* Registration link */
@@ -79,7 +89,6 @@
   margin-top: 10px;
   font-size: 1.4rem;
 }
-
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .login-container {

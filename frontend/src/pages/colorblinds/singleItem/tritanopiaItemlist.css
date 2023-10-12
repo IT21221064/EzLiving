@@ -1,0 +1,75 @@
+/* Image */
+.single-image {
+    height: 400px;
+    width: 400px;
+    cursor: pointer;
+    margin-top: 100px;
+    margin-left: 100px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .single-image:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Details Container */
+  .single-details {
+    border: 1px solid #ffa500; /* Orange border */
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    top: -400px;
+    left: 250px;
+  }
+  
+  /* Speak Button */
+  .btn-speak {
+    background-color: #ffa500; /* Orange background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  /* Name and Description */
+  .cart-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffa500; /* Orange text color */
+  }
+  
+  .cart-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  /* Price */
+  .cart-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffa500; /* Orange text color */
+  }
+  
+  .add-button {
+    margin-left: 40px;
+    background-color: #ffa500; /* Orange background color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .add-button:hover {
+    background-color: #ff8c00; /* Slightly darker orange on hover */
+  }
+  

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import '../pages/feedback.css';
+
 import { Link } from "react-router-dom";
 import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from "../components/Navbar";
@@ -9,7 +9,8 @@ import Footer from "../components/Footer";
 
 function AddReview() {
   const { user } = useAuthContext();
-  const [uname, setUsername] = useState(""); 
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState(""); 
   const [review, setReview] = useState({
     reviewtitle: "",
     reviewtext: "",
@@ -22,6 +23,28 @@ function AddReview() {
     setReview({ ...review, [name]: value });
   };
 
+  console.log("type"+type);
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/Addreview/deuternopiafeedback.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/Addreview/protanopiafeedback.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/Addreview/tritanopiafeedback.css");
+          break;
+        default:
+           import("../pages/colorblinds/Addreview/feedback.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
+
   useEffect(() => {
     async function fetchProfile() {
       try {
@@ -31,6 +54,7 @@ function AddReview() {
   
         if (response.ok) {
           setUsername(username);
+          setType(json.type);
         } 
       } catch (error) {
         console.error(error);
@@ -113,7 +137,7 @@ function AddReview() {
       </Link>
       <form onSubmit={onSubmit}>
         <div className="input-container">
-          <label>Review Title</label>
+          <label>Item Name</label>
           <div className="input-with-button">
             <input
               type="text"
@@ -123,8 +147,8 @@ function AddReview() {
               onChange={handleChange}
             />
             <button type="button" onClick={() => startRecognition("reviewtitle")}>
-              {isListening ? "Listening..." : "Speak"}
-            </button>
+            {isListening ? "Listening..." : "Speak"}
+        </button>
           </div>
         </div>
         <div className="input-container">

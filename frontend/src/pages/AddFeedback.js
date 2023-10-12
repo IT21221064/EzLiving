@@ -2,15 +2,58 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "../pages/feedback.css";
+import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function AddFeedback() {
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState(""); 
   const [feedback, setFeedback] = useState({
     feedbacktitle: "",
     feedbacktext: "",
   });
+
+  console.log("type"+type);
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/Addreview/deuternopiafeedback.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/Addreview/protanopiafeedback.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/Addreview/tritanopiafeedback.css");
+          break;
+        default:
+           import("../pages/colorblinds/Addreview/feedback.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+        const username = json.username;
+  
+        if (response.ok) {
+          setUsername(username);
+          setType(json.type);
+        } 
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProfile();
+  }, [user]);
 
   const [isListening, setIsListening] = useState(false);
   const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);

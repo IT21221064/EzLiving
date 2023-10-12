@@ -1,0 +1,88 @@
+/* UserProfile.css */
+
+/* Reset default margin and padding */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+
+
+/* Container styles */
+.container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%; /* Adjust the width as needed */
+  max-width: 600px; /* Adjust the maximum width as needed */
+  text-align: center;
+}
+
+  /* Title */
+  .Utitle {
+    font-size: 4rem;
+    color: #007bff;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .Utitle:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
+  }
+  
+  .Utitle2 {
+    font-size: 2rem;
+    color: #15193a;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .Utitle2:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
+  }
+
+/* Profile details styles */
+.formbox1 {
+  border: 1px solid #007bff; 
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.formbox1 p {
+  margin-bottom: 10px;
+}
+
+/* Edit profile button styles */
+.btnupdate2 {
+  background-color: #007bff; /* Blue button color */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btnupdate2:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer styles */
+.footer {
+  background-color: #007bff; /* Blue footer background */
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%; /* Adjust for smaller screens */
+  }
+}
