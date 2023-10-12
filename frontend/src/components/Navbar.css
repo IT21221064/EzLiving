@@ -1,0 +1,91 @@
+/* Define a font-family for the entire navbar */
+body {
+  font-family: "Arial", sans-serif; /* Use your preferred font-family here */
+}
+
+/* Style for the navbar container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  background-color: #292936; /* Background color for the navbar */
+  padding: 12px; /* Add padding for spacing */
+}
+
+/* Style for the microphone button */
+.mic-button {
+  background-color: #378de9; /* Customize button background color */
+  color: white; /* Button text color */
+  font-size: 20px; /* Button text size */
+  border: none;
+  padding: 10px 20px; /* Adjust padding for button size */
+  cursor: pointer;
+  border-radius: 100%;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transitions for background-color and transform */
+  margin-left: 40px;
+}
+
+.mic-button:hover {
+  background-color: #1d6bbe;
+  transform: scale(1.2); /* You can adjust the scale factor as needed */
+  transition: transform 0.3s; /* Change color on hover */
+}
+
+/* Style for the navbar brand text */
+.navbar-brand {
+  text-decoration: none;
+}
+
+.text {
+  font-size: 24px; /* Adjust text size as needed */
+  font-weight: bold; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+  padding: 15px;
+}
+
+.text:hover:hover {
+  color: #1d6bbe; /* Change text color on hover to a light blue color */
+  text-shadow: 2px 2px 4px rgba(7, 8, 20, 0.5); /* Add a subtle shadow */
+}
+
+/* Style for the navigation links */
+.nav-link {
+  font-size: 40px; /* Adjust text size as needed */
+  font-weight: bolder; /* Make text bold */
+  color: #fff; /* Text color */
+  text-decoration: none; /* Remove underlines */
+  margin-right: 20px; /* Add spacing between links */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+.nav-link:hover {
+  color: #007bff; /* Change text color on hover */
+}
+.nav-logo {
+  width: 250px;
+  height: 80px;
+  position: relative;
+  left: -350px;
+  display: flex; /* Align items horizontally and vertically */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+  background-color: #333; /* Add a background color */
+  color: #fff; /* Text color */
+  font-size: 20px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+  border-radius: 5px; /* Add some rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+  text-transform: uppercase; /* Uppercase text */
+  text-decoration: none; /* Remove underlines if used as a link */
+}
+
+.nav-logo:hover {
+  background-color: #555; /* Change background color on hover */
+}
+.nav-themes {
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  margin-left: 20px; /* Add some spacing between the themes and other navbar items */
+}

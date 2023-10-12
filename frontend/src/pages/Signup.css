@@ -1,0 +1,98 @@
+/* Container for the signup form */
+.signcard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Signup form */
+.signup {
+  background-color: #bcb9b9c5;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0.6, 0.6);
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: 300px;
+}
+
+/* Form title */
+.topic {
+  margin-bottom: 20px;
+  font-size: 2.4rem;
+  color: #202037;
+  text-align: center;
+}
+
+/* Form input fields */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+input,
+select {
+  /* Apply styles to both input and select elements */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cccccccc;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  transition: transform 0.2s ease-in-out; /* Add the transition for the magnifying effect */
+}
+
+/* Magnify input fields on hover */
+input:hover,
+select:hover {
+  transform: scale(1.05); /* Increase the scale on hover */
+}
+
+/* Submit button */
+.btnSubmit {
+  background-color: #096edb;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+  margin-left: 180px;
+}
+
+.btnSubmit:hover {
+  background-color: #02254a;
+  transform: scale(1.2);
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Error message */
+.error {
+  color: #ff0000;
+  margin-top: 10px;
+  font-size: 1.4rem;
+}
+
+/* Style for invalid input fields */
+.error,
+.error input {
+  border-color: #ff0000;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .signcard {
+    padding: 20px;
+    height: auto;
+  }
+
+  .signup {
+    max-width: none;
+  }
+}

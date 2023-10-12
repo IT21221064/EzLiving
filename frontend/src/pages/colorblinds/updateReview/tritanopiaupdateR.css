@@ -1,0 +1,69 @@
+/* Outer container */
+  
+  /* Title container */
+  .update-review-title {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 500px;
+    margin-right: 500px;
+    text-align: center;
+  }
+  
+  /* Form container */
+  .update-review-form-container {
+    margin-left: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 60%;
+    max-width: 700px;
+  }
+  
+  /* Form Label */
+  form label {
+    font-size: 19px;
+    margin-bottom: 5px;
+  }
+
+  form label:hover {
+    scale: 1.2;
+    transition: scale 0.5s;
+  }
+
+  
+  /* Form Input */
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  /* Update Button */
+  .update-buttonU {
+    background-color: #ff9900;
+    color: #FFF;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .update-buttonU:hover {
+    background-color: #ff7700;
+    scale: 1.2;
+    transition: scale 1s;
+  }
+  

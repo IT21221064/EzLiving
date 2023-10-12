@@ -1,0 +1,122 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { useAuthContext } from '../hooks/useAuthContext';
+
+function UpdateReview() {
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState("");
+  const [review, setReview] = useState({
+    reviewtitle: "",
+    reviewtext: "",
+    reviewimage: "", // Include the reviewimage field
+  });
+
+  console.log("type"+type);
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/updateReview/deuteranopiaupdateR.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/updateReview/protanopiaupdateR.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/updateReview/tritanopiaupdateR.css");
+          break;
+        default:
+           import("../pages/colorblinds/updateReview/updatereview.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
+
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          setUsername(json.username);
+          setType(json.type);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProfile();
+  }, [user]);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.put("http://localhost:5000/api/review/" + _id, review);
+      alert("Review updated");
+      navigate("/userreview"); // Navigate to the home page or another appropriate page after a successful update
+      // Optionally, you can reset the form or perform any other actions after a successful update.
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const { _id } = useParams();
+
+  useEffect(() => {
+    // Fetch the existing review data based on review ID when the component loads
+    try {
+      axios
+        .get("http://localhost:5000/api/review/" + _id)
+        // Update the 'review' state with the retrieved data
+        .then((res) => {
+          setReview({
+            ...review,
+            reviewtitle: res.data.reviewtitle,
+            reviewtext: res.data.reviewtext,
+            reviewimage: res.data.reviewimage,
+          });
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+  //old
+  return (
+    <div>
+      <Navbar />
+      <div className="update-review-title">
+        <h2>Update Your Review</h2>
+      </div>
+      <div className="update-review-form-container">
+        <form onSubmit={handleSubmit}>
+          <label>Item Name</label>
+          <input
+            type="text"
+            name="reviewtitle"
+            value={review.reviewtitle}
+            onChange={(e) => setReview({ ...review, reviewtitle: e.target.value })}
+          />
+          <label>Review Text</label>
+          <textarea
+            name="reviewtext"
+            value={review.reviewtext}
+            onChange={(e) => setReview({ ...review, reviewtext: e.target.value })}
+          ></textarea>
+          <button type="submit" className="update-buttonU">Update Review</button>
+        </form>
+      </div>
+      <Footer />
+    </div>
+  );
+  
+}
+
+export default UpdateReview;
