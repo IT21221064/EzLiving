@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import "./userprofile.css";
 
 
 
@@ -70,11 +71,11 @@ const  UserProfile = () => {
     return(
     <div>
         <Navbar/><br></br>
-        <div className="container">
+        <div className="Ucontainer">
             
         
-            <h1 className="title">HELLO {User?.name ?? 'null'}!</h1><br/>
-            <h2>Here is your profile details</h2>
+            <h1 className="Utitle">HELLO {User?.name ?? 'null'}!</h1><br/>
+            <h2 className="Utitle2">Here is your profile details</h2>
             <br/><br/>
 
             <div className="formbox1">
@@ -87,9 +88,12 @@ const  UserProfile = () => {
 
             </div><br></br>
             <br/>
-            <a href="/UpdateProfile"><button className="btnupdate">Edit Profile</button></a>
+
+            <a href="/UpdateProfile"><button className="btnupdate2">Edit Profile</button></a>
+
             <br/>
             <a href="/userreview"><button className="btnupdate">My Reviews</button></a>
+
             
           
 

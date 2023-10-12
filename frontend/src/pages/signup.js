@@ -79,8 +79,8 @@ const Signup = () => {
   return (
     <div className="signpage">
       <div className="signcard">
-        <h3 className="topic">User Registration</h3>
         <form className="signup" onSubmit={handleSubmit}>
+        <h3 className="topic">User Registration</h3>
           <label>Name:</label>
           <input
             id="name"
@@ -135,6 +135,7 @@ const Signup = () => {
             className={emptyFields.includes("type") ? "error" : ""}
           >
             <option value="">Select Type</option>
+            <option value="None">None</option>
             <option value="deuteranopia">Deuteranopia</option>
             <option value="protanopia">Protanopia</option>
             <option value="tritanopia">Tritanopia</option>

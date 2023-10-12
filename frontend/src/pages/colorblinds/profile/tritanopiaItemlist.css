@@ -19,21 +19,29 @@ body, h1, h2, p {
     text-align: center;
   }
   
-  /* Header styles */
-  .title {
-    color: #e29117; /* Blue text color (change if needed) */
-    font-size: 24px;
-    margin-bottom: 10px;
+   /* Title */
+   .Utitle {
+    font-size: 4rem;
+    color: #e29117;
+    text-align: center;
+    transition: transform 0.3s ease;
   }
   
-  /* Subheading styles */
-  h2 {
-    font-size: 30px;
-    margin-top: 20px;
-    font-weight: 50px;
-    color: #FFFFFF; /* White text color */
+  .Utitle:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
   }
   
+  .Utitle2 {
+    font-size: 2rem;
+    color: #b1480b;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .Utitle2:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
+  }
+ 
   /* Profile details styles */
   .formbox1 {
     border: 1px solid #FFA500; /* Orange border */
@@ -51,7 +59,7 @@ body, h1, h2, p {
   }
   
   /* Edit profile button styles */
-  .btnupdate {
+  .btnupdate2 {
     background-color: #FFA500; /* Orange button color */
     color: #fff;
     padding: 10px 20px;
@@ -62,7 +70,7 @@ body, h1, h2, p {
     margin-top: 20px;
   }
   
-  .btnupdate:hover {
+  .btnupdate2:hover {
     background-color: #FF8C00; /* Darker orange on hover */
   }
   

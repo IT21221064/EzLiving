@@ -32,6 +32,7 @@ body, h1, h2, p {
     display: block;
     margin-bottom: 5px;
     color: #333;
+    text-align: left;
   }
   
   /* Input styles */
@@ -54,6 +55,7 @@ body, h1, h2, p {
     text-decoration: none;
     cursor: pointer;
     font-size: 18px;
+    margin-left: 30px;
   }
   
   .btnSubmit:hover {
