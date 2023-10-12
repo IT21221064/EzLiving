@@ -17,10 +17,10 @@ function FeedbackList() {
     const importCSSBasedOnType = async () => {
       switch (type) {
         case "deuteranopia":
-           import("../pages/colorblinds/ItemlistPageCSS/deuteranopiaItemlist.css");
+           import("../pages/colorblinds/ReviewsList/deuteranopiafeedbacklist.css");
           break;
         case "protanopia":
-           import("../pages/colorblinds/ItemlistPageCSS/protanopiaItemlist.css");
+           import("../pages/colorblinds/ReviewsList/protanopiafeedbacklist.css");
           break;
         case "tritanopia":
            import("../pages/colorblinds/ReviewsList/tritanopiafeedbacklist.css");

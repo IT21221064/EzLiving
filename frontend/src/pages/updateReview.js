@@ -1,80 +1,122 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import Navbar from "../components/Navbar";
+import { useAuthContext } from '../hooks/useAuthContext';
 
-function UpdateReview(){
-  const { reviewId } = useParams();
-  const navigate = useNavigate(); // Initialize the navigate function
-
-  const [reviewData, setReviewData] = useState({
+function UpdateReview() {
+  const { user } = useAuthContext();
+  const [uname, setUsername] = useState("");
+  const [type, setType] = useState("");
+  const [review, setReview] = useState({
     reviewtitle: "",
     reviewtext: "",
+    reviewimage: "", // Include the reviewimage field
   });
 
+  console.log("type"+type);
   useEffect(() => {
-    async function fetchReview() {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/updateReview/deuteranopiaupdateR.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/updateReview/protanopiaupdateR.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/updateReview/tritanopiaupdateR.css");
+          break;
+        default:
+           import("../pages/colorblinds/updateReview/updatereview.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type]);
+
+  useEffect(() => {
+    async function fetchProfile() {
       try {
-        const response = await axios.get(`http://localhost:5000/api/review/${reviewId}`);
-        setReviewData(response.data);
+        const response = await fetch(`http://localhost:5000/api/users/${user.userid}`);
+        const json = await response.json();
+
+        if (response.ok) {
+          setUsername(json.username);
+          setType(json.type);
+        }
       } catch (error) {
         console.error(error);
       }
     }
+    fetchProfile();
+  }, [user]);
 
-    fetchReview();
-  }, [reviewId]);
+  const navigate = useNavigate();
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setReviewData({
-      ...reviewData,
-      [name]: value,
-    });
-  };
-
-  const handleUpdateReview = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/review/${reviewId}`, reviewData);
-      navigate("/reviewList"); // Use navigate to redirect to the review list page after updating
-    } catch (error) {
-      console.error(error);
+      await axios.put("http://localhost:5000/api/review/" + _id, review);
+      alert("Review updated");
+      navigate("/userreview"); // Navigate to the home page or another appropriate page after a successful update
+      // Optionally, you can reset the form or perform any other actions after a successful update.
+    } catch (err) {
+      console.error(err);
     }
   };
 
+  const { _id } = useParams();
+
+  useEffect(() => {
+    // Fetch the existing review data based on review ID when the component loads
+    try {
+      axios
+        .get("http://localhost:5000/api/review/" + _id)
+        // Update the 'review' state with the retrieved data
+        .then((res) => {
+          setReview({
+            ...review,
+            reviewtitle: res.data.reviewtitle,
+            reviewtext: res.data.reviewtext,
+            reviewimage: res.data.reviewimage,
+          });
+        });
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+  //old
   return (
     <div>
       <Navbar />
-      <h1 className="feedback-heading">Update Review</h1>
-      <div className="update-review-form">
-        <div className="form-group">
-          <label htmlFor="reviewtitle">Review Title</label>
+      <div className="update-review-title">
+        <h2>Update Your Review</h2>
+      </div>
+      <div className="update-review-form-container">
+        <form onSubmit={handleSubmit}>
+          <label>Item Name</label>
           <input
             type="text"
-            id="reviewtitle"
             name="reviewtitle"
-            value={reviewData.reviewtitle}
-            onChange={handleInputChange}
+            value={review.reviewtitle}
+            onChange={(e) => setReview({ ...review, reviewtitle: e.target.value })}
           />
-        </div>
-        <div className="form-group">
-          <label htmlFor="reviewtext">Review Text</label>
+          <label>Review Text</label>
           <textarea
-            id="reviewtext"
             name="reviewtext"
-            value={reviewData.reviewtext}
-            onChange={handleInputChange}
+            value={review.reviewtext}
+            onChange={(e) => setReview({ ...review, reviewtext: e.target.value })}
           ></textarea>
-        </div>
-        <button className="update-button" onClick={handleUpdateReview}>
-          Update Review
-        </button>
+          <button type="submit" className="update-buttonU">Update Review</button>
+        </form>
       </div>
       <Footer />
     </div>
   );
+  
 }
 
 export default UpdateReview;
