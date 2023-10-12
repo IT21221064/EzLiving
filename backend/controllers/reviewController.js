@@ -44,56 +44,49 @@ const getReviews = async (req, res) => {
   }
 };
 
-//get one review
-const getReviewById = asyncHandler(async(req,res)=>{
-    const review = await Review.findById(req.params.id);
-    if(!item){
-        res.status(401);
-        throw new error("review not found");
-    }
-    return res.status(200).json(review);
+//get one review--------new
+const getReviewById = asyncHandler(async (req, res) => {
+  const review = await Review.findById(req.params.id);
+  if (!review) {
+    res.status(404);
+    throw new Error("Review not found");
+  }
+
+  return res.status(200).json({
+    reviewtitle: review.reviewtitle,
+    reviewtext: review.reviewtext,
+    reviewimage: review.reviewimage, // Include the reviewimage field in the response
+  });
 });
 
-// Update a review
-const updateReview = asyncHandler( async (req, res) => {
-    const review = await Review.findById(req.params.id);
 
-    if (!review) {
-      return res.status(404).json({ message: "Review not found" });
+
+// Update a reviewnew
+const updateReview = asyncHandler(async (req, res) => {
+  const { reviewtitle, reviewtext } = req.body;
+
+  if (!reviewtitle || !reviewtext) {
+    return res.status(400).json({ message: "Review title and text are required" });
+  }
+
+  try {
+    const updatedReview = await Review.findByIdAndUpdate(req.params.id, { reviewtitle, reviewtext }, { new: true });
+
+    if (updatedReview) {
+      res.status(200).json({
+        message: "Review updated",
+        success: true,
+        data: updatedReview,
+      });
+    } else {
+      res.status(400).json({ message: "Input is invalid" });
     }
-    const { reviewtitle, reviewtext} = req.body;
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
-    //update review properties
-    if(reviewtitle) review.reviewtitle = reviewtitle;
-    if(reviewtext) review.reviewtext = reviewtext;
-
-    upload.single("reviewimage")(req, res, async(err)=>{
-        if(err){
-            console.error("image upload error:",err);
-            res.status(400).json({message:"error uploading image"});
-            return;
-        }
-
-        //if path available in req.file.path
-        if(req.file){
-            review.reviewimage = req.file.path;
-        }
-
-        //save the updated review
-        const updateReview = await Review.findByIdAndUpdate(req.params.id, req.body,{
-            new:true,
-        });
-        if(updateReview){
-            res.status(200).json({
-                message:"Review updated",
-                success:true,
-                data:updateReview,
-            });
-            }else{
-                res.status(400).json({message: "input is invalid"});
-            }
-        });
-    });
 
 // Delete review
 const deleteReview = asyncHandler(async (req, res) => {

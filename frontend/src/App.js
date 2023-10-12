@@ -46,7 +46,9 @@ function App() {
             element={!user ? <AdminLogin /> : <Navigate to="/adminItemlist" />}
           />
           <Route path="/payment" element={<PaymentDetails />} />
-          <Route path="/UpdateReview" element={<UpdateReview />} />
+        <Route path="/UpdateReview/:_id" element={<UpdateReview />} />
+
+
 
           <Route path="/items" element={<ItemList />} />
           <Route path="/cart" element={<Shoppingcart />} />
