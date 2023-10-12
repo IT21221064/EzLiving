@@ -92,6 +92,13 @@ function UserReviews() {
               {review.username === uname && (
                 <button onClick={() => handleDeleteReview(review._id)}>Delete Review</button>
               )}
+              <br/>
+              <br/>
+              <button>
+                  <Link to={`/UpdateReview/${review._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    Update Review
+                   </Link>
+            </button>
             </li>
           ))}
         </ul>

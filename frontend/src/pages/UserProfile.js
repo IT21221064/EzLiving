@@ -92,7 +92,8 @@ const  UserProfile = () => {
             <a href="/UpdateProfile"><button className="btnupdate2">Edit Profile</button></a>
 
             <br/>
-            <a href="/userreview"><button className="btnupdate">My Reviews</button></a>
+            <br/>
+            <a href="/userreview"><button className="btnupdate2">My Reviews</button></a>
 
             
           

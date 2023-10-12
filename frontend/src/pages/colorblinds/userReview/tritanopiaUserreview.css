@@ -46,7 +46,7 @@
   .user-review h2 {
     font-size: 22px;
     margin: 0;
-    color: #ffa800;
+    color: #ff7700;
   }
   
   .user-review p {
@@ -64,7 +64,7 @@
   
   /* Add this CSS rule to your userReview.css file */
   .user-review button {
-    background-color: #ffa500; /* Red color */
+    background-color: #ff9900; /* Red color */
     color: #fff; /* Text color (white) */
     border: none;
     padding: 5px 10px;
@@ -73,7 +73,7 @@
   }
   
   .user-review button:hover {
-    background-color: #ffa800; /* Darker red color on hover */
+    background-color: #ff7700; /* Darker red color on hover */
     scale: 1.2;
     transition: scale 0.7s;
   }
