@@ -10,6 +10,7 @@ function UpdateReview() {
   const { user } = useAuthContext();
   const [uname, setUsername] = useState("");
   const [type, setType] = useState("");
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
   const [review, setReview] = useState({
     reviewtitle: "",
     reviewtext: "",
@@ -66,8 +67,7 @@ function UpdateReview() {
         title: 'Review Updated',
         text: 'Your Review successfully updated',
       });
-      navigate("/userreview"); // Navigate to the home page or another appropriate page after a successful update
-      // Optionally, you can reset the form or perform any other actions after a successful update.
+      navigate("/userreview"); 
     } catch (err) {
       console.error(err);
     }
@@ -76,11 +76,10 @@ function UpdateReview() {
   const { _id } = useParams();
 
   useEffect(() => {
-    // Fetch the existing review data based on review ID when the component loads
     try {
       axios
         .get("http://localhost:5000/api/review/" + _id)
-        // Update the 'review' state with the retrieved data
+        
         .then((res) => {
           setReview({
             ...review,
@@ -93,6 +92,20 @@ function UpdateReview() {
       console.error(err);
     }
   }, []);
+
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+      const message = new SpeechSynthesisUtterance("Now you are at the update Review page");
+      // Change the voice if needed
+      window.speechSynthesis.speak(message);
+      setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
+
   //old
   return (
     <div>
