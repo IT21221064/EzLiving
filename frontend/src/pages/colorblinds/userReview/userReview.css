@@ -1,0 +1,79 @@
+/* Add these styles to your userReview.css file */
+.user-reviews-container {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+  margin-right: 250px;
+  margin-left: 250px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  opacity: 0.99;
+  border-radius: 5px;
+}
+
+.feedback-heading {
+  font-size: 24px;
+  text-align: center;
+  margin: 20px 0;
+  color: #333;
+}
+
+.user-reviews-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-review {
+  background-color: #f1f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.user-review:hover {
+  transform: translateY(-5px);
+  scale: 1.15;
+  transition: scale 0.5s;
+}
+
+.user-review h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #333;
+}
+
+.user-review p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #666;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+  .user-review {
+    width: 100%;
+  }
+}
+
+/* Add this CSS rule to your userReview.css file */
+.user-review button {
+  background-color: #eb0303; /* Red color */
+  color: #fff; /* Text color (white) */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-review button:hover {
+  background-color: #ac1515; /* Darker red color on hover */
+  scale: 1.2;
+  transition: scale 0.7s;
+}

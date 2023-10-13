@@ -1,0 +1,74 @@
+/* updateItem.css */
+
+/* Container */
+.container1 {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #c7c6c6ab;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0.6, 0.6);
+    text-align:left;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+  
+  /* Heading */
+  .h2u {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Label for form fields */
+  .lb1 {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Input fields */
+  .int2 {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Textarea for item description */
+  .area2 {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical; /* Allows vertical resizing */
+  }
+  
+  /* Button */
+  .bnt2 {
+    background-color: #125108;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 260px;
+  }
+  
+  .bnt2:hover {
+    background-color: #0c8b07;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #f8f8f8;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+  

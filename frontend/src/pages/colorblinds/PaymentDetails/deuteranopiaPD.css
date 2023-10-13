@@ -1,0 +1,15 @@
+.btnSubmit{
+    background-color: #009688;
+    margin-left: 300px;
+}
+
+.btnSubmit:hover{
+    background-color: #00796b;
+}
+
+.addpay{
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

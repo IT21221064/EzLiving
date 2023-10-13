@@ -1,0 +1,76 @@
+/* UserProfile Container */
+.Ucontainer {
+    background-color: #d5d1d1db;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 14px 16px rgba(0, 0.2, 0.6, 0.8);
+    width: 600px;
+    margin-left: 500px;
+    opacity: 85%;
+    transition: transform 0.3s ease;
+  }
+  
+  .Ucontainer:hover {
+    transform: scale(1.05); /* Magnify effect on hover */
+  }
+  
+  /* Title */
+  .Utitle {
+    font-size: 4rem;
+    color: #07043d;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .Utitle:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
+  }
+  
+  .Utitle2 {
+    font-size: 2rem;
+    color: #15193a;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .Utitle2:hover {
+    transform: scale(1.1); /* Magnify effect on hover */
+  }
+  
+  /* Profile Details Box */
+  .formbox1 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0.6, 0.9);
+    font-size: 1.2rem;
+    margin: 20px 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .formbox1:hover {
+    transform: scale(1.05); /* Magnify effect on hover */
+  }
+  
+  /* Edit Profile Button */
+  .btnupdate2 {
+    background-color: #312f67;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    margin-left: 430px;
+  }
+  
+  .btnupdate2:hover {
+    background-color: #211342;
+    transform: scale(1.05); /* Magnify effect on hover */
+  }
+  
+  /* Footer */
+  /* You can style the Footer separately based on your design preferences */
+  

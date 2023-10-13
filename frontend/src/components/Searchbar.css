@@ -1,0 +1,37 @@
+/* Container for the search bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  padding: 5px; /* Adjust padding as needed */
+  border-radius: 15px; /* Rounded corners */
+  max-width: 400px; /* Limit the width to 400px */
+  margin: 20px auto 20px; /* 20px margin-top, center horizontally within the parent container, and 20px margin-bottom */
+}
+
+
+/* Search input field */
+.search-container.search-input {
+  flex: 1; /* Take up remaining space in the container */
+  border: none;
+  padding: 5px; /* Adjust padding as needed */
+  font-size: 16px; /* Adjust font size as needed */
+  border-radius: 15px; 
+}
+
+/* Search button */
+.search-button {
+  background-color: #007bff; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px 10px; /* Adjust padding as needed */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 5px;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+  background-color: #0056b3; /* Change color on hover */
+}

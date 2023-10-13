@@ -1,0 +1,59 @@
+/* Container style */
+.adddiv {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Form styles */
+.addform {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.522);
+}
+
+/* Style the right-hand side column */
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%; /* Make the right column take up the full width */
+}
+
+.addlabel {
+  font-weight: bold;
+}
+
+.addinput[type="text"],
+.addinput[type="number"],
+.addinput[type="file"],
+.addtextarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.addbutton[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  align-self: flex-end; /* Align the button to the right within the right column */
+}
+
+.addbutton[type="submit"]:hover {
+  background-color: #0056b3;
+}
