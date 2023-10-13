@@ -11,6 +11,7 @@ function UserReviews() {
   const [userReviews, setUserReviews] = useState([]);
   const [uname, setUsername] = useState("");
   const [type, setType] = useState("");
+  const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
   console.log("type"+type);
   useEffect(() => {
@@ -82,6 +83,19 @@ function UserReviews() {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    if (!hasSpokenWelcome) {
+      // Wait for voices to be available
+      const message = new SpeechSynthesisUtterance("Now you are at the My Reviews page");
+      // Change the voice if needed
+      window.speechSynthesis.speak(message);
+      setHasSpokenWelcome(true);
+    }
+    return () => {
+      window.speechSynthesis.cancel();
+    };
+  }, [0]);
 
   return (
     <div>

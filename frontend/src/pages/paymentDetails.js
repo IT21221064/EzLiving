@@ -184,9 +184,10 @@ const PaymentDetails = () => {
                 type="text"
                 onChange={(e) => setContact(e.target.value)}
                 value={contact}
+                pattern="/d{10}"
             /><br />
 
-            <label>Total:</label>
+            <label>Total: ($)</label>
             <input
                 type="number"
                 onChange={(e) => setPrice(e.target.value)}

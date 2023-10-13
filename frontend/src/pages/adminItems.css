@@ -32,6 +32,7 @@
   .admincart-image {
     width: 250px;
     height: 250px;
+    align-items: center;
   }
   
   /* Product Name */
