@@ -4,6 +4,7 @@ const{
     createPayment,
     getPays,
     getPay,
+    deletepayment,
 
 }= require('../controllers/paymentController')
 
@@ -20,6 +21,8 @@ router.post('/',createPayment)
 
 //get user payments
 //router.get('/')
+
+router.delete('/:id',deletepayment)
 
 module.exports = router
 

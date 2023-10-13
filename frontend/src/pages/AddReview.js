@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Swal from 'sweetalert2';
 
 function AddReview() {
   const { user } = useAuthContext();
@@ -109,7 +110,11 @@ function AddReview() {
       // Include the username in the review object
       const reviewWithUsername = { ...review, username: uname };
       await axios.post("http://localhost:5000/api/review", reviewWithUsername);
-      alert("Review added successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Review added',
+        text: 'The Review has successfully added',
+      });
       navigate("/Review"); // Redirect to all reviews
     } catch (err) {
       console.error(err);

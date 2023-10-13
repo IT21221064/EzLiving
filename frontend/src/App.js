@@ -23,6 +23,7 @@ import AddReview from "./pages/AddReview";
 import ReviewList from "./pages/ReviewList";
 import AddFeedback from "./pages/AddFeedback";
 import Welcome from "./pages/Welcome";
+import Paymentlist from "./pages/paymentlist";
 
 import UserProfile from "./pages/UserProfile";
 import UpdateProfile from "./pages/updateProfile";
@@ -47,6 +48,7 @@ function App() {
           />
           <Route path="/payment" element={<PaymentDetails />} />
         <Route path="/UpdateReview/:_id" element={<UpdateReview />} />
+        <Route path="/paymentlist" element={<Paymentlist />} />
 
 
 

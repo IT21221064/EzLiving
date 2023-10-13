@@ -11,6 +11,7 @@ const PaymentDetails = () => {
     const receivedValue = param.get('totalPrice')
 
     const [cusName, setName] = useState('')
+    const [type, setType] = useState(""); 
     const [address, setAddress] = useState('')
     const [contact, setContact] = useState('')
     const [totalPrice, setPrice] = useState(receivedValue || '') // Initialize with receivedValue
@@ -19,12 +20,32 @@ const PaymentDetails = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const [cartItems, setCartItems] = useState([]);
-    const [type, setType] = useState("");
+
     const [totalPrice1, setTotalPrice] = useState(0);
     const [hasSpokenWelcome, setHasSpokenWelcome] = useState(false);
 
+    console.log("type"+type);
+  useEffect(() => {
+    const importCSSBasedOnType = async () => {
+      switch (type) {
+        case "deuteranopia":
+           import("../pages/colorblinds/PaymentDetails/deuteranopiaPD.css");
+          break;
+        case "protanopia":
+           import("../pages/colorblinds/PaymentDetails/protanopiaPD.css");
+          break;
+        case "tritanopia":
+           import("../pages/colorblinds/PaymentDetails/tritanopiaPD.css");
+          break;
+        default:
+           import("../pages/colorblinds/PaymentDetails/PD.css");
+          break;
+      }
+    };
+
+    importCSSBasedOnType();
+  }, [type])
     useEffect(() => {
-        
         async function fetchCartItems() {
             try {
                 const response = await axios.get('http://localhost:5000/api/cart');
@@ -42,32 +63,12 @@ const PaymentDetails = () => {
             console.log(json.username)
 
             if (response.ok) {
-                setName(json.username);
+                setName(json.username)
                 setType(json.type);
             }
         }
         fetchProfile()
     }, [user])
-    useEffect(() => {
-        const importCSSBasedOnType = async () => {
-          switch (type) {
-            case "deuteranopia":
-               import("../pages/colorblinds/checkout/deuteranopiaItemlist.css");
-              break;
-            case "protanopia":
-               import("../pages/colorblinds/checkout/protanopiaItemlist.css");
-              break;
-            case "tritanopia":
-               import("../pages/colorblinds/checkout/tritanopiaItemlist.css");
-              break;
-            default:
-               import("./ProductList.css"); 
-              break;
-          }
-        };
-    
-        importCSSBasedOnType();
-      }, [type]);
 
     const calculateTotalPrice = (items) => {
         const totalPrice = items.reduce(
@@ -78,7 +79,7 @@ const PaymentDetails = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         try {
             const response = await fetch('http://localhost:5000/api/payment', {
                 method: 'POST',
@@ -91,65 +92,77 @@ const PaymentDetails = () => {
                     contact,
                     totalPrice
                 })
-            });
+            })
 
-            const json1 = await response.json();
+            const json1 = await response.json()
 
             if (response.ok) {
-                setAddress('');
-                setContact('');
-                setPrice(receivedValue || ''); // Reset the price to receivedValue
-                setError(null);
-                setEmptyFields([]);
+                setAddress('')
+                setContact('')
+                setPrice(receivedValue || '') // Reset the price to receivedValue
+                setError(null)
+                setEmptyFields([])
             } else {
-                setError(json1.error);
-                setEmptyFields(json1.emptyFields);
+                setError(json1.error)
+                setEmptyFields(json1.emptyFields)
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
         }
     }
 
-    const pay = async () => {
-        try {
-            // Delete cart items
-            const deleteResponse = await axios.delete("http://localhost:5000/api/cart", {
-                params: { cusName }
-            });
-    
-            if (deleteResponse.data.message === "All cart items deleted") {
-                // Create Stripe checkout session
-                const createSessionResponse = await axios.post('http://localhost:5000/api/stripe/create-checkout-session', {
-                    cartItems,
-                    userId: user._id
-                });
-    
-                if (createSessionResponse.data.url) {
-                    // Redirect to the Stripe checkout page
-                    window.location.href = createSessionResponse.data.url;
-                }
+    const pay = () => {
+        if (!cusName || !address || !contact || !receivedValue) {
+            setError("Please fill in all fields.");
+            return;
+          }
+        const user = useAuthContext
+        console.log(cartItems)
+        axios.post('http://localhost:5000/api/stripe/create-checkout-session', {
+            cartItems,
+            userId: user._id
+        }).then((res) => {
+            if (res.data.url) {
+                window.location.href = res.data.url;
             }
-        } catch (error) {
-            console.error(error);
-        }
-    };
-    
+        }).catch((err) => console.log(err.message));
 
+
+        
+        
+        
+
+
+
+    }
+
+    const clearCart = () => {
+        axios.delete('http://localhost:5000/api/cart') // Replace with your actual API endpoint for clearing the cart.
+          .then((res) => {
+            console.log(res.data);
+            // Handle success, e.g., update the UI to reflect the cleared cart.
+          })
+          .catch((err) => console.log(err.message));
+      };
+    
     useEffect(() => {
         if (!hasSpokenWelcome) {
-            const message = new SpeechSynthesisUtterance("Now you are at the payment page.");
+          // Wait for voices to be available
+         
+            const message = new SpeechSynthesisUtterance("now you are at payment in page");
+             // Change the voice if needed
             window.speechSynthesis.speak(message);
             setHasSpokenWelcome(true);
+        
         }
         return () => {
-            window.speechSynthesis.cancel();
+          window.speechSynthesis.cancel();
         };
-    }, [0]);
+      }, [0]);
 
     return (
         <div>
-            <Navbar/>
-            <br></br>
+        <Navbar/>
         <form className="addpay" onSubmit={handleSubmit}>
             <h3>Payment Details</h3>
             <label>Name:</label>
@@ -180,9 +193,9 @@ const PaymentDetails = () => {
                 value={receivedValue}
             /><br />
 
-            <button className="btnSubmit" disabled={isLoading} onClick={pay}>Checkout</button>
+            <button className="btnSubmit" disabled={isLoading} onClick={() => { pay(); clearCart();  }}>Checkout</button>
             {error && <div className="error">{error}</div>}
-        </form><br></br>
+        </form>
         <Footer/>
         </div>
     )

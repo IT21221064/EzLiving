@@ -65,16 +65,19 @@ function AdminItemlist() {
       <button onClick={handleGenerateReport} className="generate-report-button">
         Generate Report
       </button>
-      <ul className="admin-product-list">
+      <ul className="admin-productlist">
         {items.map((product) => (
           <li key={product._id} className="product-item">
+            <div className="product-item1">
             <img
               src={`http://localhost:5000/${product?.itemimage}`}
               alt={product.name}
               className="admin-cart-image"
             />
+            </div>
             <h2 className="admin-cart-name">{product.itemname}</h2>
             <p className="admin-cart-price">Price: ${product.unitprice}</p>
+            <p className="admin-cart-price">Quantity:{product.quantity}</p>
             <div className="admin-button-container">
               <Link
                 to={`/updateItem/${product._id}`}

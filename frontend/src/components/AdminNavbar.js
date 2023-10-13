@@ -32,7 +32,7 @@ function AdminNavbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link text-white" to="/viewItems">
+            <Link className="nav-link text-white" to="/paymentlist">
               Payments
             </Link>
           </li>

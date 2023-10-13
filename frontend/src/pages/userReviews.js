@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useAuthContext } from '../hooks/useAuthContext';
+import Swal from 'sweetalert2';
 
 function UserReviews() {
   const { user } = useAuthContext();
@@ -72,7 +73,11 @@ function UserReviews() {
       await axios.delete(`http://localhost:5000/api/review/${reviewId}`);
       // After successful deletion, you may want to update the userReviews state to remove the deleted review.
       setUserReviews((prevReviews) => prevReviews.filter((review) => review._id !== reviewId));
-      alert("Review deleted successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Review Deleted',
+        text: 'Your Review successfully deleted',
+      });
     } catch (error) {
       console.error(error);
     }

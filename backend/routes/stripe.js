@@ -2,6 +2,7 @@ const express = require("express");
 const Payment = require('../models/payment');
 const jwt = require('jsonwebtoken');
 const mongooose = require('mongoose');
+const Cart = require('../models/cart');
 const Stripe = require("stripe");
 
 
@@ -48,17 +49,22 @@ router.post('/create-checkout-session', async (req, res) => {
 
     }
   })*/
+  const cartItems = await Cart.find();
+  let totalPrice = 0;
+    cartItems.forEach(item => {
+      totalPrice += item.price * item.quantity;
+    });
 
 
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: 'lkr',
             product_data: {
-              name: 'Name',
+              name: 'User',
             },
-            unit_amount: 150000,
+            unit_amount: totalPrice *100,
           },
           quantity: 1,
         },
@@ -72,4 +78,3 @@ router.post('/create-checkout-session', async (req, res) => {
   });
 
   module.exports = router;
-  

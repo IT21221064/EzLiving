@@ -35,6 +35,8 @@
   max-width: 100%;
   height: auto; /* Maintain aspect ratio */
   border-radius: 8px;
+  margin-left: 50px;
+  align-items: center;
 }
 
 /* Product Name */
@@ -76,4 +78,10 @@
   .product-item {
     padding: 10px;
   }
+}
+
+.product-item1{
+  width: 150px;
+  height: 150px;
+  align-items: center;
 }

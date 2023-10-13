@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminNavbar from "../components/AdminNavbar";
+import Footer from "../components/Footer";
+import './updateItem.css'; // Import the CSS file
 
 function UpdateItem() {
   const [item, setItem] = useState({
@@ -19,7 +21,7 @@ function UpdateItem() {
     try {
       await axios.put("http://localhost:5000/api/items/" + _id, item);
       alert("Item updated");
-      Navigate('/adminItemlist')
+      Navigate('/adminItemlist');
       // Optionally, you can reset the form or perform any other actions after a successful update.
     } catch (err) {
       console.error(err);
@@ -52,44 +54,50 @@ function UpdateItem() {
   return (
     <div>
       <AdminNavbar />
-      <h2>Update Item</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Item Code</label>
+      <form className="container1" onSubmit={handleSubmit}>
+      <h2 className="h2u">Update Item</h2>
+        <label className="lb1">Item Code</label>
         <input
+         className="int2"
           type="text"
           name="itemcode"
           value={item.itemcode}
           onChange={(e) => setItem({ ...item, itemcode: e.target.value })}
         />
-        <label>Item Name</label>
+        <label className="lb1">Item Name</label>
         <input
+         className="int2"
           type="text"
           name="itemname"
           value={item.itemname}
           onChange={(e) => setItem({ ...item, itemname: e.target.value })}
         />
-        <label>Item Quantity</label>
+        <label className="lb1" >Item Quantity</label>
         <input
+         className="int2"
           type="number"
           name="quantity"
           value={item.quantity}
           onChange={(e) => setItem({ ...item, quantity: e.target.value })}
         />
-        <label>Item Price</label>
+        <label className="lb1">Item Price</label>
         <input
+         className="int2"
           type="text"
           name="unitprice"
           value={item.unitprice}
           onChange={(e) => setItem({ ...item, unitprice: e.target.value })}
         />
-        <label>Item Description</label>
+        <label className="lb1">Item Description</label>
         <textarea
+          className="area2"
           name="itemdesc"
           value={item.itemdescript}
           onChange={(e) => setItem({ ...item, itemdescript: e.target.value })}
         ></textarea>
-        <button type="submit">Update Item</button>
+        <button type="submit" className="bnt2">Update Item</button>
       </form>
+      <Footer/>
     </div>
   );
 }
