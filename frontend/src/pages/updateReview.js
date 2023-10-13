@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useAuthContext } from '../hooks/useAuthContext';
+import Swal from 'sweetalert2';
 
 function UpdateReview() {
   const { user } = useAuthContext();
@@ -60,7 +61,11 @@ function UpdateReview() {
     event.preventDefault();
     try {
       await axios.put("http://localhost:5000/api/review/" + _id, review);
-      alert("Review updated");
+      Swal.fire({
+        icon: 'success',
+        title: 'Review Updated',
+        text: 'Your Review successfully updated',
+      });
       navigate("/userreview"); // Navigate to the home page or another appropriate page after a successful update
       // Optionally, you can reset the form or perform any other actions after a successful update.
     } catch (err) {

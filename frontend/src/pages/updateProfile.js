@@ -1,4 +1,5 @@
-
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -102,12 +103,9 @@ const  UpdateProfile = () => {
 
 
     return(
-        
+      <div>
+      <Navbar/><br></br>
         <div className="container">
-            
-        
-            
-
             <form onSubmit = {handleUpdate} className="form">
             <label>Name</label>
             <input
@@ -149,7 +147,8 @@ const  UpdateProfile = () => {
             {error && <div className="error">{error}</div>}
             </form>
             
-        
+       </div>
+       <Footer/>
     </div>
     )
 

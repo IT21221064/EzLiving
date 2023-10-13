@@ -71,8 +71,25 @@ const getPay = async (req, res) => {
 
   }
 
+  const deletepayment = async (req, res) => {
+    const item = await Payment.findById(req.params.id);
+
+    if (!item) {
+      res.status(401);
+      throw new Error("Item not found");
+    }
+    const deletedItem = await item.deleteOne();
+  
+    return res.status(200).json({
+      message: "Item deleted",
+      success: true,
+      data: item,
+    });
+  };
+
   module.exports = {
     createPayment,
     getPays,
     getPay,
+    deletepayment
   };

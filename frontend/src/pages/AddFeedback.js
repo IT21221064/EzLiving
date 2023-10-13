@@ -5,6 +5,7 @@ import axios from "axios";
 import { useAuthContext } from '../hooks/useAuthContext';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Swal from 'sweetalert2';
 
 function AddFeedback() {
   const { user } = useAuthContext();
@@ -89,7 +90,11 @@ function AddFeedback() {
     event.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/feedback", feedback);
-      alert("Feedback added successfully!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Feedback added',
+        text: 'The feedback has successfully added',
+      });
       navigate("/feedback");
     } catch (err) {
       console.error(err);

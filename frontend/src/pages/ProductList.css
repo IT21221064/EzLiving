@@ -24,12 +24,18 @@
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+
+.product-item1{
+  width: 150px;
+  height: 150px;
+}
 /* Product Image with Magnify Effect and Transition */
 .cart-image {
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 30px;
+  margin-left: 30px;
   transition: transform 0.3s ease;
 }
 

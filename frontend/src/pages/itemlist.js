@@ -161,11 +161,13 @@ function Itemlist() {
         {renderedItems.map((product) => (
           <li key={product._id} className="product-item">
             <Link to={`/itempage/${product._id}`} className="card-link">
+              <div className="product-item1">
               <img
                 src={`http://localhost:5000/${product?.itemimage}`}
                 alt={product.name}
                 className="cart-image"
               />
+              </div>
             </Link>
             {console.log(`http://localhost:5000/${product?.itemimage}`)}
             <h2 className="cart-names">{product.itemname}</h2>
