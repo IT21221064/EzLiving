@@ -6,6 +6,7 @@ import "./singleItem.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuthContext } from "../hooks/useAuthContext";
+import Swal from "sweetalert2";
 
 function ItemPage() {
   const { user } = useAuthContext();
@@ -97,12 +98,30 @@ function ItemPage() {
         price: productPrice,
         quantity: 1,
       });
-
+  
+      // Show a confirmation message using SweetAlert2
+      Swal.fire({
+        title: "Product added to cart!",
+        icon: "success",
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1500, // Auto close after 1.5 seconds
+      });
+  
       console.log("Product added to cart.");
     } catch (error) {
       console.error("Error adding product to cart:", error);
+  
+      // Show an error message using SweetAlert2
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while adding the product to the cart.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
+  
 
   const speakText = () => {
     if (speechSynthesisSupported) {
