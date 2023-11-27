@@ -51,12 +51,13 @@ function Welcome() {
   useEffect(() => {
     if (!hasSpokenWelcome) {
       // Wait for voices to be available
-     
-        const message = new SpeechSynthesisUtterance("Welcome to easy living. To navigate to the user login page, please click the microphone and say 'go to user login'.");
-         // Change the voice if needed
-        window.speechSynthesis.speak(message);
-        setHasSpokenWelcome(true);
-    
+
+      const message = new SpeechSynthesisUtterance(
+        "Welcome to easy living. To navigate to the user login page, please press the microphone and say 'go to user login'."
+      );
+      // Change the voice if needed
+      window.speechSynthesis.speak(message);
+      setHasSpokenWelcome(true);
     }
     return () => {
       window.speechSynthesis.cancel();
@@ -70,14 +71,22 @@ function Welcome() {
         <br />
         <div className="center-content">
           <img className="welcomelogo" src="/images/EYELogo.png" alt="Logo" />
-          
+
           <br></br>
           <p className="welcomedescription">
-          Welcome to EzLiving, a user-centric website designed with accessibility in mind. At EzLiving, we believe that everyone deserves equal access to information and services, which is why we've crafted an inclusive online environment that caters to the visually challenged. Explore our extensive range of appliances, where our commitment to "Your Vision, Our Appliance" ensures that every product is thoughtfully selected and equipped with features that enhance usability and convenience, making daily living a seamless experience for all.
+            Welcome to EzLiving, a user-centric website designed with
+            accessibility in mind. At EzLiving, we believe that everyone
+            deserves equal access to information and services, which is why
+            we've crafted an inclusive online environment that caters to the
+            visually challenged. Explore our extensive range of appliances,
+            where our commitment to "Your Vision, Our Appliance" ensures that
+            every product is thoughtfully selected and equipped with features
+            that enhance usability and convenience, making daily living a
+            seamless experience for all.
           </p>
         </div>
         <br></br>
-      
+
         <p className="instructionText">Please select your login type:</p>
         <Link to="/login" className="btn-user">
           User Login
